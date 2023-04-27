@@ -4,6 +4,6 @@ const router = express.Router();
 const userController = require('../controllers/usersController.js');
 //Se definen las rutas 
 
-router.get('/', userController.list)
+router.get('/users/', userController.list)
 
 module.exports = router;

@@ -8,10 +8,6 @@ const myConnection = require('express-myconnection');
 
 const app = express();
 
-//Importando rutas
-
-const usersRoutes = require('./routes/users.js');
-
 
 //Configuraciones generales
 
@@ -29,6 +25,12 @@ app.use(myConnection(mysql, {
         port: '3306',
     database: 'especialidades'
 }, 'pool'))  //Si es cliente debe ser 'single', si es administrador debe ser 'pool' 
+
+
+//Importando rutas
+
+const usersRoutes = require('./routes/users.js');
+
 
 //Usando rutas importadas
 

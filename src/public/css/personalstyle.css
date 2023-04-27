@@ -621,13 +621,11 @@
 .divFormContainer {
     display: flex;
      justify-content: space-around;
-    
-     
 }
 
 .divFormCaptura {
      display: flex;
-     justify-content: space-around;
+     justify-content: left;
      border: 2px solid black;    
      margin: 30px;
      padding: 15px;
@@ -636,8 +634,6 @@
      opacity: 0.8;
      box-shadow: 0 0 10px 10px #C9EEFF;
    
-     
-     
  }
 
  .labelFormCaptura {
