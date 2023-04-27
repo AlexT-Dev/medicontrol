@@ -1,10 +1,16 @@
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const myConnection = require('express-myconnection');
 
+
+
 const app = express();
+
+//Importando rutas
+
+const usersRoutes = require('./routes/users.js');
 
 
 //Configuraciones generales
@@ -24,11 +30,15 @@ app.use(myConnection(mysql, {
     database: 'especialidades'
 }, 'pool'))  //Si es cliente debe ser 'single', si es administrador debe ser 'pool' 
 
-//routes (Para as peticiones)
+//Usando rutas importadas
 
+app.use('/', usersRoutes);
+
+//Archivos estáticos
+app.use(express.static(path.join(__dirname,'public')));
 
 //puerto donde escucha las peticiones
 
-app.listen(app.get('PORT'), () => {
+app.listen(app.get('port'), () => {
    console.log('Servidor en localhost:3000');
 });

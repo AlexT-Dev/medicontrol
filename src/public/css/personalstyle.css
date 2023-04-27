@@ -1,0 +1,1841 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200&family=Shadows+Into+Light&family=Splash&display=swap&family=Open+Sans&display=sans-serif?family=Anton&display=swap');
+
+/* 
+    Created on : 25/01/2021, 12:41:13 PM
+    Author     : Alejandro Téllez
+    Objective  : Creación de estilos CSS para usarse en el proyecto
+*/
+
+
+/*** Parpadeo de letras ***/
+.parpadea {
+  
+  animation-name: parpadeo;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  -webkit-animation-name:parpadeo;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+}
+
+@-moz-keyframes parpadeo{  
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes parpadeo {  
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+   100% { opacity: 1.0; }
+}
+
+@keyframes parpadeo {  
+  0% { opacity: 1.0; }
+   50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+/* Variables Globales de Color de Fondo */
+
+:root {
+--back-color-header: #04293A; /* Warm de Google */
+/**** Fonts ****/
+--font-style-footer: 'Splash', cursive;
+--font-style-menu: 'Shadows Into Light', cursive;
+--font-style-modalPersonal: 'Oswald', sans-serif;
+--font-style-etiqueta: 'Alkalami', serif;
+--font-style-contenido: 'Acme', sans-serif;
+--font-style-textarea: 'Fuzzy Bubbles', cursive;
+--font-style-p: 'Open Sans', sans-serif;
+--font-style-p-header: 'Anton', sans-serif;
+--font-size-footer: 20px;
+--font-color-menu: white;
+--back-color-grid-data: #1746A2;
+--color-over-button: #CC9544;
+--font-color-h1:  gold;
+
+
+}
+/***********   Login    ***********************/
+.bodylogin {
+    background-image: url('fondologin.jpg');  
+    margin: 0px;
+    padding: 0px;
+    background-size: cover;
+   
+}
+.divlogin {
+    top: 30%;
+    left: 30%;
+    position: absolute;
+    padding: 10px;
+  width: 30%;
+ box-shadow: 0 0 4px 3px #FFC6D3 ; 
+  background: linear-gradient(to bottom left, white, #FFBFA9);
+  border: solid 2px;    
+ border-radius: 10px;
+}
+
+.divcontenido {
+    text-align: center;
+    display: grid;
+    justify-items: center;
+}
+
+.plogin {
+    font-family: var(--font-style-textarea);
+    font-size: var(--font-size-footer);  
+}
+
+.divlabel {
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.labellogin{
+    font-family: var(--font-style-p);
+    font-weight: bold; 
+    display: grid;
+    justify-items: right;
+   
+    margin-top: 5px;
+}
+
+.btnlogin {
+    border-color: #7DB9B6;
+
+    box-shadow: 0 0 40px 40px #7DB9B6 inset, 0 0 0 0 #7DB9B6;
+    -webkit-transition: all 150ms ease-in-out;
+    transition: all 150ms ease-in-out;
+    align-items: right;
+    border-radius: 5px;
+    color: black;
+    margin: 5px;
+    padding: 10px;
+    
+}
+.btnlogin:hover {
+    box-shadow: 0 0 10px 0 #7DB9B6 inset, 0 0 10px 4px #7DB9B6;
+    background-color: black;
+    color: white;
+}
+
+.textalert {
+    font-family: var(--font-style-textarea);
+    font-size: var(--font-size-footer);  
+    color: red;
+}
+
+/*******   Formularios *******/
+
+.divform {
+    display: flex;
+    width: 50%;
+}
+
+
+/********* Header ******/
+
+.headerprincipal {
+    
+    width: 100%;
+    height: 100px;
+    background-color: var(--back-color-header);
+    opacity: 0.8;
+       left: 0px; /* Posicionamos la cabecera al lado izquierdo */
+    top: 0px; /*Posicionamos la cabecera pegada arriba */
+    display: grid;
+  grid-template-columns: 33% 33% 33%;
+   
+}
+
+/* Para Párrafos */
+.headerp {
+    margin: 0px ;
+    font-family: var(--font-style-p-header); 
+    color: var(--font-color-h1);
+    font-size: 30px;
+    padding: 5px;
+}
+
+.headerPCat {
+    margin: 0px ;
+    font-family: var(--font-style-p-header); 
+    color: white;
+    font-size: 20px;
+    padding: 5px;
+    font-weight: bold;
+}
+
+
+/********  Body principal ******/
+
+.bodyprincipal{
+    background-image: url('../fondodatos.jpg');  
+    margin: 0px;
+    padding: 0px;
+    background-size: cover;
+   
+}
+
+/* Para títulos de encabezados*/
+.titles {
+    font-size: 30px;
+    color: blue;
+    font-family: var(--font-style-p-header);
+}
+
+/************ Formato de menu Principal ******************/
+
+
+/** Menu de Opciones **/
+
+.nav-opciones {
+    max-width: 900px;
+    
+    font-size: 20px;
+    /*margin-top: 50px;*/
+        
+}
+
+
+/** Horizontal **/
+
+.menu-opciones {
+    list-style: none;
+    /*display: flex;*/
+    justify-content: space-around;
+    
+}
+
+/* Para datos debajo de opciones */
+.menu-opciones li {
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start
+}
+
+.menu-opciones li a{
+    font-family: var(--font-style-modalPersonal);
+    font-weight: bold;
+    font-size: 25px;
+    text-decoration: none;
+    padding: 5px;
+    color: var(--font-color-menu);
+    display: block;
+    
+}
+.menu-opciones li a:hover {
+    background-color:  var(--color-over-button);
+    border-radius:10px;
+    padding: 5px;
+    font-weight: bold; 
+    
+    
+}
+
+.menu-lista {
+    position: absolute;
+    display: none;
+    list-style: none;
+    width: 200px;
+    
+    
+}
+
+.menu-opciones li:hover .menu-lista { /*Para desplegar las opciones*/
+    display: grid;
+    width: 200px;
+    font-weight: bold;
+    text-align: left;
+    
+}
+
+.menu-lista li:hover {
+    background-color: var(--color-over-button);
+    border-radius:10px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.menu-lista li a {
+    display: block;
+    color: black;
+    padding: 5px;
+    font-weight: bold;
+    text-align: left;
+}
+
+/** Cerrar Sesión **/
+
+.divcerrar-sesion {
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    display: grid;
+    font-family: var(--font-style-p-header);
+    color: var(--color-over-button);
+    padding: 5px;
+ }
+
+ 
+ 
+ .divcerrar-sesion p {
+   font-family: var(--font-style-p-header);
+   color: var(--color-over-button);
+   font-weight: bold;
+   font-size: 10px;
+   margin-left: 5px;
+   margin-right: 5px;
+   
+ }
+
+ 
+ /*******************************************************
+               Miscelanea de Formatos 
+ ********************************************************/
+ 
+/*************** Botones ******************/
+
+.btncerrar-sesion {
+   border-color: burlywood;
+
+    box-shadow: 0 0 10px 10px burlywood inset, 0 0 0 0 burlywood;
+    -webkit-transition: all 150ms ease-in-out;
+    transition: all 150ms ease-in-out;
+    align-items: center;
+    border-radius: 5px;
+    color: black;
+    margin: 5px;
+    padding: 5px; 
+    font-weight: bold;
+    text-decoration: none;
+    
+}
+
+.btncerrar-sesion:hover {
+    box-shadow: 0 0 5px 0 burlywood inset, 0 0 5px 2px burlywood;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+} 
+ 
+.btnNuevo {
+    font-family: var(--font-style-p-header);
+    background-color: #FFB84C;
+    color: black;
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 10px;
+    margin: 5px;
+    
+}
+
+.btnNuevo:hover {
+    
+    background-color: black;
+    color: #FFB84C;
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.btnRegresar {
+    font-family: var(--font-style-p-header);
+    background-color: #BAD7E9;
+    color: black;
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 10px;
+    margin: 5px;
+    
+}
+
+.btnRegresar:hover {
+    
+    background-color: black;
+    color: #BAD7E9;
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 10px;
+    margin: 5px;
+}
+ 
+.btnBuscar {
+    font-family: var(--font-style-p-header);
+    background-color: #5D9C59;
+    color: white;
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 10px;
+    margin: 5px;
+    border: 0;
+    
+}
+
+.btnBuscar:hover {
+    font-family: var(--font-style-p-header);
+    background-color: white;
+    color: #5D9C59;
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.btnGuardar {
+    font-family: var(--font-style-p-header);
+    background-color: var(--font-color-h1);
+    color: black;
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 10px;
+    margin: 5px;
+    border: 0;
+}
+
+.btnGuardar:hover {
+    
+    background-color: black;
+    color: var(--font-color-h1);
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.btnCitas {
+    font-family: var(--font-style-p-header);
+    background-color: black;
+    color: white;
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 10px;
+    margin: 5px;
+    border: 0;
+}
+
+.btnCitas:hover {
+    
+    background-color: white;
+    color: black;
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+/** Botones de lista de datos ***/
+
+.btnModificar {
+        font-family: var(--font-style-p-header);
+    background-color: #5D9C59;
+    color: white;
+    padding: 2px;
+    text-decoration: none;
+    border-radius: 2px;
+    margin: 5px;
+}
+
+.btnModificar:hover {
+        font-family: var(--font-style-p-header);
+    background-color: white;
+    color: #5D9C59;
+    padding: 2px;
+    text-decoration: none;
+    border-radius: 2px;
+    margin: 5px;
+}
+
+
+.btnBorrar {
+    font-family: var(--font-style-p-header);
+    background-color: yellow;
+    color: black;
+    padding: 2px;
+    text-decoration: none;
+    border-radius: 2px;
+    margin: 5px;
+    border: 0;
+}
+
+
+.btnBorrar:hover {
+    
+    background-color: black;
+    color: yellow;
+    padding: 2px;
+    text-decoration: none;
+    border-radius: 2px;
+    margin: 5px;
+}
+
+.btnHistorial {
+    font-family: var(--font-style-p-header);
+    background-color: black;
+    color: white;
+    padding: 2px;
+    text-decoration: none;
+    border-radius: 2px;
+    margin: 5px;
+    border: 0;
+}
+
+
+.btnHistorial:hover {
+    
+    background-color: white;
+    color: black;
+    padding: 2px;
+    text-decoration: none;
+    border-radius: 2px;
+    margin: 5px;
+}
+
+
+.inputForm {
+   font-family: var(--font-style-p-header);
+   font-size: 10px;
+   border-radius: 3px;
+   background-color: #FCFFE7;
+ }
+
+ /*************** Form Encabezado ******************/
+ 
+ .headerOp {
+    
+    width: 100%;
+    height: 100px;
+    background-color: var(--back-color-header);
+    opacity: 0.8;
+       left: 0px; /* Posicionamos la cabecera al lado izquierdo */
+    top: 0px; /*Posicionamos la cabecera pegada arriba */
+    display: grid;
+  grid-template-columns: 25% 55% 20%;
+   
+}
+ 
+ .divForm {
+     display: flex;
+     justify-content: space-around
+ }
+ 
+ .divFormBuscar {
+     
+     display: flex;
+     align-content: flex-start;
+     align-content: center;
+     justify-content: flex-start;
+     align-items: center;
+         
+ }
+ 
+ .divFormOp {
+     
+     display: flex;
+     align-content: flex-end;
+     justify-content: flex-end;
+     align-items: center;
+     
+         
+ }
+ 
+ 
+ 
+/************** Footer **********************/
+
+.fontfooter{
+    font-family: var(--font-style-footer);
+    font-size: var(--font-size-footer);  
+    color: var(--font-color-menu); 
+    
+}
+
+.footer{
+    background-color: white;
+        /*var(--back-color-header);*/
+    width: 100%;
+    height: 60px;
+    position: absolute;
+    display: flex;
+    opacity: 0.8;
+    bottom: 0;
+    left: 0;
+}
+
+.divfooter {
+    width: 33%;
+    justify-content: center;
+    align-items: right;
+    margin: auto
+    
+   
+}
+
+.divDatos {
+    display: flex;
+    align-items: center
+}
+
+.parrafopie {
+    color: black; /*var(--color-over-button);*/
+    text-align: left;
+    font-family: var(--font-style-modalPersonal);
+    font-weight: bold;
+    margin-top: 0px;
+    font-size: 12px;
+    margin: 0px;
+    padding-right: 10px;
+    text-align: right;
+}
+
+.fotoReduce {
+/*  border: 1px solid #ddd;*/
+  border-radius: 10px;
+  width: 20px;
+  float: right;
+  margin: 5px;
+  padding: 2px;
+  height: 20px;
+  
+}
+
+.imgLogo {
+/*  border: 1px solid #ddd;*/
+  border-radius: 10px;
+  width: 80px;
+  float: right;
+  margin: 5px;
+  padding: 2px;
+  height: 40px;
+}
+
+
+/*********************  Para Formularios de captura *********************/
+
+.divFormContainer {
+    display: flex;
+     justify-content: space-around;
+    
+     
+}
+
+.divFormCaptura {
+     display: flex;
+     justify-content: space-around;
+     border: 2px solid black;    
+     margin: 30px;
+     padding: 15px;
+     background-color: #FEFAE0;
+     border-radius: 10px;
+     opacity: 0.8;
+     box-shadow: 0 0 10px 10px #C9EEFF;
+   
+     
+     
+ }
+
+ .labelFormCaptura {
+     font-family: var(--font-style-p-header);
+     font-weight: bold;
+     text-align: right;
+     font-size: 15px;
+     
+  }
+ 
+  .divDatosCaptura {
+      display: grid;
+      grid-template-columns: 25% 75%;
+      padding-top: 10px;
+ }
+ 
+ .divOpciones {
+     margin-top: 10px;
+    padding-top: 10px; 
+ }
+  
+  .inputFormCaptura {
+      margin-left: 10px;
+       font-size: 15px;
+  }
+  
+  .selectCaptura {
+       margin-left: 10px;
+       font-size: 12px;
+       background-color: var(--font-color-h1);
+       color: black;
+  }
+  
+/********* Para secciones ********/
+
+.seccion {
+    display: flex;
+  justify-content: center;
+}
+/*************** Para modals ************/
+
+.containerModal {
+    width: 50%;
+    height: 50%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+   
+    visibility: hidden;
+    opacity: 0;
+    transition: all 600ms;
+}
+
+.popup {
+    width: 100%;
+    max-width: 900px;
+    height: 500px;
+    position: relative;
+    display: flex;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+ }
+
+.containerModal:target{ /* Cuando tenga el focus */
+    visibility: visible;
+    opacity: 0.9;
+    background:  var(--color-over-button);
+    transition: all 700ms;
+    border-radius: 10px; 
+    box-shadow: 0px 0px 5px 1px #205375;
+    
+    
+}
+
+.textModal {
+    width: 80%;
+    padding-top: 50px;
+    margin: 10px;
+    overflow-y: auto;
+    justify-content: space-between;
+    
+   
+}
+
+.btncloseModal{
+    width: 15px;
+    height: 20px;
+    position: absolute;
+    right: -5px;
+    top: 60px;
+    padding: 10px;
+        padding-left: 10px;
+    background: #205375;
+    color: white;
+    border-radius: 30%;
+/*    line-height: 10px;*/
+    text-decoration: none;
+    
+}
+
+.btn-closeModal:hover{
+    box-shadow: 0 0 4px 3px black;
+}
+
+.encPersonales{
+    color: white;
+    font-family: var(--font-style-modalPersonal);
+    font-size: 30px;
+    font-weight: bold;
+    padding-left: 20px;
+    
+}
+
+.encDato{
+    color: black;
+    font-family: var(--font-style-modalPersonal);
+    font-size: 20px;
+    font-weight: bold;
+    
+}
+
+.pModal {
+    color: #001D6E;
+    margin-left: 130px;
+   
+}
+.labelModal {
+    float: left;
+    width: 100px;
+    padding-left: 24px;
+    margin-bottom: 2px;
+    text-align: right;
+}
+
+
+.hrModal {
+  height: 2px;
+/*  margin-left: 0%;
+  margin-right: 50%;*/
+ margin-top: 2px;
+  background-color: var(--back-color-header);
+
+}
+
+
+
+
+
+
+
+.imgEnc {
+    width: 100%;
+    left: 0; /* Posicionamos la cabecera al lado izquierdo */
+    top: 0; /*Posicionamos la cabecera pegada arriba */
+    
+}
+
+
+
+
+
+
+.headerh4 {
+    margin: 0px;
+    font-family: var(--font-style-p);
+    color: var(--font-color-menu)
+}
+
+.headerdivname {
+    padding-left: 5px;
+    padding-top: 5px;
+    width: 500px;
+}
+
+.headerdivmenu {
+    padding: 0px;
+    width: 550px;
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: normal;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    
+
+}
+.headerdivicons {
+    padding: 0px;
+    width: 100px;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: normal;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    
+}
+
+
+
+
+.body{
+   background-color: var(--back-color-header);
+   background-repeat: no-repeat;
+   
+   min-height: 100vh;
+   
+    
+   
+ }
+
+
+
+/******************     BODY    ****************************/
+/****************** Para Skills ****************************/
+
+.h1skill {
+    font-family: var(--font-style-etiqueta);
+    font-size: 30px;
+    margin-left: 10px;
+    color: var(--font-color-h1);
+  }
+  
+
+.divskill{
+    display: flex;
+    justify-content: left;
+  }
+
+.columnaskill{
+   width: 20%;
+   /* padding-top: 2px; */
+   text-align: right;
+   margin-right: 5px;
+}
+
+.cskills{
+    width:80%;
+    background-color:var(--back-color-header);
+   margin-top:5px;
+   margin-right: 10px;
+ }
+
+.skills{
+    text-align: right;
+    padding-right: 2px;
+    color:black;
+    font-weight: bold;
+    font-family: var(--font-style-p);
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.vb {
+    background-color: var(--color-over-button) ;
+    animation: fillvb 2s forwards;
+    margin-left: 0px;
+}
+
+@keyframes fillvb {
+    0%{width: 0;}
+    100%{width: 40%;}
+}
+
+.cobol {
+    background-color: var(--color-over-button);
+    animation: fillcobol 2s forwards;
+    margin-left: 0px;
+}
+
+@keyframes fillcobol {
+    0%{width: 0;}
+    100%{width: 30%;}
+}
+
+.java {
+    background-color: var(--color-over-button);
+    animation: filljava 2s forwards;
+    margin-left: 0px;
+}
+
+@keyframes filljava {
+    0%{width: 0;}
+    100%{width: 30%;}
+}
+
+.njs {
+    background-color: var(--color-over-button);
+    animation: fillnjs 2s forwards;
+    margin-left: 0px;
+}
+
+@keyframes fillnjs {
+    0%{width: 0;}
+    100%{width: 30%;}
+}
+
+.css {
+    background-color: var(--color-over-button);
+    animation: fillcss 2s forwards;
+    margin-left: 0px;
+}
+
+@keyframes fillcss {
+    0%{width: 0;}
+    100%{width: 50%;}
+}
+.html {
+    background-color: var(--color-over-button);
+    animation: fillhtml 2s forwards;
+    margin-left: 0px;
+}
+
+@keyframes fillhtml {
+    0%{width: 0;}
+    100%{width: 60%;}
+}
+
+.sql {
+    background-color: var(--color-over-button);
+    animation: fillsql 2s forwards;
+    margin-left: 0px;
+}
+
+@keyframes fillsql {
+    0%{width: 0;}
+    100%{width: 70%;}
+}
+
+.ms {
+    background-color: var(--color-over-button);
+    animation: fillms 2s forwards;
+    margin-left: 0px;
+}
+
+@keyframes fillms {
+    0%{width: 0;}
+    100%{width: 70%;}
+}
+
+.visio {
+    background-color: var(--color-over-button);
+    animation: fillvisio 2s forwards;
+    margin-left: 0px;
+}
+
+@keyframes fillvisio {
+    0%{width: 0;}
+    100%{width: 70%;}
+}
+.project {
+    background-color: var(--color-over-button);
+    animation: fillpro 2s forwards;
+    margin-left: 0px;
+}
+
+@keyframes fillpro {
+    0%{width: 0;}
+    100%{width: 55%;}
+}
+
+.vba {
+    background-color: var(--color-over-button);
+    animation: fillvba 2s forwards;
+    margin-left: 0px;
+}
+
+@keyframes fillvba {
+    0%{width: 0;}
+    100%{width: 50%;}
+}
+
+/************* Para Secciones ********************************/
+
+.saltoSeccion{
+    padding: 15px;
+}
+
+.sec {
+    
+    background-color: var(--back-color-header);
+   
+    box-shadow: 0 0 4px 3px burlywood; 
+    transition: all 800ms;
+    
+    display: flex;
+    opacity: 0.9;
+    
+}
+
+/* Lado Izquierdo */
+.izquierda {
+    height: 50vh;
+    width: 50%;
+}
+
+.sec h1 {
+   font-family: var(--font-style-etiqueta);
+   font-size: 30px;
+   margin-left: 10px;
+   color: var(--font-color-h1);
+  
+}
+.sec p {
+    font-family: var(--font-style-p);
+    font-size: 12px;
+    margin-left: 10px;
+    color: var(--font-color-menu);
+    margin: 2px;
+    padding-left: 10px;
+  
+ }
+
+ .secdiv {
+    padding: 15px;
+}
+
+ .sec a{
+    color: var(--font-color-h1);
+}
+
+ .button {
+    border: 1px solid var(--color-over-button); 
+    color: var(--font-color-menu);
+    padding: 5px 11px;
+    margin-left: 10px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: var(--font-style-modalPersonal);
+    position: relative;
+    z-index: 1;
+}
+
+ .button::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+    width: 0;
+    height: 100%;
+    background-color: var(--color-over-button);
+    z-index: -1;
+    transition: width 0.2s ease-in-out;
+    
+ }
+
+ .button:hover::after{
+    width: 105%;
+    border-radius: 5px;
+ }
+
+ /* Espacio en blanco */
+ .espacio {
+    border: none;
+    padding: 5px 0px 0px 0px;
+ }
+
+/* Lado Derecho */
+
+.secimg {
+  width: 50%;
+  height: 50vh;
+}
+
+.imgsize{ /* para tamaño de las imagenes*/
+    display: inline;
+      width: 765px;
+     height: 472px;
+}
+.imgestudios {
+    background-image: url(./images/escuela.jpg);
+ }
+
+
+.imgexperiencia {
+   background-image: url(./images/experiencia.jpg);
+}
+
+
+.imgtrans {
+  background-image: url(./images/Transversales.jpg);
+}
+
+
+.imgpro {
+    background-image: url(./images/proyectos.jpg);
+  }
+
+
+
+
+
+
+/******** Contenedor de Registros con table *********/
+
+
+
+.fijar-tabla {
+   background: var(--back-color-header);
+    padding: auto; 
+    margin: 20px; 
+    
+      opacity: 0.8;
+      
+      box-shadow: 0 0 4px 3px burlywood;
+ }
+ 
+ .tHead {
+     
+     background-color: var(--color-over-button)
+ }
+ 
+.tabla{
+    
+    align-items: center;
+    font-family: var(--font-style-p-header);
+    font-weight: bold;
+    text-align: center;
+    border-collapse: collapse;
+    
+    
+}
+
+.trFija {
+   
+   margin: 3px;
+    
+}
+
+.tbodyDatos {
+    text-align: left;
+    background: var(--back-color-header);
+    max-width: 100%;
+    overflow-y: auto;
+    position: fixed;
+    color: white;
+    font-size: 15px; 
+    margin-bottom: 5px;
+    padding-top: 5px;
+    font-weight: normal;
+    
+   
+}
+
+.trDatos td  {
+    height:20px;
+  }
+.trDatos{
+    
+    overflow: auto;
+    font-weight: normal;
+    
+}
+
+
+
+tr:nth-child(even){
+    background-color: #FEFAE0;
+    color: black;
+}
+ 
+
+
+
+/******** Contenedor de Registros con li *********/
+
+.etiquetas-contenedor {
+   
+   position: absolute;
+   display: grid;
+    
+}
+
+.fijar-etiquetas{
+   position: sticky;
+    top: 171px;
+    
+}
+
+
+.etiquetas-gral{ 
+    
+    max-width: 1200px;
+    margin: auto;
+    padding-bottom: 15px;
+    
+    background: var(--back-color-header);
+    border: 1px solid;
+    border-color:  var(--color-over-button);
+    opacity: 0.8;
+    transition: all 800ms;
+    border-radius: 5px;
+    box-shadow: 0 0 4px 3px burlywood;
+    display: block;
+    
+   
+}
+
+.etiquetas-gral .p {
+    color:  var(--color-over-button);
+    font-family: var(--font-style-contenido);
+    font-weight: bold;
+    line-height: 1px;
+    margin-left: 10px;
+    font-size: 20px;
+    
+}
+
+.etiquetas-gral .label {
+    color:  var(--color-over-button);
+    font-family: var(--font-style-etiqueta);
+    font:bold;
+    line-height: 1px;
+    margin-left: 10px;
+    font-size: 20px;
+    margin-left: 100px;
+    
+}
+
+.etiquetas-gral .textarea {
+    margin-left: 10px;
+    margin-bottom: 10px;
+    background: transparent;
+    min-width: 1180px;
+    max-width: 1180px;
+    overflow: hidden;
+    height: 160px;
+    color:  var(--color-over-button);
+    font-family: var(--font-style-textarea);
+    font-size: 15px;
+    resize:none;
+    
+}
+
+
+.doc-recibido{
+    text-align: right;
+    padding-bottom: 12px;
+    padding-right: 20px;
+    
+}
+
+.doc-recibido .p {
+    font-size: 20px;
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+.etiqueta { /* Para espcios entre etiquetas de datos*/
+    display:grid;
+    
+    margin-top: 10px;
+    
+}
+
+/******** Para imagenes  *********/
+
+.fotoPersonal {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  width: 90px;
+  float: left;
+  margin: 10px;
+  padding: 10px;
+  height: 120px;
+  
+}
+
+
+
+.fotoPersonal:hover {
+  box-shadow: 0 0 4px 3px burlywood;
+}
+
+.fotoReduce:hover {
+  box-shadow: 0 0 4px 3px burlywood;
+}
+
+
+
+
+
+
+
+
+/* Para grid citas modal */
+#grid-citas {
+  display: grid;
+  /* height: 100px; Para en caso de que sea fijo*/ 
+  grid-template-columns: 300px;
+  grid-template-rows: 50px 50px;
+}
+
+/* Para grid encabezados */
+#grid-encabezados {
+  display: grid;
+  /* height: 100px; Para en caso de que sea fijo*/ 
+  grid-template-columns: 1000px 500px;
+  grid-template-rows: 40px;
+}
+
+/* Para grid normal */
+#grid {
+  display: grid;
+  /* height: 100px; Para en caso de que sea fijo*/ 
+  grid-template-columns: 1000px 500px;
+  grid-template-rows: 30px;
+}
+
+/* Para grid grandes */
+.grid-large {
+  display: grid;
+  height: 70%;
+  width: 50%;
+  display: grid;
+  grid-template-columns: 500px 1000px; /* 2 columnas de 500px y */
+  grid-template-rows: 400px;          /* una fila de 400px*/
+}
+
+/* Para grid historial */
+#grid-historial {
+  display: grid;
+  height: 70%;
+  width: 50%;
+  display: grid;
+  grid-template-columns: 300px 650px 549px; /* 3 columnas  y */
+  grid-template-rows: 380px;        /* 1 fila*/
+}
+.table-fixed thead,
+.table-fixed tfoot{
+  width: 100%;
+}
+
+.table-fixed tbody {
+  /*height: 400px; Para todos del mismo tamaño*/
+  overflow-y: auto;
+  width: 100%;
+}
+
+
+.table-fixed thead,
+.table-fixed tbody,
+.table-fixed tfoot,
+.table-fixed tr,
+.table-fixed td,
+.table-fixed th {
+  display: block;
+}
+
+.table-striped,
+.table-fixed tbody td,
+.table-fixed thead > tr> th,
+.table-fixed tfoot > tr> td{
+  float: left;
+  border-bottom-width: 0;
+  
+}
+
+
+/************************** Para responsive ****************************/
+@media screen and (max-width: 360px) {
+
+/**********  Para Header   *************/
+
+.headerp {
+    margin-top: 5px ;
+    font-family: var(--font-style-p-header); 
+    color: var(--font-color-h1);
+    font-size: 12px;
+}
+
+
+.headerh4 {
+    margin-top: 5px;
+    font-family: var(--font-style-p);
+    color: var(--font-color-menu);
+    font-size: 9px;
+}
+
+.parrafoCabecera {
+    background-color: var(--back-color-header);
+    color:  var(--color-over-button);
+    text-align: left;
+    font-family: var(--font-style-modalPersonal);
+    font-weight: bold;
+    margin-top: 0px;
+    font-size: 12px;
+}
+
+.headerdivname {
+    padding-left: 5px;
+    padding-top: 5px;
+    width: 200px;
+}
+
+.headerdivmenu {
+   display: none;
+
+}
+.headerdivicons {
+    display: none;
+
+}
+
+    /****************** Para Skills ****************************/
+
+.h1skill {
+    font-family: var(--font-style-etiqueta);
+    font-size: 8px;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: var(--font-color-h1);
+  }
+  
+
+.divskill{
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    text-align: left;
+    align-items: flex-start;
+
+  }
+
+.columnaskill{
+   width: 40%;
+   /* padding-top: 2px; */
+   text-align: left;
+   margin-right: 5px;
+   padding: 2px;
+   
+}
+
+.cskills{
+    width:100%;
+    /* background-color:var(--back-color-header); */
+   margin-top:5px;
+   margin-right: 5px;
+ }
+
+.skills{
+    text-align: right;
+    padding-right: 2px;
+    color:black;
+    font-weight: bold;
+    font-family: var(--font-style-p);
+    font-size: 8px;
+    font-weight: bold;
+}
+
+.vb {
+    background-color: var(--color-over-button) ;
+    animation: fillvb 2s forwards;
+    margin-left: 0px;
+}
+
+@keyframes fillvb {
+    0%{width: 0;}
+    100%{width: 40%;}
+}
+
+.cobol {
+    background-color: var(--color-over-button);
+    animation: fillcobol 2s forwards;
+    margin-left: 0px;
+}
+
+@keyframes fillcobol {
+    0%{width: 0;}
+    100%{width: 30%;}
+}
+
+.java {
+    background-color: var(--color-over-button);
+    animation: filljava 2s forwards;
+    margin-left: 0px;
+}
+
+@keyframes filljava {
+    0%{width: 0;}
+    100%{width: 30%;}
+}
+
+.njs {
+    background-color: var(--color-over-button);
+    animation: fillnjs 2s forwards;
+    margin-left: 0px;
+}
+
+@keyframes fillnjs {
+    0%{width: 0;}
+    100%{width: 30%;}
+}
+
+.css {
+    background-color: var(--color-over-button);
+    animation: fillcss 2s forwards;
+    margin-left: 0px;
+}
+
+@keyframes fillcss {
+    0%{width: 0;}
+    100%{width: 50%;}
+}
+.html {
+    background-color: var(--color-over-button);
+    animation: fillhtml 2s forwards;
+    margin-left: 0px;
+}
+
+@keyframes fillhtml {
+    0%{width: 0;}
+    100%{width: 60%;}
+}
+
+.sql {
+    background-color: var(--color-over-button);
+    animation: fillsql 2s forwards;
+    margin-left: 0px;
+}
+
+@keyframes fillsql {
+    0%{width: 0;}
+    100%{width: 70%;}
+}
+
+.ms {
+    background-color: var(--color-over-button);
+    animation: fillms 2s forwards;
+    margin-left: 0px;
+}
+
+@keyframes fillms {
+    0%{width: 0;}
+    100%{width: 70%;}
+}
+
+.visio {
+    background-color: var(--color-over-button);
+    animation: fillvisio 2s forwards;
+    margin-left: 0px;
+}
+
+@keyframes fillvisio {
+    0%{width: 0;}
+    100%{width: 70%;}
+}
+.project {
+    background-color: var(--color-over-button);
+    animation: fillpro 2s forwards;
+    margin-left: 0px;
+}
+
+@keyframes fillpro {
+    0%{width: 0;}
+    100%{width: 55%;}
+}
+
+.vba {
+    background-color: var(--color-over-button);
+    animation: fillvba 2s forwards;
+    margin-left: 0px;
+}
+
+@keyframes fillvba {
+    0%{width: 0;}
+    100%{width: 50%;}
+}
+
+/* Lado Izquierdo */
+.izquierda {
+    height: 50vh;
+    width: 52%;
+}
+
+.sec h1 {
+   font-family: var(--font-style-etiqueta);
+   font-size: 15px;
+   margin-left: 10px;
+   
+   color: var(--font-color-h1);
+  
+}
+.sec p {
+    font-family: var(--font-style-p);
+    font-size: 9px;
+    margin-left: 10px;
+    color: var(--font-color-menu);
+    
+    padding-left: 1px;
+  
+ }
+
+ .secdiv {
+    padding: 15px;
+}
+
+ .sec a{
+    color: var(--font-color-h1);
+    
+}
+
+ .button {
+    border: 1px solid var(--color-over-button); 
+    color: var(--font-color-menu);
+    margin-top: 0px;
+    padding: 5px 11px;
+    margin-left: 10px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: var(--font-style-modalPersonal);
+    position: relative;
+    z-index: 1;
+   
+}
+
+ .button::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+    width: 0;
+    height: 100%;
+    background-color: var(--color-over-button);
+    z-index: -1;
+    transition: width 0.2s ease-in-out;
+    
+ }
+
+ .button:hover::after{
+    width: 105%;
+    border-radius: 5px;
+ }
+
+ /* Espacio en blanco */
+ .espacio {
+    border: none;
+    
+ }
+
+/* Lado Derecho */
+
+.secimg {
+    width: 55%;
+  height: 50vh;
+}
+
+.imgsize{ /* para tamaño de las imagenes*/
+    display: none;
+      
+}
+
+/* ***************** Para footer  ********************** */
+
+.footer{
+ 
+    display: flex;
+}
+
+.divfooter {
+    margin: 2px;
+}
+
+.footerdivicons {
+    padding: 0px;
+   
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+   
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+
+.parrafopie {
+    color:  var(--color-over-button);
+    text-align: left;
+    font-family: var(--font-style-modalPersonal);
+    font-weight: bold;
+    margin-top: 0px;
+    font-size: 12px;
+    margin: 0px;
+    padding-left: 5px;
+}
+
+
+/****************** Para Modal ***********/
+
+.containerModal {
+    width: 220px;
+    height: 300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+   
+    visibility: hidden;
+    opacity: 0;
+    transition: all 600ms;
+}
+
+.popup {
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    display: flex;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+ }
+
+.containerModal:target{ /* Cuando tenga el focus */
+    visibility: visible;
+    opacity: 0.9;
+    background:  var(--color-over-button);
+    transition: all 700ms;
+    border-radius: 10px; 
+    box-shadow: 0px 0px 5px 1px #205375;
+    
+    
+}
+
+.textModal {
+    width: 100%;
+    padding-top: 2px;
+    margin: 2px;
+    overflow-y: auto;
+    justify-content: space-between;
+    
+   
+}
+
+.btncloseModal{
+    width: 15px;
+    height: 20px;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+   
+    padding-left: 10px;
+    background: #205375;
+    color: white;
+    border-radius: 30%;
+/*    line-height: 10px;*/
+    text-decoration: none;
+    
+}
+
+.btn-closeModal:hover{
+    box-shadow: 0 0 4px 3px black;
+}
+
+.encPersonales{
+    color: white;
+    font-family: var(--font-style-modalPersonal);
+    font-size: 15px;
+    font-weight: bold;
+    padding-left: 5px;
+    
+}
+
+.encDato{
+    color: black;
+    font-family: var(--font-style-modalPersonal);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.pModal{
+    color: #001D6E;
+}
+.labelModal {
+   
+    width: 50px;
+    padding-left: 2px;
+    
+}
+
+
+.hrModal {
+  height: 2px;
+/*  margin-left: 0%;
+  margin-right: 50%;*/
+ margin-top: 2px;
+  background-color: var(--back-color-header);
+
+}
+}
