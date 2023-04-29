@@ -1,7 +1,7 @@
 //Para la funcionalidad del servicio
-const controller = {};
+const usersControl = {};
 
-controller.list = (req, res) =>{
+usersControl.list = (req, res) =>{
    //Se crea la conexión a la base de datos
    req.getConnection((err,conn) =>{
      conn.query('select * from usuarios order by nombreusuario', (err, users) =>{
@@ -14,4 +14,24 @@ controller.list = (req, res) =>{
    })
 }
 
-module.exports = controller;
+//Para llamar a la página que agrega nuevos resgistros
+usersControl.new = (req, res) =>{
+  
+        res.render('userAdd', {titulo: "Nuevo Usuario"}) 
+     
+}
+
+//Para guardar los datos capturuados en userAdd de Views
+
+usersControl.save = (req, res) => {
+    const data = req.body;
+    data.nombreusuario = data.nombreusuario.toUpperCase();
+    console.log(data)
+    req.getConnection((err, conn) => {
+      conn.query('insert into usuarios set ?', [data], (err, users) => {
+         console.log(users)
+         res.send('guardados');
+       })
+    })
+};
+module.exports = usersControl;

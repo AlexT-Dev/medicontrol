@@ -26,6 +26,8 @@ app.use(myConnection(mysql, {
     database: 'especialidades'
 }, 'pool'))  //Si es cliente debe ser 'single', si es administrador debe ser 'pool' 
 
+app.use(express.urlencoded({extended: false}));  //Para que el servidor entieanda lo que se envía de los formularios a la base de datos 
+                                                 //el false es para datos simples, sin imagenes o datos más complejos 
 
 //Importando rutas
 
@@ -35,6 +37,7 @@ const usersRoutes = require('./routes/users.js');
 //Usando rutas importadas
 
 app.use('/', usersRoutes);
+
 
 //Archivos estáticos
 app.use(express.static(path.join(__dirname,'public')));
