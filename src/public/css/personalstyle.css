@@ -435,7 +435,7 @@
 .btnModificar {
         font-family: var(--font-style-p-header);
     background-color: #5D9C59;
-    color: white;
+    color: black;
     padding: 2px;
     text-decoration: none;
     border-radius: 2px;
@@ -444,7 +444,7 @@
 
 .btnModificar:hover {
         font-family: var(--font-style-p-header);
-    background-color: white;
+    background-color: black;
     color: #5D9C59;
     padding: 2px;
     text-decoration: none;
