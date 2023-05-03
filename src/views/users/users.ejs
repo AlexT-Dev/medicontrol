@@ -3,17 +3,17 @@
     </div>
     <div class="divForm">
         <div class="divFormBuscar">
-            <form>
-                <input type="text" name="parentesco" placeholder="Nombre del parentesco" size="58"
-                    style="text-transform:uppercase; font-size:80%;" class="inputForm" href="#">
-                <span title="Clic sin nombre para traer todos los parentescos.">
+          <form action="/users/find/">
+                <input type="text" name="nombre" placeholder="Nombre del usuario" size="58"
+                    style="text-transform:uppercase; font-size:80%;" class="inputForm">
+                <span title="Clic sin nombre para traer todos los usuarios.">
                     <input class="btnBuscar" type="submit" value="Buscar">
                 </span>
             </form>
         </div>
         <div class="divFormOp">
             <!-- Opciones de encabezados -->
-            <span title="Crear nuevo parentesco.">
+            <span title="Crear nuevo usuario.">
                 <a class="btnNuevo" href="new">Nuevo</a>
             </span>
             <a class="btnRegresar" href="ServiciosBD.htm">Regresar</a>
@@ -52,7 +52,7 @@
                                 <td style="width:150px; font-size:90%; text-align: justify;"><%= data[i].tipousuario %></td>
                                 <td style="width:150px; font-size:90%; text-align: center;"><%= data[i].status %></td>
                                 <td style="width:160px; font-size:80%;">
-                                    <a href="users/modify/<%= data[i].cuenta %>" class ="btnModificar"> Modificar </a>
+                                    <a href="update/<%= data[i].cuenta %>" class ="btnModificar"> Modificar </a>
                                     <a href="delete/<%= data[i].cuenta %>" class ="btnBorrar"> Baja </a>
                                 </td>
                             </tr>
