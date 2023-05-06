@@ -1,3 +1,5 @@
+const bcrypts = require('bcrypt');  // Para encriptado de contraseñas
+
 //Para la funcionalidad del servicio
 const usersControl = {};
 
@@ -49,9 +51,10 @@ usersControl.edit = (req, res) =>{
 
 //Para guardar los datos capturados en userAdd de Views  (Nuevos)
 
-usersControl.save = (req, res) => {
+usersControl.save = async (req, res) => {
     const data = req.body;
     data.nombreusuario = data.nombreusuario.toUpperCase();
+    data.password = await encriptarPasswords(data.password);
     console.log(data)
     req.getConnection((err, conn) => {
       conn.query('insert into usuarios set ?', [data], (err, users) => {
@@ -63,10 +66,11 @@ usersControl.save = (req, res) => {
 
 //Para guardar los datos capturados en userEdit de Views  (Modificaciones)
 
-usersControl.update = (req, res) => {
+usersControl.update = async (req, res) => {
    const { cuenta } = req.params;
    const userModify = req.body;
    userModify.nombreusuario = userModify.nombreusuario.toUpperCase();
+   userModify.password = await encriptarPasswords(userModify.password);   //Encripta la password
   console.log(cuenta)
   console.log(userModify)
 
@@ -81,9 +85,9 @@ usersControl.update = (req, res) => {
 
 //Para eliminar un registro en userErease de Views  (Modificaciones)
 
-usersControl.delete = (req, res) => {
+usersControl.delete = async (req, res) => {
    const userAccount = req.params.cuenta;
-   req.getConnection((err, conn) => {
+   await req.getConnection((err, conn) => {
       conn.query('update usuarios set status = ? where cuenta = ?', ["INACTIVO", userAccount], (err, users) => {
          console.log(users)
          res.redirect('../users');    //redirecciona a la página principal de usuarios, sólo es ../users por se hace en la misma página
@@ -93,12 +97,12 @@ usersControl.delete = (req, res) => {
 
 //Para buscar el nombre 
 
-usersControl.find = (req, res) => {
+usersControl.find = async (req, res) => {
    const userName = req.body.nombre;
    userName = userName.toUpperCase();
    console.log(userName)
    if (userName) {
-      req.getConnection((err, conn) => {
+      await req.getConnection((err, conn) => {
          conn.query('select * from usuarios where nombreusuario like % ? %', userName, (err, users) => {
             console.log(users)
             res.render('../users/users', {
@@ -107,7 +111,7 @@ usersControl.find = (req, res) => {
          })
       }) 
    } else {
-      req.getConnection((err,conn) =>{
+      await req.getConnection((err,conn) =>{
          conn.query('select * from usuarios order by nombreusuario', (err, users) =>{
             if (err) { res.jason(err) }
              //Toma la vista de views
@@ -126,5 +130,18 @@ conn.query('delete from usuarios where cuenta = ?', userAccount, (err, users) =>
          res.redirect('../users');    //redirecciona a la página principal de usuarios, sólo es ../users por se hace en la misma página
        })
        */
+
+//Función paa encriptar el password
+
+function encriptarPasswords(password) { 
+   
+   return bcrypts.hash(password,8)
+}
+
+//Función para validar password para tener acceso al sistema
+
+function validarEncription (passwordSaved,passwordAccess) {
+   return bcrypts.compareSync(passwordAccess,passwordSaved) ? true : false;
+}
 
 module.exports = usersControl;
