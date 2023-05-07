@@ -83,6 +83,29 @@ usersControl.update = async (req, res) => {
    
 };
 
+//Para buscar el nombre 
+
+usersControl.find = async (req, res) => {
+   const userName = req.body.nombre.toUpperCase();
+   let query = '';
+   if (userName) {
+      //Construye el query
+      query = `select * from usuarios where nombreusuario like '%${userName}%'`;
+   } else {
+      //Construye el query
+      query = 'select * from usuarios order by nombreusuario';
+   }   
+   await req.getConnection((err,conn) =>{
+      conn.query(query, (err, users) =>{
+         if (err) { res.jason(err) }
+          //Toma la vista de views
+          res.render('../views/users/users', {   //usa ../views/users/users porque es primera vez que entra a vistas
+            data: users
+        })  
+      })   
+    })
+};
+ 
 //Para eliminar un registro en userErease de Views  (Modificaciones)
 
 usersControl.delete = async (req, res) => {
@@ -95,33 +118,7 @@ usersControl.delete = async (req, res) => {
     })
 };
 
-//Para buscar el nombre 
 
-usersControl.find = async (req, res) => {
-   const userName = req.body.nombre;
-   userName = userName.toUpperCase();
-   console.log(userName)
-   if (userName) {
-      await req.getConnection((err, conn) => {
-         conn.query('select * from usuarios where nombreusuario like % ? %', userName, (err, users) => {
-            console.log(users)
-            res.render('../users/users', {
-               data: users
-            });    //redirecciona a la página principal de usuarios, sólo es ../users por se hace en la misma página
-         })
-      }) 
-   } else {
-      await req.getConnection((err,conn) =>{
-         conn.query('select * from usuarios order by nombreusuario', (err, users) =>{
-            if (err) { res.jason(err) }
-             //Toma la vista de views
-            res.render('../users/users', {   //usa ../views/users/users porque es primera vez que entra a vistas
-                data: users
-            }) 
-         })   
-       })
-   }   
-};
 
 /* Para borrado físico de la base de datos
 
