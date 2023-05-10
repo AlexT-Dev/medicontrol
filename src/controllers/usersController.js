@@ -1,19 +1,24 @@
+
+
+
 const bcrypts = require('bcrypt');  // Para encriptado de contraseñas
+
+
 
 //Para la funcionalidad del servicio
 const usersControl = {};
 
 usersControl.list = (req, res) =>{
    //Se crea la conexión a la base de datos
+   
    req.getConnection((err,conn) =>{
      conn.query('select * from usuarios order by nombreusuario', (err, users) =>{
         if (err) { res.json(err) }
          //Toma la vista de views
         res.render('../views/users/users', {   //usa ../views/users/users porque es primera vez que entra a vistas
-           
-            data: users
+             data: users
         }) 
-       
+      
      })   
    })
 }
@@ -142,7 +147,7 @@ usersControl.getById = async (req, res) => {
    await req.getConnection((err, conn) => {
       conn.query('select * from usuarios where cuenta = ? and password = ?', [userAccount, userPassword], (err, users) => {
          console.log(users)
-
+         //Determina el tipo de usuario
          res.redirect('../users');    //redirecciona a la página principal de usuarios, sólo es ../users por se hace en la misma página
        })
     })

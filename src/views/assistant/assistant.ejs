@@ -1,13 +1,13 @@
 <%- include ('../partials/_header') %>
-    <p class="headerPCat">Cat. Usuarios</p>
-    
+
+<p class="headerPCat">Cat. Usuarios</p>
     </div>
     <div class="divForm">
         <div class="divFormBuscar">
           <form action="find" method="post">
-                <input type="text" name="nombre" placeholder="Nombre del usuario" size="58"
+                <input type="text" name="nombre" placeholder="Nombre del paciente" size="58"
                     style="text-transform:uppercase; font-size:80%;" class="inputForm">
-                <span title="Clic sin nombre para traer todos los usuarios.">
+                <span title="Clic sin nombre para traer todos los pacientes.">
                     <input class="btnBuscar" type="submit" value="Buscar">
                    
                 </span>
@@ -16,7 +16,7 @@
         <div class="divFormOp">
             <!-- Opciones de encabezados -->
             <span title="Crear nuevo usuario.">
-                <a class="btnNuevo" href="new">Nuevo</a>
+                <a class="btnNuevo" href="newDate">Nueva Cita</a>
             </span>
             <a class="btnRegresar" href="ServiciosBD.htm">Regresar</a>
         </div>
@@ -37,9 +37,8 @@
             <table class="tabla">
                 <thead class="tHead">
                     <tr class="trFija">
-                        <th style="width:300px; text-align: center">CUENTA</th>
                         <th style="width:200px; text-align: center">NOMBRE</th>
-                        <th style="width:150px; text-align: center">TIPO</th>
+                        <th style="width:150px; text-align: center">HORA</th>
                         <th style="width:150px; text-align: center">STATUS</th>
                         <th style="width:160px; text-align: center">OPCIONES</th>
                     </tr>
@@ -49,9 +48,8 @@
                     <% if (data) { %>
                         <% for (var i=0; i < data.length; i++) {%>
                             <tr class="trDatos">
-                                <td style="width:300px; font-size:90%; text-align: left"><%= data[i].cuenta %></td>
                                 <td style="width:200px; font-size:90%; text-align: justify;"><%= data[i].nombreusuario %></td>
-                                <td style="width:150px; font-size:90%; text-align: justify;"><%= data[i].tipousuario %></td>
+                                <td style="width:150px; font-size:90%; text-align: justify;"><%= data[i].hora %></td>
                                 <td style="width:150px; font-size:90%; text-align: center;"><%= data[i].status %></td>
                                 <td style="width:160px; font-size:80%;">
                                     <a href="update/<%= data[i].cuenta %>" class ="btnModificar"> Modificar </a>
@@ -66,4 +64,7 @@
         </div>
     </section>
 
-    <%- include ('../partials/_footer') %>
+
+
+
+<%- include ('../partials/_footer') %>
