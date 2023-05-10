@@ -7,12 +7,13 @@ usersControl.list = (req, res) =>{
    //Se crea la conexión a la base de datos
    req.getConnection((err,conn) =>{
      conn.query('select * from usuarios order by nombreusuario', (err, users) =>{
-        if (err) { res.jason(err) }
+        if (err) { res.json(err) }
          //Toma la vista de views
         res.render('../views/users/users', {   //usa ../views/users/users porque es primera vez que entra a vistas
            
             data: users
         }) 
+       
      })   
    })
 }
@@ -60,13 +61,14 @@ usersControl.save = async (req, res) => {
       conn.query('insert into usuarios set ?', [data], (err, users) => {
          console.log(users)
          res.redirect('../users/users');    //redirecciona a la página principal de usuarios ../../users/users poque no sale de views
+         res.status(200).send({ message: "Usuario guardado" }) 
        })
     })
 };
 
 //Para guardar los datos capturados en userEdit de Views  (Modificaciones)
 
-usersControl.update = async (req, res) => {
+usersControl.update = async (req, res) => { 
    const { cuenta } = req.params;
    const userModify = req.body;
    userModify.nombreusuario = userModify.nombreusuario.toUpperCase();
@@ -76,19 +78,20 @@ usersControl.update = async (req, res) => {
 
    req.getConnection((err, conn) => {
      conn.query('update usuarios set ? where cuenta = ?', [userModify, cuenta], (err, users) => {
-       
       res.redirect('../users');
      });
    });  
    
 };
 
+
+
 //Para buscar el nombre 
 
 usersControl.find = async (req, res) => {
    const userName = req.body.nombre.toUpperCase();
    let query = '';
-   if (userName) {
+   if (userName) {  
       //Construye el query
       query = `select * from usuarios where nombreusuario like '%${userName}%'`;
    } else {
@@ -97,12 +100,18 @@ usersControl.find = async (req, res) => {
    }   
    await req.getConnection((err,conn) =>{
       conn.query(query, (err, users) =>{
-         if (err) { res.jason(err) }
+         if (err) { res.status(400).json({
+              status: 'error',
+              message: "No se encontraron registros."
+             }) 
+          }
+         console.log(users)
           //Toma la vista de views
           res.render('../views/users/users', {   //usa ../views/users/users porque es primera vez que entra a vistas
             data: users
+            
         })  
-      })   
+      })  
     })
 };
  
@@ -118,8 +127,6 @@ usersControl.delete = async (req, res) => {
     })
 };
 
-
-
 /* Para borrado físico de la base de datos
 
 conn.query('delete from usuarios where cuenta = ?', userAccount, (err, users) => {
@@ -127,6 +134,22 @@ conn.query('delete from usuarios where cuenta = ?', userAccount, (err, users) =>
          res.redirect('../users');    //redirecciona a la página principal de usuarios, sólo es ../users por se hace en la misma página
        })
        */
+
+//Para busqueda por id (cuenta de usuario)
+usersControl.getById = async (req, res) => {
+   const userAccount = req.body.cuenta;
+   const userPassword = req.body.password;
+   await req.getConnection((err, conn) => {
+      conn.query('select * from usuarios where cuenta = ? and password = ?', [userAccount, userPassword], (err, users) => {
+         console.log(users)
+
+         res.redirect('../users');    //redirecciona a la página principal de usuarios, sólo es ../users por se hace en la misma página
+       })
+    })
+};
+
+
+
 
 //Función paa encriptar el password
 
@@ -136,6 +159,7 @@ function encriptarPasswords(password) {
 }
 
 //Función para validar password para tener acceso al sistema
+//passwordSaved es igual al password encriptado en la base de datos, passwordAccess es igual al password que escribe el usuario al intentar ingresar al sistema
 
 function validarEncription (passwordSaved,passwordAccess) {
    return bcrypts.compareSync(passwordAccess,passwordSaved) ? true : false;

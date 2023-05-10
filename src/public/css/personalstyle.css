@@ -62,7 +62,7 @@
 }
 /***********   Login    ***********************/
 .bodylogin {
-    background-image: url('fondologin.jpg');  
+    background-image: url('../fondologin.jpg');  
     margin: 0px;
     padding: 0px;
     background-size: cover;
