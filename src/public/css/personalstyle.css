@@ -1150,7 +1150,8 @@
  
  .tHead {
      
-     background-color: var(--color-over-button)
+     background-color: var(--color-over-button);
+     
  }
  
 .tabla{
@@ -1185,14 +1186,15 @@
    
 }
 
+
 .trDatos td  {
     height:20px;
-  }
-.trDatos{
     
+  }
+
+.trDatos{
     overflow: auto;
     font-weight: normal;
-    
 }
 
 

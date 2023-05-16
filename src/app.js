@@ -34,12 +34,14 @@ app.use(express.urlencoded({extended: true}));  //Para que el servidor entieanda
 
 const usersRoutes = require('./routes/users.js');
 const loginRoutes = require('./routes/login.js');
+const assistantRoutes = require('./routes/assistant.js');
 
 
 //Usando rutas importadas
 
 app.use('/', usersRoutes);   //Se cambia la ruta de acuerdo a la página que se defina como principal
 app.use('/', loginRoutes);   //Para ingresar por login
+app.use('/', assistantRoutes);   //Para ingresar por login
 
 //Archivos estáticos
 app.use(express.static(path.join(__dirname,'public')));
