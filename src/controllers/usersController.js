@@ -1,6 +1,3 @@
-
-
-
 const bcrypts = require('bcrypt');  // Para encriptado de contraseñas
 
 
@@ -18,7 +15,7 @@ usersControl.list = (req, res) =>{
         res.render('../views/users/users', {   //usa ../views/users/users porque es primera vez que entra a vistas
              data: users
         }) 
-      
+     
      })   
    })
 }
@@ -144,11 +141,28 @@ conn.query('delete from usuarios where cuenta = ?', userAccount, (err, users) =>
 usersControl.getById = async (req, res) => {
    const userAccount = req.body.cuenta;
    const userPassword = req.body.password;
+   
+   //Validar que haya capturado usuario y contraseña
    await req.getConnection((err, conn) => {
-      conn.query('select * from usuarios where cuenta = ? and password = ?', [userAccount, userPassword], (err, users) => {
-         console.log(users)
-         //Determina el tipo de usuario
-         res.redirect('../users');    //redirecciona a la página principal de usuarios, sólo es ../users por se hace en la misma página
+      conn.query('select * from usuarios where cuenta = ?', [userAccount], (err, users) => {
+        
+         //Si el suario existe, determina a que parte del sistema ingresará
+         if (validarEncription(users[0].password,userPassword)){
+            //Determina el tipo de usuario
+            console.log(users[0].tipousuario);
+            if (users[0].tipousuario === "AUXILIAR") {
+               req.session.user = users[0].nombreusuario;
+               req.session.activo = users[0].status; 
+               
+               console.log(req.session)
+               res.redirect('/assistant/assistant');    //redirecciona a la página definida para el tipo de usuario
+            }         
+           
+         }
+         //Si el usuario no existe
+         //Si el usuario escribió mal la cuenta o contraseña
+         
+         //res.redirect('../users');    //redirecciona a la página principal de usuarios, sólo es ../users por se hace en la misma página
        })
     })
 };
@@ -169,5 +183,7 @@ function encriptarPasswords(password) {
 function validarEncription (passwordSaved,passwordAccess) {
    return bcrypts.compareSync(passwordAccess,passwordSaved) ? true : false;
 }
+
+
 
 module.exports = usersControl;

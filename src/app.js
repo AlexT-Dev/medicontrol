@@ -3,12 +3,9 @@ const path = require('path');
 const morgan = require('morgan');
 const mysql = require('mysql2');
 const myConnection = require('express-myconnection');
-
-
-
+const sessions = require('express-session');
 
 const app = express();
-
 
 //Configuraciones generales
 
@@ -30,11 +27,21 @@ app.use(myConnection(mysql, {
 app.use(express.urlencoded({extended: true}));  //Para que el servidor entieanda lo que se envía de los formularios a la base de datos 
                                                  //el false es para datos simples, sin imagenes o datos más complejos 
 
+//Para control de sesiones
+
+app.use(sessions({
+    secret: 'teaa701216mb1',
+    resave: true,
+    saveUninitialized: true
+   
+}));
+
 //Importando rutas
 
 const usersRoutes = require('./routes/users.js');
 const loginRoutes = require('./routes/login.js');
 const assistantRoutes = require('./routes/assistant.js');
+
 
 
 //Usando rutas importadas
