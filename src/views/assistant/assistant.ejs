@@ -26,7 +26,11 @@
         <input type="hidden" name="usuario" value="" disabled>
 
         <img src="../../Espacialidades.png" height="20" width="20">
-        <p><%= userAccess %></p>
+        <% if (userAccess) { %>
+            <p><%= userAccess %></p>
+        <% } else { %>
+            <p>SIN ACCESO</p>   
+         <% } %>   
         <a href="/login/login" class="btncerrar-sesion">Cerrar Sesión</a>
         
     </div>

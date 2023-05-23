@@ -23,13 +23,15 @@
                     <label class="labellogin">Contraseña:</label>
                 </div>
                 <div>
-                    <input class="divlabel" type="email" name="cuenta" placeholder="ejemplo@dominio.com" size="35">
+                    <input class="divlabel" type="text" name="cuenta" placeholder="ejemplo@dominio.com" size="35">
                     <input class="divlabel" type="password" name="password">
                 </div>
             </div>
             <div class="labellogin">
                 <input class="btnlogin" input type="submit" value="Ingresar">
-
+                <% if (message) { %>
+                    <p class="parpadea"><%= message %></p>
+                <% } %> 
             </div>
             <div class="divlabel textalert parpadea">
                 

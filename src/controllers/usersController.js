@@ -1,6 +1,20 @@
-const bcrypts = require('bcrypt');  // Para encriptado de contraseñas
+const bcrypts = require('bcrypt');    // Para encriptado de contraseñas
+const Swal = require('sweetalert2');  //Para las alertas de la vista
 
 
+ /*
+   Para expresiones regulares ^$
+   /[a-zA-Z\u00C0-\u017F]+\s/   //Para validar nombres con acento
+   /[^@]+@[^@]+\.[a-zA-Z]{2,}/  //Para correo electrónico 
+   /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{4,15}$/ //Para contraseñas con las siguientes reglas:
+      Minimo 4 caracter Maximo 15
+      Al menos una letra mayúscula
+      Al menos una letra minúscula
+      Al menos un dígito
+      No espacios en blanco
+      Al menos 1 caracter especial
+   /[0-9]/    //Para números
+   */
 
 //Para la funcionalidad del servicio
 const usersControl = {};
@@ -135,37 +149,48 @@ conn.query('delete from usuarios where cuenta = ?', userAccount, (err, users) =>
          console.log(users)
          res.redirect('../users');    //redirecciona a la página principal de usuarios, sólo es ../users por se hace en la misma página
        })
-       */
+       */ 
 
 //Para busqueda por id (cuenta de usuario)
-usersControl.getById = async (req, res) => {
+usersControl.getById = async (req, res)  => {
    const userAccount = req.body.cuenta;
    const userPassword = req.body.password;
    
-   //Validar que haya capturado usuario y contraseña
-   await req.getConnection((err, conn) => {
-      conn.query('select * from usuarios where cuenta = ?', [userAccount], (err, users) => {
-        
-         //Si el suario existe, determina a que parte del sistema ingresará
-         if (validarEncription(users[0].password,userPassword)){
-            //Determina el tipo de usuario
-            console.log(users[0].tipousuario);
-            if (users[0].tipousuario === "AUXILIAR") {
-               req.session.user = users[0].nombreusuario;
-               req.session.activo = users[0].status; 
+     if (userAccount && userPassword) {
+         //Busca la información si no hay error   
+         await req.getConnection((err, conn) => {
+            conn.query('select * from usuarios where cuenta = ?', [userAccount], (err, users) => {
                
-               console.log(req.session)
-               res.redirect('/assistant/assistant');    //redirecciona a la página definida para el tipo de usuario
-            }         
-           
-         }
-         //Si el usuario no existe
-         //Si el usuario escribió mal la cuenta o contraseña
+               //Si el suario existe, determina a que parte del sistema ingresará
+               if (validarEncription(users[0].password,userPassword)){
+                  //Determina el tipo de usuario
+                  console.log(users[0].tipousuario);
+                  if (users[0].tipousuario === "AUXILIAR") {
+                     req.session.user = users[0].nombreusuario;
+                     req.session.status = users[0].status; 
+                     
+                     console.log(req.session)
+                     res.redirect('/assistant/assistant');    //redirecciona a la página definida para el tipo de usuario
+                  }         
+               
+               }
+               //Si el usuario no existe
+               //Si el usuario escribió mal la cuenta o contraseña
+               
+               //res.redirect('../users');    //redirecciona a la página principal de usuarios, sólo es ../users por se hace en la misma página
+            })
+         })
+     } else
+        
+        res.render('../views/login/login',{
+         titulo: "Login",
+         message: displayAlert([0])
          
-         //res.redirect('../users');    //redirecciona a la página principal de usuarios, sólo es ../users por se hace en la misma página
-       })
-    })
-};
+
+        })
+       
+      
+   };
 
 
 

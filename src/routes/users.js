@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const {body, validationResult} = require('express-validator'); // Para validar las capturas de los input
+const { validateLogin } = require ('../validators/user')
 
 const userController = require('../controllers/usersController.js');
 //Se definen las rutas 
@@ -16,7 +18,8 @@ router.post('/users/add', userController.save)                //Ruta para guarda
 router.post('/users/update/:cuenta', userController.update)   //Ruta para guardar registros actualizados 
 router.get('/users/delete/:cuenta', userController.delete)    //Ruta para borrar registros 
 router.post('/users/find', userController.find)      //Ruta para buscar registros 
-router.post('/users/acceso', userController.getById)      //Ruta para buscar registros 
+router.post('/users/acceso', userController.getById) //Primer parametro validateLogin
+ //userController.getById)      //Ruta para buscar registros 
 
 
 module.exports = router;
