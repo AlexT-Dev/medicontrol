@@ -4,7 +4,9 @@ const morgan = require('morgan');
 const mysql = require('mysql2');
 const myConnection = require('express-myconnection');
 const sessions = require('express-session');
-const Swal = require('sweetalert2');  //Para las alertas de la vista
+const flash = require('connect-flash');
+
+
 
 const app = express();
 
@@ -32,25 +34,14 @@ app.use(express.urlencoded({extended: true}));  //Para que el servidor entieanda
 
 app.use(sessions({
     secret: 'teaa701216mb1',
-    resave: true,
-    saveUninitialized: true 
+    resave: false,
+    saveUninitialized: false,
    
 }));
 
-//Para Control de Mensajes
 
-const displayAlert = () => { 
-    Swal.fire([{  //Arreglo de mansajes  Parámetros (tittle, message, icon)
-         //Para login
-        icon:"alert",
-        title:"ATENCIÓN!!",
-        text: "Necesita cuenta y contraseña"
-    }])
-    console.log(Swal.fire)
-}
 
- 
-app.use(express.json());
+ app.use(express.json());
 //Importando rutas
 
 const usersRoutes = require('./routes/users.js');

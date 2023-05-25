@@ -1,5 +1,6 @@
 const bcrypts = require('bcrypt');    // Para encriptado de contraseñas
-const Swal = require('sweetalert2');  //Para las alertas de la vista
+
+
 
 
  /*
@@ -181,17 +182,20 @@ usersControl.getById = async (req, res)  => {
             })
          })
      } else
-        
-        res.render('../views/login/login',{
-         titulo: "Login",
-         message: displayAlert([0])
-         
-
-        })
-       
       
-   };
+     
+       req.session.message = 'No tiene cuenta o contraseña, intente de nuevo.'
+       
 
+       console.log(req.session)
+       res.render('../views/login/login', {
+             title: "login",
+           message: req.session.message
+       })
+           
+             
+   };
+ 
 
 
 

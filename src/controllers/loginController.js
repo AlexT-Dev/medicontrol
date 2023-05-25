@@ -6,7 +6,7 @@ loginControl.login = (req, res) =>{
       delete req.session.user;
       delete req.session.activo; 
     res.render('../views/login/login', {
-       titulo: "Login",
+       title: "Login",
       message: ""
     })
 }

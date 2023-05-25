@@ -34,7 +34,7 @@
     </header>
     <section class="seccion">
         <div class="fijar-tabla" style="max-width: 70%;">
-            <table class="tabla">
+            <table id= "users" class="tabla">
                 <thead class="tHead">
                     <tr class="trFija">
                         <th style="width:300px; text-align: center">CUENTA</th>
@@ -54,8 +54,8 @@
                                 <td style="width:150px; font-size:90%; text-align: justify;"><%= data[i].tipousuario %></td>
                                 <td style="width:150px; font-size:90%; text-align: center;"><%= data[i].status %></td>
                                 <td style="width:160px; font-size:80%;">
-                                    <a href="update/<%= data[i].cuenta %>" class ="btnModificar"> Modificar </a>
-                                    <a href="delete/<%= data[i].cuenta %>" class ="btnBorrar"> Baja </a>
+                                    <a href="update/<%= data[i].cuenta %>" class="btnModificar"> Modificar </a>
+                                    <a href="delete/<%= data[i].cuenta %>" onclick="return confirm('¿Desea poner inactivo?')" class="btnBorrar"> Inactivo </a>
                                 </td>
                             </tr>
                         <% } %>
@@ -65,5 +65,6 @@
             </table>
         </div>
     </section>
+    
 
     <%- include ('../partials/_footer') %>
