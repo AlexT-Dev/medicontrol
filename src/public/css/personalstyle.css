@@ -728,15 +728,15 @@
 } */
 
 .textModal {
-    font-family: var(--font-style-modalPersonal);  
+    font-family: var(--font-style-modalPersonal) !important;  
    
     padding-top: 5px;
     margin: 5px;
     overflow-y: auto;
     justify-content: space-between;
-    font-size: 15px;
-    color: black;
-    font-weight: bold;
+    font-size: 15px !important;
+    color: black !important;
+    font-weight: bold !important;
    
 }
 

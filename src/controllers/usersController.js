@@ -165,33 +165,23 @@ usersControl.getById = async (req, res)  => {
                //Si el suario existe, determina a que parte del sistema ingresará
                if (validarEncription(users[0].password,userPassword)){
                   //Determina el tipo de usuario
-                  console.log(users[0].tipousuario);
                   if (users[0].tipousuario === "AUXILIAR") {
                      req.session.user = users[0].nombreusuario;
                      req.session.status = users[0].status; 
-                     
-                     console.log(req.session)
                      res.redirect('/assistant/assistant');    //redirecciona a la página definida para el tipo de usuario
                   }         
                
-               } else {
-                  req.session.message = messageAlert("incorrectPassword",)
-                  console.log(req.session)
+               } else { //Si el password es incorrecto
+                  req.session.message = messageAlert("incorrectPassword")
                   res.render('../views/login/login', {
                         title: "Login",
                      message: req.session.message
                   })
-                  
                }
-               //Si el usuario no existe
-               //Si el usuario escribió mal la cuenta o contraseña
-               
-               //res.redirect('../users');    //redirecciona a la página principal de usuarios, sólo es ../users por se hace en la misma página
             })
          })
-     } else {
+     } else { //Si no hay cuenta o contraseña
        req.session.message = messageAlert("noAccountOrPassword")
-       console.log(req.session)
        res.render('../views/login/login', {
              title: "Login",
            message: req.session.message

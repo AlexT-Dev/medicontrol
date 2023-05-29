@@ -1,40 +1,38 @@
 <%- include ('../partials/_header') %>
 
-<p class="headerPCat">Relación de Citas</p>
-    </div>
-    <div class="divForm">
-        <div class="divFormBuscar">
-          <form action="find" method="post">
-                <input type="text" name="nombre" placeholder="Nombre del paciente" size="58"
-                    style="text-transform:uppercase; font-size:80%;" class="inputForm">
-                <span title="Clic sin nombre para traer todos los pacientes.">
-                    <input class="btnBuscar" type="submit" value="Buscar">
-                   
-                </span>
-            </form>
+        <p class="headerPCat">Relación de Citas</p>
         </div>
-        <div class="divFormOp">
-            <!-- Opciones de encabezados -->
-            <span title="Crear nuevo usuario.">
-                <a class="btnNuevo" href="newDate">Nueva Cita</a>
-            </span>
-            <a class="btnRegresar" href="ServiciosBD.htm">Regresar</a>
-        </div>
-    </div>
-    <div class="divcerrar-sesion">
-        <!-- Datos del usuario que tuvo acceso -->
-        <input type="hidden" name="usuario" value="" disabled>
+        <div class="divForm">
+            <div class="divFormBuscar">
+                <form action="find" method="post">
+                    <input type="text" name="nombre" placeholder="Nombre del paciente" size="58"
+                        style="text-transform:uppercase; font-size:80%;" class="inputForm">
+                    <span title="Clic sin nombre para traer todos los pacientes.">
+                        <input class="btnBuscar" type="submit" value="Buscar">
 
-        <img src="../../Espacialidades.png" height="20" width="20">
-        <% if (userAccess) { %>
-            <p><%= userAccess %></p>
-        <% } else { %>
-            <p>SIN ACCESO</p>   
-         <% } %>   
-        <a href="/login/login" class="btncerrar-sesion">Cerrar Sesión</a>
-        
-    </div>
-    </div>
+                    </span>
+                </form>
+            </div>
+            <div class="divFormOp">
+                <!-- Opciones de encabezados -->
+                <span title="Crear nueva cita.">
+                    <a class="btnNuevo" href="newDate">Nueva Cita</a>
+                </span>
+
+            </div>
+        </div>
+        <div class="divcerrar-sesion">
+            <!-- Datos del usuario que tuvo acceso -->
+            <input type="hidden" name="usuario" value="" disabled>
+
+            <img src="../../Espacialidades.png" height="20" width="20">
+            <% if (userAccess) { %>
+                <p>
+                    <%= userAccess %>
+                </p>
+                <a href="/login/login" class="btncerrar-sesion">Cerrar Sesión</a>
+        </div>
+      </div>
     </header>
     <section class="seccion">
         <div class="fijar-tabla" style="max-width: 70%;">
@@ -52,12 +50,18 @@
                     <% if (data) { %>
                         <% for (var i=0; i < data.length; i++) {%>
                             <tr class="trDatos">
-                                <td style="width:300px; font-size:90%; text-align: justify;"><%= data[i].nombrepaciente %></td>
-                                <td style="width:50px; font-size:90%; text-align: justify;"><%= data[i].horacita %></td>
-                                <td style="width:150px; font-size:90%; text-align: center;"><%= data[i].status %></td>
+                                <td style="width:300px; font-size:90%; text-align: justify;">
+                                    <%= data[i].nombrepaciente %>
+                                </td>
+                                <td style="width:50px; font-size:90%; text-align: justify;">
+                                    <%= data[i].horacita %>
+                                </td>
+                                <td style="width:150px; font-size:90%; text-align: center;">
+                                    <%= data[i].status %>
+                                </td>
                                 <td style="width:160px; font-size:80%;">
-                                    <a href="update/<%= data[i].cuenta %>" class ="btnModificar"> Revisión </a>
-                                    <a href="delete/<%= data[i].cuenta %>" class ="btnBorrar"> Cancelar </a>
+                                    <a href="update/<%= data[i].cuenta %>" class="btnModificar"> Revisión </a>
+                                    <a href="delete/<%= data[i].cuenta %>" class="btnBorrar"> Cancelar </a>
                                 </td>
                             </tr>
                         <% } %>
@@ -67,8 +71,23 @@
             </table>
         </div>
     </section>
-
-
-
-
+    <% } else { %>
+        <div class="containerModal">
+            <div class="popup" id="modal">
+                <div>
+                    <p class="textModal">USUARIO SIN ACCESSO</p>
+                    <hr class="hrModal">
+                    </hr>
+                </div>
+                <div>
+                    <p class="textModal">No se ha registrado con su cuenta.</p>
+                </div>
+                <div>
+                    <a href="/login/login" class="btncloseModal" rel="noreferrer">
+                        Cerrar
+                    </a>
+                </div>
+            </div>
+        </div>
+      <% } %>
 <%- include ('../partials/_footer') %>
