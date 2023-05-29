@@ -1,5 +1,5 @@
 const bcrypts = require('bcrypt');    // Para encriptado de contraseñas
-
+const messageAlert = require('../validators/messages')
 
 
 
@@ -174,6 +174,14 @@ usersControl.getById = async (req, res)  => {
                      res.redirect('/assistant/assistant');    //redirecciona a la página definida para el tipo de usuario
                   }         
                
+               } else {
+                  req.session.message = messageAlert("incorrectPassword",)
+                  console.log(req.session)
+                  res.render('../views/login/login', {
+                        title: "Login",
+                     message: req.session.message
+                  })
+                  
                }
                //Si el usuario no existe
                //Si el usuario escribió mal la cuenta o contraseña
@@ -181,22 +189,18 @@ usersControl.getById = async (req, res)  => {
                //res.redirect('../users');    //redirecciona a la página principal de usuarios, sólo es ../users por se hace en la misma página
             })
          })
-     } else
-      
-     
-       req.session.message = 'No tiene cuenta o contraseña, intente de nuevo.'
-       
-
+     } else {
+       req.session.message = messageAlert("noAccountOrPassword")
        console.log(req.session)
        res.render('../views/login/login', {
-             title: "login",
+             title: "Login",
            message: req.session.message
        })
-           
+      }     
              
    };
  
-
+ 
 
 
 //Función paa encriptar el password
@@ -210,9 +214,13 @@ function encriptarPasswords(password) {
 //passwordSaved es igual al password encriptado en la base de datos, passwordAccess es igual al password que escribe el usuario al intentar ingresar al sistema
 
 function validarEncription (passwordSaved,passwordAccess) {
+   try {
    return bcrypts.compareSync(passwordAccess,passwordSaved) ? true : false;
+   } catch (error) {
+      
+   }   
 }
 
-
+ 
 
 module.exports = usersControl;

@@ -433,7 +433,7 @@
 /** Botones de lista de datos ***/
 
 .btnModificar {
-        font-family: var(--font-style-p-header);
+    font-family: var(--font-style-p-header);
     background-color: #5D9C59;
     color: black;
     padding: 2px;
@@ -683,61 +683,80 @@
     left: 50%;
     transform: translate(-50%, -50%);
    
-    visibility: hidden;
-    opacity: 0;
+    /* visibility: hidden; */
+   
     transition: all 600ms;
 }
 
+#modal::backdrop {
+    backdrop-filter: blur(4px);
+    background-color: rgba(0,0,0,.55) !important;
+    backdrop-filter: blur(4px);
+}
+
 .popup {
-    width: 100%;
-    max-width: 900px;
-    height: 500px;
-    position: relative;
-    display: flex;
+    
+    border: 2px solid black;
+    /* max-width: 200px;
+    height: 300px; */
+    position: absolute;
+    display: grid;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    box-shadow: 0px 0px 5px 1px #205375;
+    background-color: #FFB84C;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
     
  }
 
-.containerModal:target{ /* Cuando tenga el focus */
+/* .containerModal:target{ /* Cuando tenga el focus 
+     
     visibility: visible;
     opacity: 0.9;
     background:  var(--color-over-button);
     transition: all 700ms;
     border-radius: 10px; 
     box-shadow: 0px 0px 5px 1px #205375;
+    width: 200px;
+    height: 300px;
     
-    
-}
+} */
 
 .textModal {
-    width: 80%;
-    padding-top: 50px;
-    margin: 10px;
+    font-family: var(--font-style-modalPersonal);  
+   
+    padding-top: 5px;
+    margin: 5px;
     overflow-y: auto;
     justify-content: space-between;
-    
+    font-size: 15px;
+    color: black;
+    font-weight: bold;
    
 }
 
 .btncloseModal{
-    width: 15px;
-    height: 20px;
-    position: absolute;
-    right: -5px;
-    top: 60px;
-    padding: 10px;
-        padding-left: 10px;
-    background: #205375;
+
+    font-family: var(--font-style-p-header);
+    background-color: black;
     color: white;
-    border-radius: 30%;
+    padding: 2px;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+    font-size: 15px;
 /*    line-height: 10px;*/
     text-decoration: none;
     
 }
 
-.btn-closeModal:hover{
+.btncloseModal:hover{
     box-shadow: 0 0 4px 3px black;
 }
 
@@ -1777,6 +1796,9 @@ tr:nth-child(even){
     margin: 2px;
     overflow-y: auto;
     justify-content: space-between;
+    font-family: var(--font-style-modalPersonal);
+    font-weight: bold;
+    color: #04293A;
     
    
 }

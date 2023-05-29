@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/personalstyle.css" type="text/css" />
-    <title><%= title %></title>
+    <title>
+        <%= title %>
+    </title>
 </head>
 
 <body class="bodylogin">
@@ -30,46 +32,40 @@
             <div class="labellogin">
                 <input class="btnlogin" input type="submit" value="Ingresar">
             </div>
+            <% if (message) { %>
+              <div class="containerModal" >
+                <div class="popup" id="modal">
+                    <div>
+                        <p class="textModal">
+                            <%= title %>
+                        </p>
+                        <hr class="hrModal">
+                        </hr>
+                    </div>
+                    <div>
+                        <p class="textModal">
+                            <%= message %>
+                        </p>
+                    </div>
+                    <div>
+                        <a href="/login/login" class="btncloseModal" rel="noreferrer">
+                            Cerrar
+                        </a>
+                    </div>
+                </div>
+            </div>
+                <% } %>
         </form>
 
 
 
     </div>
-    <!-- Ventana modal -->
-    <div class="containerModal" id="modalPersonal">
-        <div class="popup">
-            <div class="textModal">
-                <p class="encPersonales">USUARIO NO ENCONTRADO</p>
-            </div>
-            <div>
-                <a href="#" class="btncloseModal" rel="noreferrer">
-                    <span title="Cerrar">✔</span>
-                </a>
-            </div>
-        </div>
-    </div>
+
 
 </body>
 
-<script src="../../validators/messages.js"></script> 
 
-<% if (message) {  %>
-   
-   
-    <div id="msgModal" class="containerModal">
-    <div class="popup">
-        <div class="imagen"></div>
-        <div class="textModal">
-        <p class="encPersonales"><%= title %></p>
-        <hr class="hrModal"></hr>
-        <p class="encPersonales"><%= message %></p>
-        </div>
-        <div>
-        <a href="/login/login" class="btncloseModal" rel="noreferrer">
-            <span title="Cerrar">✔</span>
-        </a>
-        </div>
-    </div>
-    </div>
- <% } %>  
+
+
+
 </html>
