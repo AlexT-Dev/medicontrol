@@ -167,7 +167,7 @@ usersControl.getById = async (req, res)  => {
                   //Determina el tipo de usuario
                   if (users[0].tipousuario === "AUXILIAR") {
                      req.session.user = users[0].nombreusuario;
-                     req.session.status = users[0].status; 
+                     req.session.status = users[0].status;
                      res.redirect('/assistant/assistant');    //redirecciona a la página definida para el tipo de usuario
                   }         
                

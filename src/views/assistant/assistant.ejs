@@ -13,10 +13,10 @@
                     </span>
                 </form>
             </div>
-            <div class="divFormOp">
+            <div class="divHeaderOp">
                 <!-- Opciones de encabezados -->
                 <span title="Crear nueva cita.">
-                    <a class="btnNuevo" href="newDate">Nueva Cita</a>
+                    <a class="btnNuevo" href="/assistant/createDate">Nueva Cita</a>
                 </span>
 
             </div>
@@ -42,6 +42,7 @@
                         <th style="width:300px; text-align: center">NOMBRE</th>
                         <th style="width:50px; text-align: center">HORA</th>
                         <th style="width:150px; text-align: center">VISITA</th>
+                        <th style="width:200px; text-align: center">DOCTOR</th>
                         <th style="width:160px; text-align: center">OPCIONES</th>
                     </tr>
                 </thead>
@@ -59,8 +60,11 @@
                                 <td style="width:150px; font-size:90%; text-align: center;">
                                     <%= data[i].status %>
                                 </td>
+                                <td style="width:200px; font-size:90%; text-align: center;">
+                                    <%= data[i].nombreusuario %>
+                                </td>
                                 <td style="width:160px; font-size:80%;">
-                                    <a href="update/<%= data[i].cuenta %>" class="btnModificar"> Revisión </a>
+                                    <!-- <a href="update/<%= data[i].cuenta %>" class="btnModificar"> Revisión </a> -->
                                     <a href="delete/<%= data[i].cuenta %>" class="btnBorrar"> Cancelar </a>
                                 </td>
                             </tr>

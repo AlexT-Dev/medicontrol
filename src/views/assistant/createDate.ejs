@@ -1,0 +1,97 @@
+<%- include ('../partials/_header') %>
+            <p class="headerPCat"><%= title %></p>
+            </div>
+            <div class="divForm">
+                <div class="divFormBuscar">
+                    
+                </div>
+                <div class="divHeaderOp">
+                    <!-- Opciones de encabezados -->
+                    <span title="Registra un paciente nuevo.">
+                        <a class="btnNuevo" href="/assistant/createDate">Paciente Inicial</a>
+                    </span>
+                    <a href="/assistant/assistant" class="btnRegresar">Regresar</a>
+                </div>
+            </div>
+            <div class="divcerrar-sesion">
+                <!-- Datos del usuario que tuvo acceso -->
+                <input type="hidden" name="usuario" value="" disabled>
+
+                <img src="../../Espacialidades.png" height="20" width="20">
+                <% if (userAccess) { %>
+                    <p>
+                        <%= userAccess %>
+                    </p>
+                    <a href="/login/login" class="btncerrar-sesion">Cerrar Sesión</a>
+            </div>
+            </div>
+            </header>
+                <div class="divFormContainer">
+                    <div class="divFormCaptura" style="height: 150px; width: 400px;">
+                          <form method="POST">
+                            <div class="divDatosCaptura">
+                                <label class="labelFormCaptura">Paciente:</label>
+                                <!-- Conecta a la base de datos para traer Pacientes -->
+                                <select class="selectCaptura" name="idpaciente" required>
+                                    <option value="-1">Elija un paciente</option>
+                                    
+                                    
+                                    
+                                 
+                                </select>
+                            </div>
+                            <div class="divDatosCaptura">
+                                <label class="labelFormCaptura">Fecha:</label>
+                                <input type="date" rows="3" name="fechacita" class="selectCaptura" required>
+                            </div>
+                            <div class="divDatosCaptura">    
+                                <label class="labelFormCaptura">Hora:</label>
+                                         <!-- Solicita la hora-->
+                                 <select class="selectCaptura" name="horacita" required>
+                                     <option value="00:00">Elija una hora</option>
+         
+                                     <option value="04:00">04:00</option>
+                                     <option value="05:00">05:00</option>
+                                     <option value="06:00">06:00</option>
+                                     <option value="07:00">07:00</option>
+                                     <option value="08:00">08:00</option>
+         
+                                 </select>
+                            </div>
+                            <hr color="blue" size=3>
+                            <div class="divFormOp">
+                              
+                              <input type="submit" value="Guardar" class="btnGuardar" value="" style="margin-left: 10px; margin-bottom: 10px;">
+                             
+                            </div>
+                          </form>
+                        
+                    </div>
+                </div>
+            
+            <% } else { %>
+            <div class="containerModal">
+                <div class="popup" id="modal">
+                    <div>
+                        <p class="textModal">USUARIO SIN ACCESSO</p>
+                        <hr class="hrModal">
+                        </hr>
+                    </div>
+                    <div>
+                        <p class="textModal">No se ha registrado con su cuenta.</p>
+                    </div>
+                    <div>
+                        <a href="/login/login" class="btncloseModal" rel="noreferrer">
+                            Cerrar
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+    
+
+
+
+
+
+<%- include ('../partials/_footer') %>

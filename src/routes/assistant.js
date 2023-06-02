@@ -6,7 +6,7 @@ const assistantController = require('../controllers/assistantController.js');
 
 //Para páginas en el módulo de usuarios
 router.get('/assistant/assistant', assistantController.list)               //Pantalla principal de usuarios
-// router.get('/users/new', userController.new)                  //Pantalla para agregar usuarios
+router.get('/assistant/createDate', assistantController.newDate)                  //Pantalla para agregar usuarios
 // router.get('/users/update/:cuenta', userController.edit)      //Pantalla para modificar usuarios
 // router.get('/users/erase', userController.delete)          //Pantalla para borrar usuarios
 
