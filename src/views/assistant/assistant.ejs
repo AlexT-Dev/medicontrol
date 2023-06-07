@@ -4,14 +4,7 @@
         </div>
         <div class="divForm">
             <div class="divFormBuscar">
-                <form action="find" method="post">
-                    <input type="text" name="nombre" placeholder="Nombre del paciente" size="58"
-                        style="text-transform:uppercase; font-size:80%;" class="inputForm">
-                    <span title="Clic sin nombre para traer todos los pacientes.">
-                        <input class="btnBuscar" type="submit" value="Buscar">
-
-                    </span>
-                </form>
+                
             </div>
             <div class="divHeaderOp">
                 <!-- Opciones de encabezados -->
@@ -26,10 +19,7 @@
             <input type="hidden" name="usuario" value="" disabled>
 
             <img src="../../Espacialidades.png" height="20" width="20">
-            <% if (userAccess) { %>
-                <p>
-                    <%= userAccess %>
-                </p>
+            <% if (userAccess) { %><p><%= userAccess %></p>
                 <a href="/login/login" class="btncerrar-sesion">Cerrar Sesión</a>
         </div>
       </div>
@@ -39,6 +29,7 @@
             <table class="tabla">
                 <thead class="tHead">
                     <tr class="trFija">
+                        <th style="width:40px; text-align: center">ID</th>
                         <th style="width:300px; text-align: center">NOMBRE</th>
                         <th style="width:50px; text-align: center">HORA</th>
                         <th style="width:150px; text-align: center">VISITA</th>
@@ -51,6 +42,9 @@
                     <% if (data) { %>
                         <% for (var i=0; i < data.length; i++) {%>
                             <tr class="trDatos">
+                                <td style="width: 40px; font-size:90%; text-align: justify;">
+                                    <%= data[i].idpadactual %>
+                                </td>
                                 <td style="width:300px; font-size:90%; text-align: justify;">
                                     <%= data[i].nombrepaciente %>
                                 </td>
@@ -65,7 +59,8 @@
                                 </td>
                                 <td style="width:160px; font-size:80%;">
                                     <!-- <a href="update/<%= data[i].cuenta %>" class="btnModificar"> Revisión </a> -->
-                                    <a href="delete/<%= data[i].cuenta %>" class="btnBorrar"> Cancelar </a>
+                                    <a href="update/<%= data[i].idpadactual %>" class="btnModificar"> Modificar </a>
+                                    <a href="delete/<%= data[i].idpadactual %>" class="btnBorrar" onclick="return confirm('¿Desea cancelar la cita?')"> Cancelar </a>
                                 </td>
                             </tr>
                         <% } %>

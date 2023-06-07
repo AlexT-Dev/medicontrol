@@ -9,9 +9,6 @@
         </div>
         <div class="divHeaderOp">
             <!-- Opciones de encabezados -->
-            <span title="Registra un paciente nuevo.">
-                <a class="btnNuevo" href="/assistant/createDate">Paciente Inicial</a>
-            </span>
             <a href="/assistant/assistant" class="btnRegresar">Regresar</a>
         </div>
     </div>
@@ -29,50 +26,51 @@
     </div>
     </header>
     <div class="divFormContainer">
-        <div class="divFormCaptura" style="height: 170px; width: 400px;">
-            <form action="/assistant/update/<% data.idpadactual %>" method="POST">
+        <div class="divFormCaptura" style="height: 205px; width: 400px;">
+            <form action="/assistant/update/<%= data.idpadactual %>" method="POST">
                 
                     <div class="divDatosCaptura">
                         <label class="labelFormCaptura">Doctor:</label>
                         <!-- Conecta a la base de datos para traer Pacientes -->
-                        <select class="selectCaptura" name="cuenta" required>
-                            <option value="-1">Elija un doctor</option>
+                        <select class="selectCaptura" name="cuenta" >
+                            <option value="<%= data.cuenta %>"><%= data.nombreusuario %></option>
                             <!-- Inicia el listado de los registros -->
-                            <% if (users) { %>
-                                <% for (var i=0; i < users.length; i++) {%>
-                                    <option value="<%= users[i].cuenta %>"><%= users[i].nombreusuario %></option>"
-                                        
-                                <% } %>
-                            <% } %>
+                          
                         </select>
                     </div>
                     <div class="divDatosCaptura">
                     <label class="labelFormCaptura">Paciente:</label>
                     <!-- Conecta a la base de datos para traer Pacientes -->
-                    <select class="selectCaptura" name="idpaciente" required>
-                        <option value="-1">Elija un paciente</option>
+                    <select class="selectCaptura" name="idpaciente" disabled>
+                        <option value="<%= data.idpaciente %>"><%= data.nombrepaciente %></option>
                         <!-- Inicia el listado de los registros -->
-                        <% if (data) { %>
-                            <% for (var i=0; i < data.length; i++) {%>
-                                <option value="<%= data[i].idpaciente %>"><%= data[i].nombrepaciente %></option>"
-                            <% } %>
-                                    <% } %>
+                       
                     </select>
                 </div>
                 <div class="divDatosCaptura">
                     <label class="labelFormCaptura">Fecha:</label>
-                    <input type="date" rows="3" name="fechacita" class="selectCaptura" required>
+                    <input type="date" rows="3" name="fechacita" class="selectCaptura" value="<%= data.fechacita %>" required>
                 </div>
                 <div class="divDatosCaptura">
                     <label class="labelFormCaptura">Hora:</label>
                     <!-- Solicita la hora-->
                     <select class="selectCaptura" name="horacita" required>
-                        <option value="00:00">Elija una hora</option>
+                        <option value="<%= data.horacita %>"><%= data.horacita %></option>
                         <option value="04:00">04:00</option>
                         <option value="05:00">05:00</option>
                         <option value="06:00">06:00</option>
                         <option value="07:00">07:00</option>
                         <option value="08:00">08:00</option>
+                    </select>
+                </div>
+                <div class="divDatosCaptura">
+                    <label class="labelFormCaptura">Visita:</label>
+                    <!-- Solicita la hora-->
+                    <select class="selectCaptura" name="status" required>
+                        <option value="<%= data.status %>"><%= data.status %></option>
+                        <option value="CANCELADA">CANCELADA</option>
+                        <option value="PRIMERA VEZ">PRIMERA VEZ</option>
+                        <option value="SUBSECUENTE">SUBSECUENTE</option>
                     </select>
                 </div>
                 <hr color="blue" size=3>
@@ -105,10 +103,5 @@
             </div>
         </div>
         <% } %>
-
-
-
-
-
 
             <%- include ('../partials/_footer') %>

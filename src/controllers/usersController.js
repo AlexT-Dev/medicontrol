@@ -45,7 +45,6 @@ usersControl.new = (req, res) =>{
 //Para llamar a la página que modificar resgistros
 usersControl.edit = (req, res) =>{
    const { cuenta } = req.params;
-  console.log(cuenta);
    req.getConnection((err, conn) => {
      conn.query('select * from usuarios where cuenta = ?', [cuenta], (err, users) => {
        
@@ -76,7 +75,6 @@ usersControl.save = async (req, res) => {
     console.log(data)
     req.getConnection((err, conn) => {
       conn.query('insert into usuarios set ?', [data], (err, users) => {
-         console.log(users)
          res.redirect('../users/users');    //redirecciona a la página principal de usuarios ../../users/users poque no sale de views
          res.status(200).send({ message: "Usuario guardado" }) 
        })
@@ -90,9 +88,7 @@ usersControl.update = async (req, res) => {
    const userModify = req.body;
    userModify.nombreusuario = userModify.nombreusuario.toUpperCase();
    userModify.password = await encriptarPasswords(userModify.password);   //Encripta la password
-  console.log(cuenta)
-  console.log(userModify)
-
+ 
    req.getConnection((err, conn) => {
      conn.query('update usuarios set ? where cuenta = ?', [userModify, cuenta], (err, users) => {
       res.redirect('../users');
@@ -138,7 +134,6 @@ usersControl.delete = async (req, res) => {
    const userAccount = req.params.cuenta;
    await req.getConnection((err, conn) => {
       conn.query('update usuarios set status = ? where cuenta = ?', ["INACTIVO", userAccount], (err, users) => {
-         console.log(users)
          res.redirect('../users');    //redirecciona a la página principal de usuarios, sólo es ../users por se hace en la misma página
        })
     })
@@ -156,7 +151,6 @@ conn.query('delete from usuarios where cuenta = ?', userAccount, (err, users) =>
 usersControl.getById = async (req, res)  => {
    const userAccount = req.body.cuenta;
    const userPassword = req.body.password;
-   
      if (userAccount && userPassword) {
          //Busca la información si no hay error   
          await req.getConnection((err, conn) => {
@@ -166,6 +160,7 @@ usersControl.getById = async (req, res)  => {
                if (validarEncription(users[0].password,userPassword)){
                   //Determina el tipo de usuario
                   if (users[0].tipousuario === "AUXILIAR") {
+                     req.session.cuenta = users[0].cuenta;
                      req.session.user = users[0].nombreusuario;
                      req.session.status = users[0].status;
                      res.redirect('/assistant/assistant');    //redirecciona a la página definida para el tipo de usuario
