@@ -15,7 +15,7 @@ router.get('/assistant/erase', assistantController.delete)          //Pantalla p
 router.post('/assistant/addDate', assistantController.saveDate)                //Ruta para guardar nuevos registros 
 router.post('/assistant/update/:idpadactual', assistantController.update)   //Ruta para guardar registros actualizados 
 router.get('/assistant/delete/:idpadactual', assistantController.delete)    //Ruta para borrar registros (cambiar el estado)
-// router.post('/users/acceso', userController.getById)      //Ruta para buscar registros 
+router.post('/assistant/findDates', assistantController.findDates)    //Ruta para encontrar  registros (cambiar el estado)
 
 
 module.exports = router;

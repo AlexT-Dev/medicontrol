@@ -4,14 +4,21 @@
         </div>
         <div class="divForm">
             <div class="divFormBuscar">
-                
+                <form action="findDates" method="post">
+                  <label class="headerPCat">Fecha:</label>
+                  
+                  <input type="date" rows="3" name="fechacita" class="selectCaptura" style="font-size: 20px;">
+                  <span title="Clic sin fecha para traer todos las citas del día de hoy.">
+                    <input class="btnBuscar" type="submit" value="Buscar">
+                  </span>  
+                </form>  
             </div>
             <div class="divHeaderOp">
                 <!-- Opciones de encabezados -->
                 <span title="Crear nueva cita.">
                     <a class="btnNuevo" href="/assistant/createDate">Nueva Cita</a>
                 </span>
-
+                
             </div>
         </div>
         <div class="divcerrar-sesion">

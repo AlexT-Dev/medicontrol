@@ -2,11 +2,13 @@ const fechaAtual = require('moment');
 const { format } = require('date-fns');
 //Para la funcionalidad del servicio
 
+//obtiene la fecha del día actual 
+const hoy = fechaAtual().format('YYYY-MM-DD')
+
 const assistantControl = {};
 //Desplegar la lista de citas en el día actual (hoy) Caso de Uso:Desplegar citas de hoy
 assistantControl.list = (req, res) =>{
-   //obtiene la fecha
-   const hoy = fechaAtual().format('YYYY-MM-DD')
+   
    //Se crea la conexión a la base de datos
    req.getConnection((err,conn) =>{
      conn.query('select pacientes.nombrepaciente, padecimiento.horacita, padecimiento.status, padecimiento.idpadactual, usuarios.nombreusuario from pacientes inner join padecimiento ' +
@@ -60,8 +62,45 @@ assistantControl.update = async (req, res) => {
    });  
    
 };
+
+
+//Para buscar citas en otra fecha
+
+assistantControl.findDates = async (req, res) => {
+   const fechacita = req.body.fechacita;
+   let query = '';
+   if (fechacita) {  
+      //Construye el query
+      query = "select pacientes.nombrepaciente, padecimiento.horacita, padecimiento.status, padecimiento.idpadactual, usuarios.nombreusuario from pacientes inner join padecimiento " +
+      "on pacientes.idpaciente = padecimiento.idpaciente inner join usuarios on usuarios.cuenta = padecimiento.cuenta where padecimiento.fechacita = '" + fechacita + 
+      "' order by padecimiento.horacita";
+   } else {
+      //Construye el query
+      query = "select pacientes.nombrepaciente, padecimiento.horacita, padecimiento.status, padecimiento.idpadactual, usuarios.nombreusuario from pacientes inner join padecimiento " +
+      "on pacientes.idpaciente = padecimiento.idpaciente inner join usuarios on usuarios.cuenta = padecimiento.cuenta where padecimiento.fechacita = '" + hoy +
+      "' order by padecimiento.horacita";
+   }   
+   await req.getConnection((err,conn) =>{
+      conn.query(query, (err, citas) =>{
+         if (err) { res.status(400).json({
+              status: 'error',
+              message: "No se encontraron registros."
+             }) 
+          }
+         const userAccess = req.session.user; 
+          //Toma la vista de views
+          res.render('../views/assistant/assistant', {   
+            userAccess,
+            data: citas
+            
+        })  
+      })  
+    })
+};
   
-//Para páginas 
+// ******* Para páginas ******
+
+//Para nueva cita
 assistantControl.newDate = (req, res) =>{
    var doctors = null;
    req.getConnection((err,connu) =>{ //Busca los doctores
