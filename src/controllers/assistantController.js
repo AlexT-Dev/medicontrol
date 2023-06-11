@@ -34,7 +34,7 @@ assistantControl.saveDate = async (req, res) => {
    const data = req.body;
    console.log(data) 
    req.getConnection((err, conn) => {
-     conn.query('insert into padecimiento set ?', [data], (err, users) => {
+     conn.query('insert into padecimiento set ?', [data], (err, pacientes) => {
         res.redirect('../assistant/assistant');    //redirecciona a la página principal de citas ../../asssistant/asssistant poque no sale de views
       })
    })
@@ -97,7 +97,20 @@ assistantControl.findDates = async (req, res) => {
       })  
     })
 };
+
+//Para guardar paciente nuevo
   
+assistantControl.savePatient = async (req, res) => {
+   const data = req.body;
+   console.log(data) 
+   req.getConnection((err, conn) => {
+     conn.query('insert into pacientes set ?', [data], (err, pacientes) => {
+        res.redirect('../assistant/createDate');    //redirecciona a la página principal de citas ../../asssistant/asssistant poque no sale de views
+      })
+   })
+};
+
+
 // ******* Para páginas ******
 
 //Para nueva cita
@@ -154,6 +167,19 @@ assistantControl.edit = (req, res) =>{
          
       })   
     }) 
+}
+
+
+//Para nuevopaciente
+assistantControl.createPatient = (req, res) =>{
+            //Toma la vista de views
+            res.render('../views/assistant/createPatient', {   //usa la vista createDate
+               userAccess: req.session.user,
+               userAccount: req.session.cuenta,
+               title: "Nuevo Paciente",
+               message: ""
+            }) 
+    
 }
 
 module.exports = assistantControl;

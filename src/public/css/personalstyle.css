@@ -657,6 +657,7 @@
       display: grid;
       grid-template-columns: 25% 75%;
       padding-top: 10px;
+      justify-items: start;
  }
  
  .divOpciones {
