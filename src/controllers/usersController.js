@@ -163,6 +163,7 @@ usersControl.getById = async (req, res)  => {
                      req.session.cuenta = users[0].cuenta;
                      req.session.user = users[0].nombreusuario;
                      req.session.status = users[0].status;
+                     req.session.userType = users[0].tipousuario;
                      res.redirect('/assistant/assistant');    //redirecciona a la página definida para el tipo de usuario
                   }         
                

@@ -5,9 +5,16 @@ const { format } = require('date-fns');
 //obtiene la fecha del día actual 
 const hoy = fechaAtual().format('YYYY-MM-DD')
 
+
+
 const assistantControl = {};
 //Desplegar la lista de citas en el día actual (hoy) Caso de Uso:Desplegar citas de hoy
 assistantControl.list = (req, res) =>{
+   //Para datos de la sesión
+   const userAccess = req.session.user; 
+   const userAccount = req.session.cuenta;
+   const userStatus = req.session.status;
+   const userType = req.session.userType;
    
    //Se crea la conexión a la base de datos
    req.getConnection((err,conn) =>{
@@ -15,10 +22,7 @@ assistantControl.list = (req, res) =>{
                 'on pacientes.idpaciente = padecimiento.idpaciente inner join usuarios on usuarios.cuenta = padecimiento.cuenta where padecimiento.fechacita = ? '+
                 'order by padecimiento.horacita', [hoy], (err, citas) =>{
         if (err) { res.json(err) }
-        
-           //Asigna valores de la session
-           const userAccess = req.session.user; 
-           //Toma la vista de views
+             //Toma la vista de views
            res.render('../views/assistant/assistant', {   //usa ../views/asssistant/asssistant porque es primera vez que entra a vistas
             userAccess,
             data: citas
@@ -32,12 +36,12 @@ assistantControl.list = (req, res) =>{
 
 assistantControl.saveDate = async (req, res) => {
    const data = req.body;
-   console.log(data) 
    req.getConnection((err, conn) => {
      conn.query('insert into padecimiento set ?', [data], (err, pacientes) => {
         res.redirect('../assistant/assistant');    //redirecciona a la página principal de citas ../../asssistant/asssistant poque no sale de views
       })
    })
+   
 };
 
 //Para cancelar la cita
@@ -69,6 +73,12 @@ assistantControl.update = async (req, res) => {
 assistantControl.findDates = async (req, res) => {
    const fechacita = req.body.fechacita;
    let query = '';
+
+   const userAccess = req.session.user; 
+   const userAccount = req.session.cuenta;
+   const userStatus = req.session.status;
+   const userType = req.session.userType;
+
    if (fechacita) {  
       //Construye el query
       query = "select pacientes.nombrepaciente, padecimiento.horacita, padecimiento.status, padecimiento.idpadactual, usuarios.nombreusuario from pacientes inner join padecimiento " +
@@ -87,7 +97,7 @@ assistantControl.findDates = async (req, res) => {
               message: "No se encontraron registros."
              }) 
           }
-         const userAccess = req.session.user; 
+         
           //Toma la vista de views
           res.render('../views/assistant/assistant', {   
             userAccess,
@@ -102,7 +112,7 @@ assistantControl.findDates = async (req, res) => {
   
 assistantControl.savePatient = async (req, res) => {
    const data = req.body;
-   console.log(data) 
+  
    req.getConnection((err, conn) => {
      conn.query('insert into pacientes set ?', [data], (err, pacientes) => {
         res.redirect('../assistant/createDate');    //redirecciona a la página principal de citas ../../asssistant/asssistant poque no sale de views
@@ -116,6 +126,11 @@ assistantControl.savePatient = async (req, res) => {
 //Para nueva cita
 assistantControl.newDate = (req, res) =>{
    var doctors = null;
+   const userAccess = req.session.user; 
+   const userAccount = req.session.cuenta;
+   const userStatus = req.session.status;
+   const userType = req.session.userType;
+
    req.getConnection((err,connu) =>{ //Busca los doctores
       connu.query(`select * from usuarios where tipousuario = "DOCTOR" order by nombreusuario`, (err, users) =>{
         if (err) { res.json(err) }
@@ -129,8 +144,8 @@ assistantControl.newDate = (req, res) =>{
          if (err) { res.json(err) }
             //Toma la vista de views
             res.render('../views/assistant/createDate', {   //usa la vista createDate
-               userAccess: req.session.user,
-               userAccount: req.session.cuenta,
+               userAccess,
+               userAccount,
                title: "Nueva Cita",
                data: pacientes,
                users: doctors,
@@ -146,7 +161,10 @@ assistantControl.newDate = (req, res) =>{
 //Para llamar a la página que modificar resgistros
 assistantControl.edit = (req, res) =>{
    const { idpadactual } = req.params;
-   console.log(idpadactual);
+   const userAccess = req.session.user; 
+   const userAccount = req.session.cuenta;
+   const userStatus = req.session.status;
+   const userType = req.session.userType;
    req.getConnection((err,conn) =>{
       conn.query(`select pacientes.nombrepaciente, padecimiento.fechacita, padecimiento.horacita, padecimiento.status, padecimiento.idpadactual, usuarios.nombreusuario, usuarios.cuenta from pacientes inner join padecimiento ` +
                  `on pacientes.idpaciente = padecimiento.idpaciente inner join usuarios on usuarios.cuenta = padecimiento.cuenta `+
@@ -154,12 +172,7 @@ assistantControl.edit = (req, res) =>{
          if (err) { res.json(err) }
              // Convierte el valor de la fecha en texto
              dateEdit[0].fechacita = format(dateEdit[0].fechacita,'yyyy-MM-dd');
-            //Asigna valores de la session 
-            const userAccess = req.session.user; 
-            //Toma la vista de views
-            //Toma sólo 10 valores de la fecha 
-
-            res.render('../views/assistant/updateDate', {   //usa ../views/users/users porque es primera vez que entra a vistas
+             res.render('../views/assistant/updateDate', {   //usa ../views/users/users porque es primera vez que entra a vistas
               userAccess,
              data: dateEdit[0],
              title: "Modificar Cita"
@@ -172,13 +185,17 @@ assistantControl.edit = (req, res) =>{
 
 //Para nuevopaciente
 assistantControl.createPatient = (req, res) =>{
-            //Toma la vista de views
-            res.render('../views/assistant/createPatient', {   //usa la vista createDate
-               userAccess: req.session.user,
-               userAccount: req.session.cuenta,
-               title: "Nuevo Paciente",
-               message: ""
-            }) 
+   const userAccess = req.session.user; 
+   const userAccount = req.session.cuenta;
+   const userStatus = req.session.status;
+   const userType = req.session.userType;
+   //Toma la vista de views
+   res.render('../views/assistant/createPatient', {   //usa la vista createDate
+      userAccess,
+      userAccount,
+      title: "Nuevo Paciente",
+      message: ""
+   }) 
     
 }
 

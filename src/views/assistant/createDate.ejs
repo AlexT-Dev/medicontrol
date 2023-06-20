@@ -21,16 +21,14 @@
 
         <img src="../../Espacialidades.png" height="20" width="20">
         <% if (userAccess) { %>
-            <p>
-                <%= userAccess %>
-            </p>
+            <p><%= userAccess %></p>
             <a href="/login/login" class="btncerrar-sesion">Cerrar Sesión</a>
     </div>
     </div>
     </header>
     <div class="divFormContainer">
         <div class="divFormCaptura" style="height: 170px; width: 400px;">
-            <form action="/assistant/update/<% data.idpadactual %>" method="POST">
+            <form action="/assistant/addDate" method="POST">
                 
                     <div class="divDatosCaptura">
                         <label class="labelFormCaptura">Doctor:</label>
