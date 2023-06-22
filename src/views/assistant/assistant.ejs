@@ -66,9 +66,13 @@
                                     <%= data[i].nombreusuario %>
                                 </td>
                                 <td style="width:160px; font-size:80%;">
-                                    <!-- <a href="update/<%= data[i].cuenta %>" class="btnModificar"> Revisión </a> -->
-                                    <a href="update/<%= data[i].idpadactual %>" class="btnModificar"> Modificar </a>
-                                    <a href="delete/<%= data[i].idpadactual %>" class="btnBorrar" onclick="return confirm('¿Desea cancelar la cita?')"> Cancelar </a>
+                                    <% if (userType === "AUXILIAR") { %>
+                                       <a href="update/<%= data[i].idpadactual %>" class="btnModificar"> Modificar </a>
+                                       <a href="delete/<%= data[i].idpadactual %>" class="btnBorrar" onclick="return confirm('¿Desea cancelar la cita?')"> Cancelar </a>
+                                    <% } else { if (data[i].status != "CANCELADA") { %>
+                                        <a href="" class="btnRevisar"> Atención </a>
+                                            
+                                     <%  } }  %>    
                                 </td>
                             </tr>
                         <% } %>

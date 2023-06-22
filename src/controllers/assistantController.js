@@ -25,6 +25,7 @@ assistantControl.list = (req, res) =>{
              //Toma la vista de views
            res.render('../views/assistant/assistant', {   //usa ../views/asssistant/asssistant porque es primera vez que entra a vistas
             userAccess,
+            userType,
             data: citas
            }) 
         

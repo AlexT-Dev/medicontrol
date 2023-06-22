@@ -500,6 +500,29 @@
     margin: 5px;
 }
 
+.btnRevisar {
+    font-family: var(--font-style-p-header);
+    background-color: #F2BE22;
+    color: rgb(184, 20, 20);
+    padding: 2px;
+    text-decoration: none;
+    border-radius: 2px;
+    margin: 5px;
+    border: 0;
+    font-weight: bold;
+}
+
+
+.btnRevisar:hover {
+    
+    background-color: rgb(184, 20, 20);
+    color: #F2BE22;
+    padding: 2px;
+    text-decoration: none;
+    border-radius: 2px;
+    margin: 5px;
+}
+
 
 .inputForm {
    font-family: var(--font-style-p-header);

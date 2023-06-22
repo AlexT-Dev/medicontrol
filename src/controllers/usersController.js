@@ -159,7 +159,7 @@ usersControl.getById = async (req, res)  => {
                //Si el suario existe, determina a que parte del sistema ingresará
                if (validarEncription(users[0].password,userPassword)){
                   //Determina el tipo de usuario
-                  if (users[0].tipousuario === "AUXILIAR") {
+                  if (users[0].tipousuario === "AUXILIAR" || users[0].tipousuario === "DOCTOR") {
                      req.session.cuenta = users[0].cuenta;
                      req.session.user = users[0].nombreusuario;
                      req.session.status = users[0].status;
