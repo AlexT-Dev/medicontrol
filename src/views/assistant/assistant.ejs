@@ -70,8 +70,7 @@
                                        <a href="update/<%= data[i].idpadactual %>" class="btnModificar"> Modificar </a>
                                        <a href="delete/<%= data[i].idpadactual %>" class="btnBorrar" onclick="return confirm('¿Desea cancelar la cita?')"> Cancelar </a>
                                     <% } else { if (data[i].status != "CANCELADA") { %>
-                                        <a href="" class="btnRevisar"> Atención </a>
-                                            
+                                        <a href="/doctor/ahfapphistory/<%= data[i].idpadactual %>" class="btnRevisar"> Atención </a>
                                      <%  } }  %>    
                                 </td>
                             </tr>

@@ -1,6 +1,17 @@
 const fechaAtual = require('moment');
 const { format } = require('date-fns');
+const session = require('express-session');
 //Para la funcionalidad del servicio
+
+/*
+ userAccess = req.session.user        Nombre del usuario
+userAccount = req.session.cuenta      Cuenta del Usuario
+ userStatus = req.session.status      "ACTIVO, "INACTIVO"
+   userType = req.session.userType    "AUXILIAR", "DOACTOR", "ADMINISTRADOR" 
+*/
+
+/***** API ******/
+
 
 //obtiene la fecha del día actual 
 const hoy = fechaAtual().format('YYYY-MM-DD')
@@ -113,10 +124,13 @@ assistantControl.findDates = async (req, res) => {
   
 assistantControl.savePatient = async (req, res) => {
    const data = req.body;
-  
+   const userType = req.session.userType;
+   const userAccess = req.session.user; 
+   const userAccount = req.session.cuenta;
+   
    req.getConnection((err, conn) => {
      conn.query('insert into pacientes set ?', [data], (err, pacientes) => {
-        res.redirect('../assistant/createDate');    //redirecciona a la página principal de citas ../../asssistant/asssistant poque no sale de views
+       res.redirect('../assistant/createDate');   //redirecciona a crear la cita
       })
    })
 };
@@ -190,10 +204,12 @@ assistantControl.createPatient = (req, res) =>{
    const userAccount = req.session.cuenta;
    const userStatus = req.session.status;
    const userType = req.session.userType;
+   
    //Toma la vista de views
    res.render('../views/assistant/createPatient', {   //usa la vista createDate
       userAccess,
       userAccount,
+      userType,
       title: "Nuevo Paciente",
       message: ""
    }) 

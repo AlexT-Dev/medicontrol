@@ -47,14 +47,15 @@ app.use(sessions({
 const usersRoutes = require('./routes/users.js');
 const loginRoutes = require('./routes/login.js');
 const assistantRoutes = require('./routes/assistant.js');
-
+const doctorRoutes = require('./routes/doctor.js');
 
 
 //Usando rutas importadas
 
-app.use('/', usersRoutes);   //Se cambia la ruta de acuerdo a la página que se defina como principal
-app.use('/', loginRoutes);   //Para ingresar por login
-app.use('/', assistantRoutes);   //Para ingresar por login
+app.use('/', usersRoutes);       //Se cambia la ruta de acuerdo a la página que se defina como principal
+app.use('/', loginRoutes);       //Para ingresar por login
+app.use('/', assistantRoutes);   //Para ingresar a servicios del auxiliar
+app.use('/', doctorRoutes);      //Para ingresar a servicios del doctor
 
 //Archivos estáticos
 app.use(express.static(path.join(__dirname,'public')));

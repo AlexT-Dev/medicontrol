@@ -1,0 +1,113 @@
+<%- include ('../partials/_header') %>
+<p class="headerPCat">
+    <%= title %>
+</p>
+</div>
+<div class="divForm">
+    <div class="divFormBuscar">
+
+    </div>
+    <div class="divHeaderOp">
+        <!-- Opciones de encabezados -->
+        <a href="/assistant/assistant" class="btnRegresar">Regresar</a>
+    </div>
+</div>
+<div class="divcerrar-sesion">
+    <!-- Datos del usuario que tuvo acceso -->
+    <input type="hidden" name="usuario" value="" disabled>
+
+    <img src="../../Espacialidades.png" height="20" width="20">
+    <% if (userAccess) { %>
+        <p>
+            <%= userAccess %>
+        </p>
+        <a href="/login/login" class="btncerrar-sesion">Cerrar Sesión</a>
+</div>
+</div>
+</header>
+<div class="divFormContainer">
+    <div class="divFormCaptura" style="height: 330px; width: 470px;">
+        <form action="/assistant/savePatient" method="POST">
+            
+                <div class="divDatosCaptura">
+                    <label class="labelFormCaptura">Nombre:</label>
+                    <input type="text" style="text-transform:uppercase;" name="nombrepaciente" size="50" class="selectCaptura" required>
+                </div>
+                <div class="divDatosCaptura">
+                    <label class="labelFormCaptura">Correo:</label>
+                    <input type="email" name="email" size="50" class="selectCaptura" required>
+                </div>
+                <div class="divDatosCaptura">
+                    <label class="labelFormCaptura">Edad:</label>
+                    <input type="number" min="18" max="90" size="2" maxlength="2" name="edad" class="selectCaptura" required> 
+                </div>
+
+                <div class="divDatosCaptura">
+                   <label class="labelFormCaptura">Estado Civil:</label>
+                <select class="selectCaptura" name="estadocivil" required>
+                    <option value="-1"></option>
+                    <option value="SOLTERO">SOLTERO</option>"
+                    <option value="CASADO">CASADO</option>"
+                    <option value="DIVORCIADO">DIVORCIADO</option>"
+                    <option value="UNIÓN LIBRE">UNIÓN LIBRE</option>"
+                </select>
+            </div>
+            <div class="divDatosCaptura">
+                <label class="labelFormCaptura">Escolaridad:</label>
+                <select class="selectCaptura" name="escolaridad" required>
+                    <option value="-1"></option>
+                    <option value="PRIMARIA">PRIMARIA</option>
+                    <option value="SECUNDARIA">SECUNDARIA</option>
+                    <option value="BACH./PREPA.">BACH./PREPA.</option>
+                    <option value="PROFESIONAL">PROFESIONAL</option>
+                    <option value="MAESTRIA">MAESTRIA</option>
+                    <option value="DOCTORADO">DOCTORADO</option>
+                </select>
+            </div>
+            <div class="divDatosCaptura">
+                <label class="labelFormCaptura">Empleo:</label>
+                <input type="text" style="text-transform:uppercase;" name="empleo" size="50" class="selectCaptura" required>
+            </div>
+            <div class="divDatosCaptura">
+                <label class="labelFormCaptura">Nacido en:</label>
+                <input type="text" style="text-transform:uppercase;" name="lugarnacimiento" size="40" class="selectCaptura" required>
+            </div>
+            <div class="divDatosCaptura">
+                <label class="labelFormCaptura">Vive en:</label>
+                <input type="text" style="text-transform:uppercase;" name="lugarvive" size="40" class="selectCaptura" required>
+            </div>
+            <div class="divDatosCaptura">
+                <label class="labelFormCaptura">Alergias:</label>
+                <input type="text" style="text-transform:uppercase;" name="alergias" size="50" class="selectCaptura" required>
+            </div>
+            <hr color="blue" size=3>
+            <div class="divFormOp">
+
+                <input type="submit" value="Guardar" class="btnGuardar">
+
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<% } else { %>
+    <div class="containerModal">
+        <div class="popup" id="modal">
+            <div>
+                <p class="textModal">USUARIO SIN ACCESSO</p>
+                <hr class="hrModal">
+                </hr>
+            </div>
+            <div>
+                <p class="textModal">No se ha registrado con su cuenta.</p>
+            </div>
+            <div>
+                <a href="/login/login" class="btncloseModal" rel="noreferrer">
+                    Cerrar
+                </a>
+            </div>
+        </div>
+    </div>
+    <% } %>
+<%- include ('../partials/_footer') %>
