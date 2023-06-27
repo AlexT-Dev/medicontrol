@@ -25,71 +25,118 @@
 </div>
 </div>
 </header>
-<div class="divFormContainer">
-    <div class="divFormCaptura" style="height: 330px; width: 470px;">
-        <form action="/assistant/savePatient" method="POST">
-            
+  <div class="divDisplayPatient">
+    <div>     
+        <div class="divDatosCaptura">
+            <label class="labelFormCaptura">Nombre:</label>
+            <input value="<%= patient.nombrepaciente %>" type="text" style="text-transform:uppercase;" name="nombrepaciente" size="30" class="selectCaptura" disabled>
+        </div>
+        
+        <div class="divDatosCaptura">
+            <label class="labelFormCaptura">Edad:</label>
+            <input value="<%= patient.edad %>" type="number" min="18" max="90" size="2" maxlength="2" name="edad" class="selectCaptura" disabled> 
+        </div>
+    </div>
+    <div>
+        <div class="divDatosCaptura">
+            <label class="labelFormCaptura">Edo. Civil:</label>
+            <input value="<%= patient.estadocivil %>" type="text" style="text-transform:uppercase;" name="estadocivil" size="30" class="selectCaptura" disabled>
+        </div>
+        <div class="divDatosCaptura">
+            <label class="labelFormCaptura">Nivel Esc.:</label>
+            <input value="<%= patient.escolaridad %>" type="text" style="text-transform:uppercase;" name="escolaridad" size="30" class="selectCaptura" disabled>             
+        </div>
+    </div>
+    <div>        
+        <div class="divDatosCaptura">
+            <label class="labelFormCaptura">Empleo:</label>
+            <input value="<%= patient.empleo %>" type="text" style="text-transform:uppercase;" name="empleo" size="30" class="selectCaptura" disabled>
+        </div>
+        <div class="divDatosCaptura">
+            <label class="labelFormCaptura">Nacido en:</label>
+            <input value="<%= patient.lugarnacimiento %>" type="text" style="text-transform:uppercase;" name="lugarnacimiento" size="30" class="selectCaptura" disabled>
+        </div>
+    </div>
+    <div>
+        <div class="divDatosCaptura">
+            <label class="labelFormCaptura">Vive en:</label>
+            <input value="<%= patient.lugarvive %>" type="text" style="text-transform:uppercase;" name="lugarnavive" size="30" class="selectCaptura" disabled>
+        </div>
+        <div class="divDatosCaptura">
+            <label class="labelFormCaptura">Alergias:</label>
+            <input value="<%= patient.alergias %>" type="text" style="text-transform:uppercase;" name="alergias" size="30" class="selectCaptura" disabled>
+        </div>
+    </div>
+    </div>   
+    <!-- Para captura de AHF y APP -->
+    
+    <section class="seccion" >
+        <!-- Sección izquierda para ahf -->
+        <div class="izquierda">
+            <label class="labelFormCaptura">ANTECEDENTES HEREDO FAMILIARES</label> 
+            <form action="/doctor/saveAHF" method="POST">
+                <input type="hidden" name="<%= patient.idpaciente %>" value="" disabled>
                 <div class="divDatosCaptura">
-                    <label class="labelFormCaptura">Nombre:</label>
-                    <input type="text" style="text-transform:uppercase;" name="nombrepaciente" size="50" class="selectCaptura" required>
+                    <label class="labelFormCaptura">Antecedente:</label>
+                    <select class="selectCaptura" name="idahf" required>
+                        <option value="-1">Elija un AHF</option>
+                        <!-- Inicia el listado de los registros -->
+                        <% if (ahfs) { %>
+                            <% for (var i=0; i < ahfs.length; i++) {%>
+                                <option value="<%= ahfs[i].idahf %>"><%= ahfs[i].nombreahf %></option>"
+                            <% } %>
+                        <% } %>
+                    </select>
                 </div>
                 <div class="divDatosCaptura">
-                    <label class="labelFormCaptura">Correo:</label>
-                    <input type="email" name="email" size="50" class="selectCaptura" required>
+                    <label class="labelFormCaptura">Parentesco:</label>
+                    <select class="selectCaptura" name="idparentesco" required>
+                        <option value="-1">Elija un Parentesco</option>
+                        <!-- Inicia el listado de los registros -->
+                        <% if (parentescos) { %>
+                            <% for (var i=0; i < parentescos.length; i++) {%>
+                                <option value="<%= parentescos[i].idparentesco %>"><%= parentescos[i].nombreparentesco %></option>"
+                            <% } %>
+                        <% } %>
+                    </select>
                 </div>
-                <div class="divDatosCaptura">
-                    <label class="labelFormCaptura">Edad:</label>
-                    <input type="number" min="18" max="90" size="2" maxlength="2" name="edad" class="selectCaptura" required> 
-                </div>
-
-                <div class="divDatosCaptura">
-                   <label class="labelFormCaptura">Estado Civil:</label>
-                <select class="selectCaptura" name="estadocivil" required>
-                    <option value="-1"></option>
-                    <option value="SOLTERO">SOLTERO</option>"
-                    <option value="CASADO">CASADO</option>"
-                    <option value="DIVORCIADO">DIVORCIADO</option>"
-                    <option value="UNIÓN LIBRE">UNIÓN LIBRE</option>"
-                </select>
-            </div>
-            <div class="divDatosCaptura">
-                <label class="labelFormCaptura">Escolaridad:</label>
-                <select class="selectCaptura" name="escolaridad" required>
-                    <option value="-1"></option>
-                    <option value="PRIMARIA">PRIMARIA</option>
-                    <option value="SECUNDARIA">SECUNDARIA</option>
-                    <option value="BACH./PREPA.">BACH./PREPA.</option>
-                    <option value="PROFESIONAL">PROFESIONAL</option>
-                    <option value="MAESTRIA">MAESTRIA</option>
-                    <option value="DOCTORADO">DOCTORADO</option>
-                </select>
-            </div>
-            <div class="divDatosCaptura">
-                <label class="labelFormCaptura">Empleo:</label>
-                <input type="text" style="text-transform:uppercase;" name="empleo" size="50" class="selectCaptura" required>
-            </div>
-            <div class="divDatosCaptura">
-                <label class="labelFormCaptura">Nacido en:</label>
-                <input type="text" style="text-transform:uppercase;" name="lugarnacimiento" size="40" class="selectCaptura" required>
-            </div>
-            <div class="divDatosCaptura">
-                <label class="labelFormCaptura">Vive en:</label>
-                <input type="text" style="text-transform:uppercase;" name="lugarvive" size="40" class="selectCaptura" required>
-            </div>
-            <div class="divDatosCaptura">
-                <label class="labelFormCaptura">Alergias:</label>
-                <input type="text" style="text-transform:uppercase;" name="alergias" size="50" class="selectCaptura" required>
-            </div>
-            <hr color="blue" size=3>
-            <div class="divFormOp">
+                
+                <hr color="blue" size=3>
+                <div class="divFormOp">
 
                 <input type="submit" value="Guardar" class="btnGuardar">
 
             </div>
         </form>
-
-    </div>
-</div>
+        </div>
+        <!-- Sección derecha para APP  -->
+        <div class="izquierda"> 
+            <label class="labelFormCaptura">ANTECEDENTES PATOLÓGICOS PERSONALES</label> 
+            <form action="/doctor/saveAPP" method="POST">
+                <input type="hidden" name="<%= patient.idpaciente %>" value="" disabled>
+                <div class="divDatosCaptura">
+                    <label class="labelFormCaptura">Antecedente:</label>
+                    <select class="selectCaptura" name="idtipoapp" required>
+                        <option value="-1">Elija un Tipo de APP</option>
+                        <!-- Inicia el listado de los registros -->
+                        <% if (apps) { %>
+                            <% for (var i=0; i < apps.length; i++) {%>
+                                <option value="<%= apps[i].idtipoapp %>"><%= apps[i].nombretipo %></option>"
+                            <% } %>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="divDatosCaptura">
+                    <label class="labelFormCaptura">Tiempo:</label>
+                    <input type="text" style="text-transform:uppercase;" name="tiempo" size="20" class="selectCaptura" required>
+                </div>
+                <hr color="blue" size=3>
+                <div class="divFormOp">
+                  <input type="submit" value="Guardar" class="btnGuardar">
+               </div>
+            </form>
+        </div>
+    </section>
 
 <% } else { %>
     <div class="containerModal">

@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200&family=Shadows+Into+Light&family=Splash&display=swap&family=Open+Sans&display=sans-serif?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@700&family=Ysabeau+SC:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Fuzzy+Bubbles:wght@700&family=Ysabeau+SC:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Anton&family=Fuzzy+Bubbles:wght@700&family=Ysabeau+SC:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Anton&family=Fuzzy+Bubbles:wght@700&family=Outfit:wght@500&family=Ysabeau+SC:wght@700;800&display=swap');
 
 /* 
     Created on : 25/01/2021, 12:41:13 PM
@@ -52,6 +57,7 @@
 --font-style-textarea: 'Fuzzy Bubbles', cursive;
 --font-style-p: 'Open Sans', sans-serif;
 --font-style-p-header: 'Anton', sans-serif;
+--font-style-boton: 'Outfit', sans-serif;
 --font-size-footer: 20px;
 --font-color-menu: white;
 --back-color-grid-data: #1746A2;
@@ -164,7 +170,7 @@
 
 .headerPCat {
     margin: 0px ;
-    font-family: var(--font-style-p-header); 
+    font-family: var(--font-style-p); 
     color: white;
     font-size: 20px;
     padding: 5px;
@@ -303,7 +309,7 @@
 
 .btncerrar-sesion {
    border-color: burlywood;
-
+   font-family: var(--font-style-boton);
     box-shadow: 0 0 10px 10px burlywood inset, 0 0 0 0 burlywood;
     -webkit-transition: all 150ms ease-in-out;
     transition: all 150ms ease-in-out;
@@ -325,7 +331,7 @@
 } 
  
 .btnNuevo {
-    font-family: var(--font-style-p-header);
+    font-family: var(--font-style-boton);
     background-color: #FFB84C;
     color: black;
     padding: 12px;
@@ -346,7 +352,7 @@
 }
 
 .btnRegresar {
-    font-family: var(--font-style-p-header);
+    font-family: var(--font-style-boton);
     background-color: #BAD7E9;
     color: black;
     padding: 12px;
@@ -367,7 +373,7 @@
 }
  
 .btnBuscar {
-    font-family: var(--font-style-p-header);
+    font-family: var(--font-style-boton);
     background-color: #5D9C59;
     color: white;
     padding: 12px;
@@ -379,7 +385,7 @@
 }
 
 .btnBuscar:hover {
-    font-family: var(--font-style-p-header);
+    
     background-color: white;
     color: #5D9C59;
     padding: 12px;
@@ -389,7 +395,7 @@
 }
 
 .btnGuardar {
-    font-family: var(--font-style-p-header);
+    font-family: var(--font-style-boton);
     background-color: var(--font-color-h1);
     color: black;
     padding: 12px;
@@ -413,7 +419,7 @@
 }
 
 .btnCitas {
-    font-family: var(--font-style-p-header);
+    font-family: var(--font-style-boton);;
     background-color: black;
     color: white;
     padding: 12px;
@@ -436,7 +442,7 @@
 /** Botones de lista de datos ***/
 
 .btnModificar {
-    font-family: var(--font-style-p-header);
+    font-family: var(--font-style-boton);
     background-color: #5D9C59;
     color: black;
     padding: 2px;
@@ -446,7 +452,7 @@
 }
 
 .btnModificar:hover {
-        font-family: var(--font-style-p-header);
+        
     background-color: black;
     color: #5D9C59;
     padding: 2px;
@@ -457,7 +463,7 @@
 
 
 .btnBorrar {
-    font-family: var(--font-style-p-header);
+    font-family: var(--font-style-boton);
     background-color: yellow;
     color: black;
     padding: 2px;
@@ -479,7 +485,7 @@
 }
 
 .btnHistorial {
-    font-family: var(--font-style-p-header);
+    font-family: var(--font-style-boton);
     background-color: black;
     color: white;
     padding: 2px;
@@ -501,7 +507,7 @@
 }
 
 .btnRevisar {
-    font-family: var(--font-style-p-header);
+    font-family: var(--font-style-boton);
     background-color: #F2BE22;
     color: rgb(184, 20, 20);
     padding: 2px;
@@ -649,10 +655,23 @@
 
 /*********************  Para Formularios de captura *********************/
 
+.divDisplayPatient {
+    display: grid;
+    background-color: #F9F5F6;
+    margin: 10px; 
+    opacity: 0.8;
+    border: 2px solid black;
+    box-shadow: 0 0 10px 10px #C9EEFF;
+    padding: 15px;
+    grid-template-columns: 25% 25% 25% 25%;
+    
+    border-radius: 5px;
+    font-family: 'Ysabeau SC', sans-serif;
+}
 .divFormContainer {
     display: flex;
      justify-content: space-around;
-     
+ 
 }
 
 .divFormCaptura {
@@ -669,10 +688,10 @@
  }
 
  .labelFormCaptura {
-     font-family: var(--font-style-p-header);
+     font-family: 'Ysabeau SC', sans-serif;
      font-weight: bold;
      text-align: right;
-     font-size: 15px;
+     font-size: 18px;
      
   }
  
@@ -704,7 +723,8 @@
 
 .seccion {
     display: flex;
-  justify-content: center;
+   justify-content: space-around;
+   margin: 10px;
 }
 /*************** Para modals ************/
 
@@ -901,166 +921,6 @@
  }
 
 
-
-/******************     BODY    ****************************/
-/****************** Para Skills ****************************/
-
-.h1skill {
-    font-family: var(--font-style-etiqueta);
-    font-size: 30px;
-    margin-left: 10px;
-    color: var(--font-color-h1);
-  }
-  
-
-.divskill{
-    display: flex;
-    justify-content: left;
-  }
-
-.columnaskill{
-   width: 20%;
-   /* padding-top: 2px; */
-   text-align: right;
-   margin-right: 5px;
-}
-
-.cskills{
-    width:80%;
-    background-color:var(--back-color-header);
-   margin-top:5px;
-   margin-right: 10px;
- }
-
-.skills{
-    text-align: right;
-    padding-right: 2px;
-    color:black;
-    font-weight: bold;
-    font-family: var(--font-style-p);
-    font-size: 10px;
-    font-weight: bold;
-}
-
-.vb {
-    background-color: var(--color-over-button) ;
-    animation: fillvb 2s forwards;
-    margin-left: 0px;
-}
-
-@keyframes fillvb {
-    0%{width: 0;}
-    100%{width: 40%;}
-}
-
-.cobol {
-    background-color: var(--color-over-button);
-    animation: fillcobol 2s forwards;
-    margin-left: 0px;
-}
-
-@keyframes fillcobol {
-    0%{width: 0;}
-    100%{width: 30%;}
-}
-
-.java {
-    background-color: var(--color-over-button);
-    animation: filljava 2s forwards;
-    margin-left: 0px;
-}
-
-@keyframes filljava {
-    0%{width: 0;}
-    100%{width: 30%;}
-}
-
-.njs {
-    background-color: var(--color-over-button);
-    animation: fillnjs 2s forwards;
-    margin-left: 0px;
-}
-
-@keyframes fillnjs {
-    0%{width: 0;}
-    100%{width: 30%;}
-}
-
-.css {
-    background-color: var(--color-over-button);
-    animation: fillcss 2s forwards;
-    margin-left: 0px;
-}
-
-@keyframes fillcss {
-    0%{width: 0;}
-    100%{width: 50%;}
-}
-.html {
-    background-color: var(--color-over-button);
-    animation: fillhtml 2s forwards;
-    margin-left: 0px;
-}
-
-@keyframes fillhtml {
-    0%{width: 0;}
-    100%{width: 60%;}
-}
-
-.sql {
-    background-color: var(--color-over-button);
-    animation: fillsql 2s forwards;
-    margin-left: 0px;
-}
-
-@keyframes fillsql {
-    0%{width: 0;}
-    100%{width: 70%;}
-}
-
-.ms {
-    background-color: var(--color-over-button);
-    animation: fillms 2s forwards;
-    margin-left: 0px;
-}
-
-@keyframes fillms {
-    0%{width: 0;}
-    100%{width: 70%;}
-}
-
-.visio {
-    background-color: var(--color-over-button);
-    animation: fillvisio 2s forwards;
-    margin-left: 0px;
-}
-
-@keyframes fillvisio {
-    0%{width: 0;}
-    100%{width: 70%;}
-}
-.project {
-    background-color: var(--color-over-button);
-    animation: fillpro 2s forwards;
-    margin-left: 0px;
-}
-
-@keyframes fillpro {
-    0%{width: 0;}
-    100%{width: 55%;}
-}
-
-.vba {
-    background-color: var(--color-over-button);
-    animation: fillvba 2s forwards;
-    margin-left: 0px;
-}
-
-@keyframes fillvba {
-    0%{width: 0;}
-    100%{width: 50%;}
-}
-
 /************* Para Secciones ********************************/
 
 .saltoSeccion{
@@ -1068,21 +928,24 @@
 }
 
 .sec {
-    
-    background-color: var(--back-color-header);
-   
+    background-color: #F9F5F6;
     box-shadow: 0 0 4px 3px burlywood; 
     transition: all 800ms;
-    
     display: flex;
     opacity: 0.9;
-    
+
 }
 
 /* Lado Izquierdo */
 .izquierda {
     height: 50vh;
     width: 50%;
+    background-color: #F9F5F6;
+    margin: 10px; 
+    opacity: 0.8;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
 }
 
 .sec h1 {
@@ -1162,29 +1025,6 @@
       width: 765px;
      height: 472px;
 }
-.imgestudios {
-    background-image: url(./images/escuela.jpg);
- }
-
-
-.imgexperiencia {
-   background-image: url(./images/experiencia.jpg);
-}
-
-
-.imgtrans {
-  background-image: url(./images/Transversales.jpg);
-}
-
-
-.imgpro {
-    background-image: url(./images/proyectos.jpg);
-  }
-
-
-
-
-
 
 /******** Contenedor de Registros con table *********/
 
@@ -1209,7 +1049,7 @@
 .tabla{
     
     align-items: center;
-    font-family: var(--font-style-p-header);
+    font-family: var(--font-style-p);
     font-weight: bold;
     text-align: center;
     border-collapse: collapse;
@@ -1372,13 +1212,6 @@ tr:nth-child(even){
 .fotoReduce:hover {
   box-shadow: 0 0 4px 3px burlywood;
 }
-
-
-
-
-
-
-
 
 /* Para grid citas modal */
 #grid-citas {
@@ -1664,11 +1497,6 @@ tr:nth-child(even){
     100%{width: 50%;}
 }
 
-/* Lado Izquierdo */
-.izquierda {
-    height: 50vh;
-    width: 52%;
-}
 
 .sec h1 {
    font-family: var(--font-style-etiqueta);
