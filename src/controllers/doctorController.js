@@ -15,17 +15,20 @@ userAccount = req.session.cuenta      Cuenta del Usuario
 const hoy = fechaAtual().format('YYYY-MM-DD') 
 
 const doctorControl = {};
+/*
+   Para los servicios en las páginas
+*/
 
 //Desplegar los datos del paciente
 doctorControl.newHistory = (req, res) =>{
 
     const  idpadactual  = req.params.idpadactual;
     const  status = req.params.status;
+    
     var ahf = null;
     var app = null;
     var parentesco = null;
-    var patientAHF = null;
-    var patientAPP = null;
+   
    
     //Para datos de la sesión
     const userAccess = req.session.user; 
@@ -42,14 +45,14 @@ doctorControl.newHistory = (req, res) =>{
      })   
    });
 
-  req.getConnection((err,connu) =>{ //Busca los Parentescos del Catálogo
-    connu.query(`select * from parentesco order by nombreparentesco`, (err, parentescos) =>{
+   req.getConnection((err,connu) =>{ //Busca los Parentescos del Catálogo
+    connu.query('select * from parentesco order by nombreparentesco', (err, parentescos) =>{
       if (err) { res.json(err) }
         //Toma la vista de views
         parentesco = parentescos;
         
     })   
-  });
+   });
 
 
     
@@ -63,10 +66,11 @@ doctorControl.newHistory = (req, res) =>{
  });
 
     req.getConnection((err,conn) =>{
-      //Otiene los datos del paciente que será atendido
-      conn.query('select padecimiento.idpadactual, padecimiento.idpaciente, pacientes.nombrepaciente, pacientes.edad,pacientes.estadocivil, pacientes.escolaridad, pacientes.empleo, '
+      //Obtiene los datos del paciente que será atendido
+      conn.query('select padecimiento.idpadactual, padecimiento.status, pacientes.idpaciente, pacientes.nombrepaciente, pacientes.edad,pacientes.estadocivil, pacientes.escolaridad, pacientes.empleo, '
                + 'pacientes.lugarnacimiento, pacientes.lugarvive, pacientes.alergias from pacientes inner join padecimiento on pacientes.idpaciente = padecimiento.idpaciente '
                + 'where padecimiento.idpadactual = ?', [idpadactual], (err, patientData) =>{
+               
          if (err) { res.json(err) }
               //Toma la vista de views
             res.render('../views/doctors/ahfappHistory', {   //usa la vista para crear la historia clínica del paciente
@@ -76,11 +80,36 @@ doctorControl.newHistory = (req, res) =>{
              parentescos: parentesco,
              apps: app,
              patient: patientData[0],
-             title : "Paciente de Primera Vez"
+             title : "Paciente de Primera Vez",
+             
             }) 
         
       })   
     })
  }
+
+ 
+
+/*
+   Para los servicios API
+*/
+ 
+doctorControl.saveAHF = async (req, res) => {
+  const data = req.body;
+  const  idpadactual  = req.params.idpadactual;
+  const  status = req.params.status;
+  console.log(req.body)
+  req.getConnection((err, conn) => {
+    conn.query('insert into pacienteahf set ?', [data], (err, pacientesahf) => {
+      
+      res.redirect('../ahfappHistory/'+idpadactual+"&"+status);    
+     })
+     console.log(err)
+  })
+  
+};
+
+
+
 
  module.exports = doctorControl;

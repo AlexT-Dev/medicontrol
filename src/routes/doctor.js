@@ -12,7 +12,7 @@ router.get('/doctor/ahfapphistory/:idpadactual&:status', doctorController.newHis
 
 
 // //Para API
-// router.post('/doctor/addahf', doctorController.saveAHF)             //Ruta para guardar nuevas citas 
+router.post('/doctor/addAHF/:idpadactual&:status', doctorController.saveAHF)              //Ruta para guardar nuevas citas 
 // router.post('/doctor/addapp', doctorController.saveAPP)             //Ruta para guardar nuevas citas 
 // router.post('/doctor/update/:idpadactual', doctorController.update)   //Ruta actualizar citas 
 // router.get('/doctor/delete/:idpadactual', doctorController.delete)    //Ruta para borrar citas (cambiar el estado)

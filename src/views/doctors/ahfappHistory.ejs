@@ -29,7 +29,7 @@
     <div>     
         <div class="divDatosCaptura">
             <label class="labelFormCaptura">Nombre:</label>
-            <input value="<%= patient.nombrepaciente %>" type="text" style="text-transform:uppercase;" name="nombrepaciente" size="30" class="selectCaptura" disabled>
+            <input value="<%= patient.nombrepaciente %>" type="text" name="nombrepaciente" size="30" class="selectCaptura" disabled>
         </div>
         
         <div class="divDatosCaptura">
@@ -40,31 +40,31 @@
     <div>
         <div class="divDatosCaptura">
             <label class="labelFormCaptura">Edo. Civil:</label>
-            <input value="<%= patient.estadocivil %>" type="text" style="text-transform:uppercase;" name="estadocivil" size="30" class="selectCaptura" disabled>
+            <input value="<%= patient.estadocivil %>" type="text" name="estadocivil" size="30" class="selectCaptura" disabled>
         </div>
         <div class="divDatosCaptura">
             <label class="labelFormCaptura">Nivel Esc.:</label>
-            <input value="<%= patient.escolaridad %>" type="text" style="text-transform:uppercase;" name="escolaridad" size="30" class="selectCaptura" disabled>             
+            <input value="<%= patient.escolaridad %>" type="text" name="escolaridad" size="30" class="selectCaptura" disabled>             
         </div>
     </div>
     <div>        
         <div class="divDatosCaptura">
             <label class="labelFormCaptura">Empleo:</label>
-            <input value="<%= patient.empleo %>" type="text" style="text-transform:uppercase;" name="empleo" size="30" class="selectCaptura" disabled>
+            <input value="<%= patient.empleo %>" type="text" name="empleo" size="30" class="selectCaptura" disabled>
         </div>
         <div class="divDatosCaptura">
             <label class="labelFormCaptura">Nacido en:</label>
-            <input value="<%= patient.lugarnacimiento %>" type="text" style="text-transform:uppercase;" name="lugarnacimiento" size="30" class="selectCaptura" disabled>
+            <input value="<%= patient.lugarnacimiento %>" type="text" name="lugarnacimiento" size="30" class="selectCaptura" disabled>
         </div>
     </div>
     <div>
         <div class="divDatosCaptura">
             <label class="labelFormCaptura">Vive en:</label>
-            <input value="<%= patient.lugarvive %>" type="text" style="text-transform:uppercase;" name="lugarnavive" size="30" class="selectCaptura" disabled>
+            <input value="<%= patient.lugarvive %>" type="text" name="lugarvive" size="30" class="selectCaptura" disabled>
         </div>
         <div class="divDatosCaptura">
             <label class="labelFormCaptura">Alergias:</label>
-            <input value="<%= patient.alergias %>" type="text" style="text-transform:uppercase;" name="alergias" size="30" class="selectCaptura" disabled>
+            <input value="<%= patient.alergias %>" type="text" name="alergias" size="30" class="selectCaptura" disabled>
         </div>
     </div>
     </div>   
@@ -74,9 +74,9 @@
         <!-- Sección izquierda para ahf -->
         <div class="izquierda">
             <label class="labelFormCaptura">ANTECEDENTES HEREDO FAMILIARES</label> 
-            <form action="/doctor/saveAHF" method="POST">
-                <input type="hidden" name="<%= patient.idpaciente %>" value="" disabled>
+            <form action="/doctor/addAHF/<%= patient.idpadactual %>&<%= patient.status %>" method="POST">
                 <div class="divDatosCaptura">
+                    <input value="<%= patient.idpaciente %>" type="hidden" name="idpaciente" required>
                     <label class="labelFormCaptura">Antecedente:</label>
                     <select class="selectCaptura" name="idahf" required>
                         <option value="-1">Elija un AHF</option>
@@ -112,8 +112,8 @@
         <!-- Sección derecha para APP  -->
         <div class="izquierda"> 
             <label class="labelFormCaptura">ANTECEDENTES PATOLÓGICOS PERSONALES</label> 
-            <form action="/doctor/saveAPP" method="POST">
-                <input type="hidden" name="<%= patient.idpaciente %>" value="" disabled>
+            <form action="" method="POST">
+                <input type="hidden" name="idpaciente" value="<%= patient.idpaciente %>" required>
                 <div class="divDatosCaptura">
                     <label class="labelFormCaptura">Antecedente:</label>
                     <select class="selectCaptura" name="idtipoapp" required>
