@@ -108,6 +108,34 @@
 
             </div>
         </form>
+           <!-- Despliega los AHF del paciente -->
+            <div class="fijar-tabla" style="width: 400px;">
+            <table class="tabla">
+                <thead class="tHead">
+                    <tr class="trFija">
+                        <th style="width:150px; text-align: center">A. H. F.</th>
+                        <th style="width:200px; text-align: center">PARENTESCO</th>
+                        <th style="width:80px; text-align: center">OPCIONES</th>
+
+                    </tr>
+                </thead>
+                <tbody class="tbodyDatos" style="height: 145px;">
+                    <!-- Inicia el listado de los registros -->
+                    <% if (ahfpatients) { %>
+                        <% for (var i=0; i < ahfpatients.length; i++) {%>
+                            <tr class="trDatos">
+                                <td style="width:150px; font-size:90%; text-align: justify;"><%= ahfpatients[i].nombreahf %></td>
+                                <td style="width:200px; font-size:90%; text-align: justify;"><%= ahfpatients[i].nombreparentesco %></td>
+                                <td style="width:80px; font-size:80%;">
+                                   <a href="update/<%= ahfpatients[i].idpacienteahf %>" class="btnBorrar"> Quitar </a>
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% } %>
+
+                </tbody>
+            </table>
+        </div>
         </div>
         <!-- Sección derecha para APP  -->
         <div class="izquierda"> 
