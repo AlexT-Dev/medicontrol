@@ -13,9 +13,10 @@ router.get('/doctor/ahfapphistory/:idpadactual&:status', doctorController.newHis
 
 // //Para API
 router.post('/doctor/addAHF/:idpadactual&:status', doctorController.saveAHF)              //Ruta para guardar nuevas citas 
-// router.post('/doctor/addapp', doctorController.saveAPP)             //Ruta para guardar nuevas citas 
+router.post('/doctor/addAPP/:idpadactual&:status', doctorController.saveAPP)             //Ruta para guardar nuevas citas 
 // router.post('/doctor/update/:idpadactual', doctorController.update)   //Ruta actualizar citas 
-router.get('/doctor/delete/:idpacienteahf&:idpadactual&:status', doctorController.delete)    //Ruta para borrar citas (cambiar el estado)
+router.get('/doctor/deleteAHF/:idpacienteahf&:idpadactual&:status', doctorController.deleteAHF)    //Ruta para borrar citas (cambiar el estado)
+router.get('/doctor/deleteAPP/:idpacienteapp&:idpadactual&:status', doctorController.deleteAPP)    //Ruta para borrar citas (cambiar el estado)
 // router.post('/doctor/findDates', doctorController.findDates)          //Ruta para encontrar citas con fecha diferente (cambiar el estado)
 // router.post('/doctor/savePatient', doctorController.savePatient)      //Ruta guardar el registro del nuevo paciente
 

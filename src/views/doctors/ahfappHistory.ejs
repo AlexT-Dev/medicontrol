@@ -109,12 +109,12 @@
             </div>
         </form>
            <!-- Despliega los AHF del paciente -->
-            <div class="fijar-tabla" style="width: 450px;">
+            <div class="fijar-tabla" style="width: 600px;">
             <table class="tabla">
                 <thead class="tHead">
                     <tr class="trFija">
-                        <th style="width:150px; text-align: center">A. H. F.</th>
-                        <th style="width:200px; text-align: center">PARENTESCO</th>
+                        <th style="width:300px; text-align: center">A. H. F.</th>
+                        <th style="width:200px; text-align: left">PARENTESCO</th>
                         <th style="width:100px; text-align: center">OPCIONES</th>
 
                     </tr>
@@ -124,10 +124,10 @@
                     <% if (ahfpatients) { %>
                         <% for (var i=0; i < ahfpatients.length; i++) {%>
                             <tr class="trDatos">
-                                <td style="width:150px; font-size:90%; text-align: justify;"><%= ahfpatients[i].nombreahf %></td>
-                                <td style="width:200px; font-size:90%; text-align: justify;"><%= ahfpatients[i].nombreparentesco %></td>
+                                <td style="width:300px; font-size:90%; text-align: justify;"><%= ahfpatients[i].nombreahf %></td>
+                                <td style="width:200px; font-size:90%; text-align: left;"><%= ahfpatients[i].nombreparentesco %></td>
                                 <td style="width:94px; font-size:80%;">
-                                   <a href="/doctor/delete/<%= ahfpatients[i].idpacienteahf %>&<%= patient.idpadactual %>&<%= patient.status %>" class="btnModificar"> Quitar </a>
+                                   <a href="/doctor/deleteAHF/<%= ahfpatients[i].idpacienteahf %>&<%= patient.idpadactual %>&<%= patient.status %>" class="btnModificar"> Quitar </a>
                                 </td>
                             </tr>
                         <% } %>
@@ -135,12 +135,12 @@
 
                 </tbody>
             </table>
-        </div>
+          </div>
         </div>
         <!-- Sección derecha para APP  -->
         <div class="izquierda"> 
             <label class="labelFormCaptura">ANTECEDENTES PATOLÓGICOS PERSONALES</label> 
-            <form action="" method="POST">
+            <form action="/doctor/addAPP/<%= patient.idpadactual %>&<%= patient.status %>" method="POST">
                 <input type="hidden" name="idpaciente" value="<%= patient.idpaciente %>" required>
                 <div class="divDatosCaptura">
                     <label class="labelFormCaptura">Antecedente:</label>
@@ -163,6 +163,34 @@
                   <input type="submit" value="Guardar" class="btnGuardar">
                </div>
             </form>
+            <!-- Despliega los APP del paciente -->
+            <div class="fijar-tabla" style="width: 600px;">
+                <table class="tabla">
+                    <thead class="tHead">
+                        <tr class="trFija">
+                            <th style="width:300px; text-align: center">A. P. P.</th>
+                            <th style="width:200px; text-align: left">TIEMPO</th>
+                            <th style="width:100px; text-align: center">OPCIONES</th>
+    
+                        </tr>
+                    </thead>
+                    <tbody class="tbodyDatos" style="height: 145px;">
+                        <!-- Inicia el listado de los registros -->
+                        <% if (appatients) { %>
+                            <% for (var i=0; i < appatients.length; i++) {%>
+                                <tr class="trDatos">
+                                    <td style="width:300px; font-size:90%; text-align: justify;"><%= appatients[i].nombretipoapp %></td>
+                                    <td style="width:200px; font-size:90%; text-align: lef;"><%= appatients[i].tiempo %></td>
+                                    <td style="width:94px; font-size:80%;">
+                                       <a href="/doctor/deleteAPP/<%= appatients[i].idpacienteapp %>&<%= patient.idpadactual %>&<%= patient.status %>" class="btnModificar"> Quitar </a>
+                                    </td>
+                                </tr>
+                            <% } %>
+                        <% } %>
+    
+                    </tbody>
+                </table>
+              </div>
         </div>
     </section>
 
