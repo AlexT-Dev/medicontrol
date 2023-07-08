@@ -109,13 +109,13 @@
             </div>
         </form>
            <!-- Despliega los AHF del paciente -->
-            <div class="fijar-tabla" style="width: 400px;">
+            <div class="fijar-tabla" style="width: 450px;">
             <table class="tabla">
                 <thead class="tHead">
                     <tr class="trFija">
                         <th style="width:150px; text-align: center">A. H. F.</th>
                         <th style="width:200px; text-align: center">PARENTESCO</th>
-                        <th style="width:80px; text-align: center">OPCIONES</th>
+                        <th style="width:100px; text-align: center">OPCIONES</th>
 
                     </tr>
                 </thead>
@@ -126,8 +126,8 @@
                             <tr class="trDatos">
                                 <td style="width:150px; font-size:90%; text-align: justify;"><%= ahfpatients[i].nombreahf %></td>
                                 <td style="width:200px; font-size:90%; text-align: justify;"><%= ahfpatients[i].nombreparentesco %></td>
-                                <td style="width:80px; font-size:80%;">
-                                   <a href="update/<%= ahfpatients[i].idpacienteahf %>" class="btnBorrar"> Quitar </a>
+                                <td style="width:94px; font-size:80%;">
+                                   <a href="/doctor/delete/<%= ahfpatients[i].idpacienteahf %>&<%= patient.idpadactual %>&<%= patient.status %>" class="btnModificar"> Quitar </a>
                                 </td>
                             </tr>
                         <% } %>

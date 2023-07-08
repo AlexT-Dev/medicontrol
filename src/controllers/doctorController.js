@@ -86,11 +86,8 @@ doctorControl.newHistory = async (req, res) =>{
           "where pacienteahf.idpaciente = ?", [idpaciente], (err,ahfsPatient) =>{
               if (err) { res.json(err) }
               ahfPatient = ahfsPatient;
-         
-          
-        
+       
             //Toma la vista de views
-             console.log(ahfPatient)
              res.render('../views/doctors/ahfappHistory', {   //usa la vista para crear la historia clínica del paciente
              userAccess,
              userType,
@@ -119,16 +116,32 @@ doctorControl.saveAHF = async (req, res) => {
   const data = req.body;
   const  idpadactual  = req.params.idpadactual;
   const  status = req.params.status;
-  console.log(req.body)
   await req.getConnection((err, conn) => {
     conn.query('insert into pacienteahf set ?', [data], (err, pacientesahf) => {
+      if (err) { res.json(err) }
       
       res.redirect('../ahfappHistory/'+idpadactual+"&"+status);    
      })
-     console.log(err)
+     
   })
+  };
+
+  //Para cancelar la cita
+  doctorControl.delete = async (req, res) => {
+    const  idpadactual  = req.params.idpadactual;
+    const  status = req.params.status;
+    const idpacienteahf = req.params.idpacienteahf;
+    console.log(idpadactual, status, idpacienteahf);
+    await req.getConnection((err, conn) => {
+      conn.query('delete from pacienteahf where idpacienteahf = ?', [idpacienteahf], (err, dates) => {
+        if (err) { res.json(err) }
+        res.redirect('../ahfappHistory/'+idpadactual+"&"+status);    //redirecciona a la página principal de usuarios, sólo es ../users por se hace en la misma página
+        })
+    })
+  };
+
   
-};
+
 
 
 
