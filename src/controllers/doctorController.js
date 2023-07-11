@@ -19,11 +19,11 @@ const doctorControl = {};
    Para los servicios en las páginas
 */
 
-//Desplegar los datos del paciente
+//Desplegar los datos del paciente y captura de AHF y APP
 doctorControl.newHistory = async (req, res) =>{
 
     const  idpadactual  = req.params.idpadactual;
-    const  status = req.params.status;
+    const        status = req.params.status;
     
     
     var idpaciente = 0;                  // Obtiene el id del paciente
@@ -123,7 +123,36 @@ doctorControl.newHistory = async (req, res) =>{
     } else {}      
  }
 
- 
+ //Para captura de datos del Padecimiento
+
+ doctorControl.newCondition = async (req,res) => {
+  const  idpadactual  = req.params.idpadactual;
+
+  //Para datos de la sesión
+  const userAccess = req.session.user; 
+  const userAccount = req.session.cuenta;
+  const userStatus = req.session.status;
+  const userType = req.session.userType;
+
+
+  await  req.getConnection((err,conn) =>{  //Obtiene los datos del paciente que será atendido
+    conn.query('select padecimiento.idpadactual, padecimiento.status, pacientes.idpaciente, pacientes.nombrepaciente, pacientes.edad,pacientes.estadocivil, pacientes.escolaridad, pacientes.empleo, '
+             + 'pacientes.lugarnacimiento, pacientes.lugarvive, pacientes.alergias from pacientes inner join padecimiento on pacientes.idpaciente = padecimiento.idpaciente '
+             + 'where padecimiento.idpadactual = ?', [idpadactual], (err, patientData) =>{
+          if (err) { res.json(err) }
+          idpaciente = patientData[0].idpaciente;
+          dataPatient = patientData
+          //Toma la vista de views
+          res.render('../views/doctors/recordCondition', {   //usa la vista para crear la historia clínica del paciente
+            userAccess,
+            userType,
+            patient: dataPatient[0],
+            title : "Padecimiento Actual"
+          
+        })   
+      }); 
+  });
+};
 
 /*
    Para los servicios API
@@ -190,6 +219,12 @@ doctorControl.saveAPP = async (req, res) => {
   };
 
 
+  //Para guardar el padecimiento del paciente
 
+  doctorControl.saveCondition = async (req, res) => {
+    const idpadactual  = req.params.idpadactual;
+    const data = req.body;
+
+  }
 
  module.exports = doctorControl

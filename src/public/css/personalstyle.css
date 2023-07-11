@@ -702,6 +702,12 @@
       justify-items: start;
  }
  
+ .divDatosCapturaPad {
+    display: grid;
+    grid-template-columns: 10% 90%;
+    padding-top: 10px;
+    justify-items: start;
+}
  .divOpciones {
      margin-top: 10px;
     padding-top: 10px; 
@@ -714,9 +720,14 @@
   
   .selectCaptura {
        margin-left: 10px;
-       font-size: 12px;
+       font-size: 14px;
        background-color: var(--font-color-h1);
        color: black;
+  }
+
+  .textarea {
+    resize: none;
+  
   }
   
 /********* Para secciones ********/

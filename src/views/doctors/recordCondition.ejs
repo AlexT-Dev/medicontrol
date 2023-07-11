@@ -1,0 +1,131 @@
+<%- include ('../partials/_header') %>
+<p class="headerPCat">
+    <%= title %>
+</p>
+</div>
+<div class="divForm">
+    <div class="divFormBuscar">
+
+    </div>
+    <div class="divHeaderOp">
+        <!-- Opciones de encabezados -->
+        <a href="/assistant/assistant" class="btnRegresar">Regresar</a>
+        <a href="" class="btnNuevo">Guadar y Continuar</a>
+    </div>
+</div>
+<div class="divcerrar-sesion">
+    <!-- Datos del usuario que tuvo acceso -->
+    <input type="hidden" name="usuario" value="" disabled>
+
+    <img src="../../Espacialidades.png" height="20" width="20">
+    <% if (userAccess) { %>
+        <p>
+            <%= userAccess %>
+        </p>
+        <a href="/login/login" class="btncerrar-sesion">Cerrar Sesión</a>
+</div>
+</div>
+</header>
+  <div class="divDisplayPatient">
+    <div>     
+        <div class="divDatosCaptura">
+            <label class="labelFormCaptura">Nombre:</label>
+            <input value="<%= patient.nombrepaciente %>" type="text" name="nombrepaciente" size="30" class="selectCaptura" disabled>
+        </div>
+        
+        <div class="divDatosCaptura">
+            <label class="labelFormCaptura">Edad:</label>
+            <input value="<%= patient.edad %>" type="number" min="18" max="90" size="2" maxlength="2" name="edad" class="selectCaptura" disabled> 
+        </div>
+    </div>
+    <div>
+        <div class="divDatosCaptura">
+            <label class="labelFormCaptura">Edo. Civil:</label>
+            <input value="<%= patient.estadocivil %>" type="text" name="estadocivil" size="30" class="selectCaptura" disabled>
+        </div>
+        <div class="divDatosCaptura">
+            <label class="labelFormCaptura">Nivel Esc.:</label>
+            <input value="<%= patient.escolaridad %>" type="text" name="escolaridad" size="30" class="selectCaptura" disabled>             
+        </div>
+    </div>
+    <div>        
+        <div class="divDatosCaptura">
+            <label class="labelFormCaptura">Empleo:</label>
+            <input value="<%= patient.empleo %>" type="text" name="empleo" size="30" class="selectCaptura" disabled>
+        </div>
+        <div class="divDatosCaptura">
+            <label class="labelFormCaptura">Nacido en:</label>
+            <input value="<%= patient.lugarnacimiento %>" type="text" name="lugarnacimiento" size="30" class="selectCaptura" disabled>
+        </div>
+    </div>
+    <div>
+        <div class="divDatosCaptura">
+            <label class="labelFormCaptura">Vive en:</label>
+            <input value="<%= patient.lugarvive %>" type="text" name="lugarvive" size="30" class="selectCaptura" disabled>
+        </div>
+        <div class="divDatosCaptura">
+            <label class="labelFormCaptura">Alergias:</label>
+            <input value="<%= patient.alergias %>" type="text" name="alergias" size="30" class="selectCaptura" disabled>
+        </div>
+    </div>
+    </div>   
+    <!-- Para captura de Padecimiento -->
+   
+      <div class="divFormContainer">
+        <div class="divFormCaptura" style="height: 350px; width: 1450px;">
+        
+            <form action="/doctor/addCondition/<%= patient.idpadactual %>" method="POST">
+                <div class="divDatosCapturaPad">
+                    <label class="labelFormCaptura">Problema:</label>
+                    <textarea  type="text" style="text-transform:uppercase;" rows="2" cols="150" name="problema" class="selectCaptura textarea"> </textarea>
+                </div>
+                <div class="divDatosCapturaPad">
+                    <label class="labelFormCaptura">Diagnóstico:</label>
+                    <textarea type="text" style="text-transform:uppercase;" name="diagnostico" rows="2" cols="150" class="selectCaptura textarea"></textarea>
+                </div>
+                <div class="divDatosCapturaPad">
+                    <label class="labelFormCaptura">Subjetivo:</label>
+                    <textarea type="text" style="text-transform:uppercase;" name="subjetivo"rows="2" cols="150" class="selectCaptura textarea"> </textarea>
+                </div>
+                <div class="divDatosCapturaPad">
+                    <label class="labelFormCaptura">Objetivo:</label>
+                    <textarea type="text" style="text-transform:uppercase;" name="objetivo" rows="2" cols="150" class="selectCaptura textarea"> </textarea>
+                </div>
+                <div class="divDatosCapturaPad">
+                    <label class="labelFormCaptura">Análisis:</label>
+                    <textarea type="text" style="text-transform:uppercase;" name="analisis" rows="2" cols="150" class="selectCaptura textarea"> </textarea>
+                </div>
+                <div class="divDatosCapturaPad">
+                    <label class="labelFormCaptura">Laboratorio:</label>
+                    <textarea type="text" style="text-transform:uppercase;" name="laboratorio" rows="2" cols="150" class="selectCaptura textarea"> </textarea>
+                </div>
+                <div class="divDatosCapturaPad">
+                    <label class="labelFormCaptura">Gabinete:</label>
+                    <textarea type="text" style="text-transform:uppercase;" name="gabinete" rows="2" cols="150" class="selectCaptura textarea"> </textarea>
+                </div>
+            </form>
+           
+        
+    </div>
+</div>
+
+<% } else { %>
+    <div class="containerModal">
+        <div class="popup" id="modal">
+            <div>
+                <p class="textModal">USUARIO SIN ACCESSO</p>
+                <hr class="hrModal">
+                </hr>
+            </div>
+            <div>
+                <p class="textModal">No se ha registrado con su cuenta.</p>
+            </div>
+            <div>
+                <a href="/login/login" class="btncloseModal" rel="noreferrer">
+                    Cerrar
+                </a>
+            </div>
+        </div>
+    </div>
+    <% } %>
+<%- include ('../partials/_footer') %>
