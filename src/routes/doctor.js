@@ -7,6 +7,7 @@ const doctorController = require('../controllers/doctorController.js');
 //Para páginas en el módulo de citas
 router.get('/doctor/ahfapphistory/:idpadactual&:status', doctorController.newHistory)       //Pantalla para agregar daos de ahf y app del paciente de PRIMERA VEZ
 router.get('/doctor/recordCondition/:idpadactual', doctorController.newCondition)       //Pantalla para agregar daos de ahf y app del paciente de PRIMERA VEZ
+router.get('/doctor/prescription/:idpadactual', doctorController.newPrescription)       //Pantalla para agregar daos de ahf y app del paciente de PRIMERA VEZ
 // router.get('/doctor/update/:idpadactual', doctorController.edit)       //Pantalla para modificar usuarios
 //router.get('/doctor/erase', doctorController.delete)                   //Pantalla para borrar la cita
 // router.get('/doctor/createPatient', doctorController.createPatient)    //Pantalla para crear nuevo paciente

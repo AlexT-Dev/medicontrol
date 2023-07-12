@@ -1,80 +1,87 @@
 <%- include ('../partials/_header') %>
-<p class="headerPCat">
-    <%= title %>
-</p>
-</div>
-<div class="divForm">
-    <div class="divFormBuscar">
+    <p class="headerPCat">
+        <%= title %>
+    </p>
+    </div>
+    <div class="divForm">
+        <div class="divFormBuscar">
 
+        </div>
+        <div class="divHeaderOp">
+            <!-- Opciones de encabezados -->
+            <a href="/assistant/assistant" class="btnRegresar">Regresar</a>
+            <a href="/doctor/recordCondition/<%= patient.idpadactual %>" class="btnNuevo">Continuar</a>
+        </div>
     </div>
-    <div class="divHeaderOp">
-        <!-- Opciones de encabezados -->
-        <a href="/assistant/assistant" class="btnRegresar">Regresar</a>
-        <a href="/doctor/recordCondition/<%= patient.idpadactual %>" class="btnNuevo">Continuar</a>
-    </div>
-</div>
-<div class="divcerrar-sesion">
-    <!-- Datos del usuario que tuvo acceso -->
-    <input type="hidden" name="usuario" value="" disabled>
+    <div class="divcerrar-sesion">
+        <!-- Datos del usuario que tuvo acceso -->
+        <input type="hidden" name="usuario" value="" disabled>
 
-    <img src="../../Espacialidades.png" height="20" width="20">
-    <% if (userAccess) { %>
-        <p>
-            <%= userAccess %>
-        </p>
-        <a href="/login/login" class="btncerrar-sesion">Cerrar Sesión</a>
-</div>
-</div>
-</header>
-  <div class="divDisplayPatient">
-    <div>     
-        <div class="divDatosCaptura">
-            <label class="labelFormCaptura">Nombre:</label>
-            <input value="<%= patient.nombrepaciente %>" type="text" name="nombrepaciente" size="30" class="selectCaptura" disabled>
+        <img src="../../Espacialidades.png" height="20" width="20">
+        <% if (userAccess) { %>
+            <p>
+                <%= userAccess %>
+            </p>
+            <a href="/login/login" class="btncerrar-sesion">Cerrar Sesión</a>
+    </div>
+    </div>
+    </header>
+    <div class="divDisplayPatient">
+        <div>
+            <div class="divDatosCaptura">
+                <label class="labelFormCaptura">Nombre:</label>
+                <input value="<%= patient.nombrepaciente %>" type="text" name="nombrepaciente" size="30"
+                    class="selectCaptura" disabled>
+            </div>
+
+            <div class="divDatosCaptura">
+                <label class="labelFormCaptura">Edad:</label>
+                <input value="<%= patient.edad %>" type="number" min="18" max="90" size="2" maxlength="2" name="edad"
+                    class="selectCaptura" disabled>
+            </div>
         </div>
-        
-        <div class="divDatosCaptura">
-            <label class="labelFormCaptura">Edad:</label>
-            <input value="<%= patient.edad %>" type="number" min="18" max="90" size="2" maxlength="2" name="edad" class="selectCaptura" disabled> 
+        <div>
+            <div class="divDatosCaptura">
+                <label class="labelFormCaptura">Edo. Civil:</label>
+                <input value="<%= patient.estadocivil %>" type="text" name="estadocivil" size="30" class="selectCaptura"
+                    disabled>
+            </div>
+            <div class="divDatosCaptura">
+                <label class="labelFormCaptura">Nivel Esc.:</label>
+                <input value="<%= patient.escolaridad %>" type="text" name="escolaridad" size="30" class="selectCaptura"
+                    disabled>
+            </div>
+        </div>
+        <div>
+            <div class="divDatosCaptura">
+                <label class="labelFormCaptura">Empleo:</label>
+                <input value="<%= patient.empleo %>" type="text" name="empleo" size="30" class="selectCaptura" disabled>
+            </div>
+            <div class="divDatosCaptura">
+                <label class="labelFormCaptura">Nacido en:</label>
+                <input value="<%= patient.lugarnacimiento %>" type="text" name="lugarnacimiento" size="30"
+                    class="selectCaptura" disabled>
+            </div>
+        </div>
+        <div>
+            <div class="divDatosCaptura">
+                <label class="labelFormCaptura">Vive en:</label>
+                <input value="<%= patient.lugarvive %>" type="text" name="lugarvive" size="30" class="selectCaptura"
+                    disabled>
+            </div>
+            <div class="divDatosCaptura">
+                <label class="labelFormCaptura">Alergias:</label>
+                <input value="<%= patient.alergias %>" type="text" name="alergias" size="30" class="selectCaptura"
+                    disabled>
+            </div>
         </div>
     </div>
-    <div>
-        <div class="divDatosCaptura">
-            <label class="labelFormCaptura">Edo. Civil:</label>
-            <input value="<%= patient.estadocivil %>" type="text" name="estadocivil" size="30" class="selectCaptura" disabled>
-        </div>
-        <div class="divDatosCaptura">
-            <label class="labelFormCaptura">Nivel Esc.:</label>
-            <input value="<%= patient.escolaridad %>" type="text" name="escolaridad" size="30" class="selectCaptura" disabled>             
-        </div>
-    </div>
-    <div>        
-        <div class="divDatosCaptura">
-            <label class="labelFormCaptura">Empleo:</label>
-            <input value="<%= patient.empleo %>" type="text" name="empleo" size="30" class="selectCaptura" disabled>
-        </div>
-        <div class="divDatosCaptura">
-            <label class="labelFormCaptura">Nacido en:</label>
-            <input value="<%= patient.lugarnacimiento %>" type="text" name="lugarnacimiento" size="30" class="selectCaptura" disabled>
-        </div>
-    </div>
-    <div>
-        <div class="divDatosCaptura">
-            <label class="labelFormCaptura">Vive en:</label>
-            <input value="<%= patient.lugarvive %>" type="text" name="lugarvive" size="30" class="selectCaptura" disabled>
-        </div>
-        <div class="divDatosCaptura">
-            <label class="labelFormCaptura">Alergias:</label>
-            <input value="<%= patient.alergias %>" type="text" name="alergias" size="30" class="selectCaptura" disabled>
-        </div>
-    </div>
-    </div>   
     <!-- Para captura de AHF y APP -->
-    
-    <section class="seccion" >
+
+    <section class="seccion">
         <!-- Sección izquierda para ahf -->
         <div class="izquierda">
-            <label class="labelFormCaptura">ANTECEDENTES HEREDO FAMILIARES</label> 
+            <label class="labelFormCaptura">ANTECEDENTES HEREDO FAMILIARES</label>
             <form action="/doctor/addAHF/<%= patient.idpadactual %>&<%= patient.status %>" method="POST">
                 <div class="divDatosCaptura">
                     <input value="<%= patient.idpaciente %>" type="hidden" name="idpaciente" required>
@@ -84,9 +91,11 @@
                         <!-- Inicia el listado de los registros -->
                         <% if (ahfs) { %>
                             <% for (var i=0; i < ahfs.length; i++) {%>
-                                <option value="<%= ahfs[i].idahf %>"><%= ahfs[i].nombreahf %></option>"
-                            <% } %>
-                        <% } %>
+                                <option value="<%= ahfs[i].idahf %>">
+                                    <%= ahfs[i].nombreahf %>
+                                </option>"
+                                <% } %>
+                                    <% } %>
                     </select>
                 </div>
                 <div class="divDatosCaptura">
@@ -96,51 +105,58 @@
                         <!-- Inicia el listado de los registros -->
                         <% if (parentescos) { %>
                             <% for (var i=0; i < parentescos.length; i++) {%>
-                                <option value="<%= parentescos[i].idparentesco %>"><%= parentescos[i].nombreparentesco %></option>"
-                            <% } %>
-                        <% } %>
+                                <option value="<%= parentescos[i].idparentesco %>">
+                                    <%= parentescos[i].nombreparentesco %>
+                                </option>"
+                                <% } %>
+                                    <% } %>
                     </select>
                 </div>
-                
+
                 <hr color="blue" size=3>
                 <div class="divFormOp">
 
-                <input type="submit" value="Guardar" class="btnGuardar">
+                    <input type="submit" value="Guardar" class="btnGuardar">
 
-            </div>
-        </form>
-           <!-- Despliega los AHF del paciente -->
+                </div>
+            </form>
+            <!-- Despliega los AHF del paciente -->
             <div class="fijar-tabla" style="width: 600px;">
-            <table class="tabla">
-                <thead class="tHead">
-                    <tr class="trFija">
-                        <th style="width:300px; text-align: center">A. H. F.</th>
-                        <th style="width:200px; text-align: left">PARENTESCO</th>
-                        <th style="width:100px; text-align: center">OPCIONES</th>
+                <table class="tabla">
+                    <thead class="tHead">
+                        <tr class="trFija">
+                            <th style="width:300px; text-align: center">A. H. F.</th>
+                            <th style="width:200px; text-align: left">PARENTESCO</th>
+                            <th style="width:100px; text-align: center">OPCIONES</th>
 
-                    </tr>
-                </thead>
-                <tbody class="tbodyDatos" style="height: 145px;">
-                    <!-- Inicia el listado de los registros -->
-                    <% if (ahfpatients) { %>
-                        <% for (var i=0; i < ahfpatients.length; i++) {%>
-                            <tr class="trDatos">
-                                <td style="width:300px; font-size:90%; text-align: justify;"><%= ahfpatients[i].nombreahf %></td>
-                                <td style="width:200px; font-size:90%; text-align: left;"><%= ahfpatients[i].nombreparentesco %></td>
-                                <td style="width:94px; font-size:80%;">
-                                   <a href="/doctor/deleteAHF/<%= ahfpatients[i].idpacienteahf %>&<%= patient.idpadactual %>&<%= patient.status %>" class="btnModificar"> Quitar </a>
-                                </td>
-                            </tr>
-                        <% } %>
-                    <% } %>
+                        </tr>
+                    </thead>
+                    <tbody class="tbodyDatos" style="height: 145px;">
+                        <!-- Inicia el listado de los registros -->
+                        <% if (ahfpatients) { %>
+                            <% for (var i=0; i < ahfpatients.length; i++) {%>
+                                <tr class="trDatos">
+                                    <td style="width:300px; font-size:90%; text-align: justify;">
+                                        <%= ahfpatients[i].nombreahf %>
+                                    </td>
+                                    <td style="width:200px; font-size:90%; text-align: left;">
+                                        <%= ahfpatients[i].nombreparentesco %>
+                                    </td>
+                                    <td style="width:94px; font-size:80%;">
+                                        <a href="/doctor/deleteAHF/<%= ahfpatients[i].idpacienteahf %>&<%= patient.idpadactual %>&<%= patient.status %>"
+                                            class="btnModificar"> Quitar </a>
+                                    </td>
+                                </tr>
+                                <% } %>
+                                    <% } %>
 
-                </tbody>
-            </table>
-          </div>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <!-- Sección derecha para APP  -->
-        <div class="izquierda"> 
-            <label class="labelFormCaptura">ANTECEDENTES PATOLÓGICOS PERSONALES</label> 
+        <div class="izquierda">
+            <label class="labelFormCaptura">ANTECEDENTES PATOLÓGICOS PERSONALES</label>
             <form action="/doctor/addAPP/<%= patient.idpadactual %>&<%= patient.status %>" method="POST">
                 <input type="hidden" name="idpaciente" value="<%= patient.idpaciente %>" required>
                 <div class="divDatosCaptura">
@@ -150,19 +166,22 @@
                         <!-- Inicia el listado de los registros -->
                         <% if (apps) { %>
                             <% for (var i=0; i < apps.length; i++) {%>
-                                <option value="<%= apps[i].idtipoapp %>"><%= apps[i].nombretipo %></option>"
-                            <% } %>
-                        <% } %>
+                                <option value="<%= apps[i].idtipoapp %>">
+                                    <%= apps[i].nombretipo %>
+                                </option>"
+                                <% } %>
+                                    <% } %>
                     </select>
                 </div>
                 <div class="divDatosCaptura">
                     <label class="labelFormCaptura">Tiempo:</label>
-                    <input type="text" style="text-transform:uppercase;" name="tiempo" size="20" class="selectCaptura" required>
+                    <input type="text" style="text-transform:uppercase;" name="tiempo" size="20" class="selectCaptura"
+                        required>
                 </div>
                 <hr color="blue" size=3>
                 <div class="divFormOp">
-                  <input type="submit" value="Guardar" class="btnGuardar">
-               </div>
+                    <input type="submit" value="Guardar" class="btnGuardar">
+                </div>
             </form>
             <!-- Despliega los APP del paciente -->
             <div class="fijar-tabla" style="width: 600px;">
@@ -172,7 +191,7 @@
                             <th style="width:300px; text-align: center">A. P. P.</th>
                             <th style="width:200px; text-align: left">TIEMPO</th>
                             <th style="width:100px; text-align: center">OPCIONES</th>
-    
+
                         </tr>
                     </thead>
                     <tbody class="tbodyDatos" style="height: 145px;">
@@ -180,38 +199,43 @@
                         <% if (appatients) { %>
                             <% for (var i=0; i < appatients.length; i++) {%>
                                 <tr class="trDatos">
-                                    <td style="width:300px; font-size:90%; text-align: justify;"><%= appatients[i].nombretipoapp %></td>
-                                    <td style="width:200px; font-size:90%; text-align: lef;"><%= appatients[i].tiempo %></td>
+                                    <td style="width:300px; font-size:90%; text-align: justify;">
+                                        <%= appatients[i].nombretipoapp %>
+                                    </td>
+                                    <td style="width:200px; font-size:90%; text-align: lef;">
+                                        <%= appatients[i].tiempo %>
+                                    </td>
                                     <td style="width:94px; font-size:80%;">
-                                       <a href="/doctor/deleteAPP/<%= appatients[i].idpacienteapp %>&<%= patient.idpadactual %>&<%= patient.status %>" class="btnModificar"> Quitar </a>
+                                        <a href="/doctor/deleteAPP/<%= appatients[i].idpacienteapp %>&<%= patient.idpadactual %>&<%= patient.status %>"
+                                            class="btnModificar"> Quitar </a>
                                     </td>
                                 </tr>
-                            <% } %>
-                        <% } %>
-    
+                                <% } %>
+                                    <% } %>
+
                     </tbody>
                 </table>
-              </div>
+            </div>
         </div>
     </section>
 
-<% } else { %>
-    <div class="containerModal">
-        <div class="popup" id="modal">
-            <div>
-                <p class="textModal">USUARIO SIN ACCESSO</p>
-                <hr class="hrModal">
-                </hr>
-            </div>
-            <div>
-                <p class="textModal">No se ha registrado con su cuenta.</p>
-            </div>
-            <div>
-                <a href="/login/login" class="btncloseModal" rel="noreferrer">
-                    Cerrar
-                </a>
+    <% } else { %>
+        <div class="containerModal">
+            <div class="popup" id="modal">
+                <div>
+                    <p class="textModal">USUARIO SIN ACCESSO</p>
+                    <hr class="hrModal">
+                    </hr>
+                </div>
+                <div>
+                    <p class="textModal">No se ha registrado con su cuenta.</p>
+                </div>
+                <div>
+                    <a href="/login/login" class="btncloseModal" rel="noreferrer">
+                        Cerrar
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-    <% } %>
-<%- include ('../partials/_footer') %>
+        <% } %>
+            <%- include ('../partials/_footer') %>

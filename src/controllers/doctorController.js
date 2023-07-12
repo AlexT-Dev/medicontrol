@@ -154,6 +154,37 @@ doctorControl.newHistory = async (req, res) =>{
   });
 };
 
+//Para captura de la receta médica (Prescripción)
+
+doctorControl.newPrescription = async (req,res) => {
+  const  idpadactual  = req.params.idpadactual;
+
+  //Para datos de la sesión
+  const userAccess = req.session.user; 
+  const userAccount = req.session.cuenta;
+  const userStatus = req.session.status;
+  const userType = req.session.userType;
+
+
+  await  req.getConnection((err,conn) =>{  //Obtiene los datos del paciente que será atendido
+    conn.query('select padecimiento.idpadactual, padecimiento.status, pacientes.idpaciente, pacientes.nombrepaciente, pacientes.edad,pacientes.estadocivil, pacientes.escolaridad, pacientes.empleo, '
+             + 'pacientes.lugarnacimiento, pacientes.lugarvive, pacientes.alergias from pacientes inner join padecimiento on pacientes.idpaciente = padecimiento.idpaciente '
+             + 'where padecimiento.idpadactual = ?', [idpadactual], (err, patientData) =>{
+          if (err) { res.json(err) }
+          idpaciente = patientData[0].idpaciente;
+          dataPatient = patientData
+          //Toma la vista de views
+          res.render('../views/doctors/prescription', {   //usa la vista para crear la historia clínica del paciente
+            userAccess,
+            userType,
+            patient: dataPatient[0],
+            title : "Prescripción"
+          
+        })   
+      }); 
+  });
+};
+
 /*
    Para los servicios API
 */
@@ -224,6 +255,11 @@ doctorControl.saveAPP = async (req, res) => {
   doctorControl.saveCondition = async (req, res) => {
     const idpadactual  = req.params.idpadactual;
     const data = req.body;
+    req.getConnection((err, connpad) => {
+      connpad.query('update padecimiento set ? where idpadactual = ?', [data, idpadactual], (err, conditionPatient) => {
+         res.redirect('../prescription/'+idpadactual);    //redirecciona a la página de recetas
+       })
+    })
 
   }
 

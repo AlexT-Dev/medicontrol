@@ -68,51 +68,7 @@
             <input value="<%= patient.alergias %>" type="text" name="alergias" size="30" class="selectCaptura" disabled>
         </div>
     </div>
-    </div>   
-    <!-- Para captura de Padecimiento -->
-   
-      <div class="divFormContainer">
-        <div class="divFormCaptura" style="height: 350px; width: 1450px;">
-        
-            <form action="/doctor/addCondition/<%= patient.idpadactual %>" method="POST">
-                <div class="divDatosCapturaPad">
-                    <label class="labelFormCaptura">Problema:</label>
-                    <textarea  type="text" style="text-transform:uppercase;" rows="2" cols="150" name="problema" class="selectCaptura textarea"> </textarea>
-                </div>
-                <div class="divDatosCapturaPad">
-                    <label class="labelFormCaptura">Diagnóstico:</label>
-                    <textarea type="text" style="text-transform:uppercase;" name="diagnostico" rows="2" cols="150" class="selectCaptura textarea"></textarea>
-                </div>
-                <div class="divDatosCapturaPad">
-                    <label class="labelFormCaptura">Subjetivo:</label>
-                    <textarea type="text" style="text-transform:uppercase;" name="subjetivo"rows="2" cols="150" class="selectCaptura textarea"> </textarea>
-                </div>
-                <div class="divDatosCapturaPad">
-                    <label class="labelFormCaptura">Objetivo:</label>
-                    <textarea type="text" style="text-transform:uppercase;" name="objetivo" rows="2" cols="150" class="selectCaptura textarea"> </textarea>
-                </div>
-                <div class="divDatosCapturaPad">
-                    <label class="labelFormCaptura">Análisis:</label>
-                    <textarea type="text" style="text-transform:uppercase;" name="analisis" rows="2" cols="150" class="selectCaptura textarea"> </textarea>
-                </div>
-                <div class="divDatosCapturaPad">
-                    <label class="labelFormCaptura">Laboratorio:</label>
-                    <textarea type="text" style="text-transform:uppercase;" name="laboratorio" rows="2" cols="150" class="selectCaptura textarea"> </textarea>
-                </div>
-                <div class="divDatosCapturaPad">
-                    <label class="labelFormCaptura">Gabinete:</label>
-                    <textarea type="text" style="text-transform:uppercase;" name="gabinete" rows="2" cols="150" class="selectCaptura textarea"> </textarea>
-                </div>
-                <hr color="blue" size=3>
-                <div class="divFormOp">
-
-                    <input type="submit" value="Guardar y prescribir" class="btnGuardar">
-
-                </div>
-            </form>
-           
-        
-    </div>
+    
 </div>
 
 <% } else { %>
