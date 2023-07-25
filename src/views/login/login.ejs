@@ -14,10 +14,10 @@
 <body class="bodylogin">
 
     <div class="divlogin">
-        <form action="/users/acceso/" method="post">
+        <form action="/acceso/" method="post">
             <div class="divcontenido">
                 <img src="../../Acceso.png" height="80" width="80" />
-                <p class="plogin"><strong>Bievenido a Histórico de Pacientes</strong></p>
+                <p class="plogin"><strong>Bienvenido a Histórico de Pacientes</strong></p>
             </div>
             <div class="divform">
                 <div class="divlabel">
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="labellogin">
-                <input class="btnlogin" input type="submit" value="Ingresar">
+                <input class="btnlogin" type="submit" value="Ingresar">
             </div>
             <% if (message) { %>
               <div class="containerModal" >
@@ -48,7 +48,7 @@
                         </p>
                     </div>
                     <div>
-                        <a href="/login/login" class="btncloseModal" rel="noreferrer">
+                        <a href="/login" class="btncloseModal" rel="noreferrer">
                             Cerrar
                         </a>
                     </div>

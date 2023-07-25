@@ -50,7 +50,7 @@ assistantControl.saveDate = async (req, res) => {
    const data = req.body;
    req.getConnection((err, conn) => {
      conn.query('insert into padecimiento set ?', [data], (err, pacientes) => {
-        res.redirect('../assistant/assistant');    //redirecciona a la página principal de citas ../../asssistant/asssistant poque no sale de views
+        res.redirect('../assistant');    //redirecciona a la página principal de citas ../../asssistant/asssistant poque no sale de views
       })
    })
    
@@ -85,7 +85,6 @@ assistantControl.update = async (req, res) => {
 assistantControl.findDates = async (req, res) => {
    const fechacita = req.body.fechacita;
    let query = '';
-
    const userAccess = req.session.user; 
    const userAccount = req.session.cuenta;
    const userStatus = req.session.status;
@@ -113,6 +112,7 @@ assistantControl.findDates = async (req, res) => {
           //Toma la vista de views
           res.render('../views/assistant/assistant', {   
             userAccess,
+            userType,
             data: citas
             
         })  
@@ -130,7 +130,7 @@ assistantControl.savePatient = async (req, res) => {
    
    req.getConnection((err, conn) => {
      conn.query('insert into pacientes set ?', [data], (err, pacientes) => {
-       res.redirect('../assistant/createDate');   //redirecciona a crear la cita
+       res.redirect('../createDate');   //redirecciona a crear la cita
       })
    })
 };

@@ -9,7 +9,7 @@
     </div>
     <div class="divHeaderOp">
         <!-- Opciones de encabezados -->
-        <a href="/doctor/ahfapphistory/<%= patient.idpadactual %>&<%= patient.status %>" class="btnRegresar">Regresar</a>
+        <a href="/ahfapphistory/<%= patient.idpadactual %>&<%= patient.status %>" class="btnRegresar">Regresar</a>
         
     </div>
 </div>
@@ -22,7 +22,7 @@
         <p>
             <%= userAccess %>
         </p>
-        <a href="/login/login" class="btncerrar-sesion">Cerrar Sesión</a>
+        <a href="/login" class="btncerrar-sesion">Cerrar Sesión</a>
 </div>
 </div>
 </header>
@@ -74,35 +74,35 @@
       <div class="divFormContainer">
         <div class="divFormCaptura" style="height: 350px; width: 1450px;">
         
-            <form action="/doctor/addCondition/<%= patient.idpadactual %>" method="POST">
+            <form action="/addCondition/<%= patient.idpadactual %>" method="POST">
                 <div class="scrollPad" style="height: 280px;">
                     <div class="divDatosCapturaPad">
                         <label class="labelFormCaptura">Problema:</label>
-                        <textarea  type="text" style="text-transform:uppercase;" rows="2" cols="150" name="problema" class="selectCaptura textarea"> </textarea>
+                        <textarea type="text" style="text-transform:uppercase;" rows="2" cols="150" name="problema" class="selectCaptura textarea"><%= patient.problema %></textarea>
                     </div>
                     <div class="divDatosCapturaPad">
                         <label class="labelFormCaptura">Diagnóstico:</label>
-                        <textarea type="text" style="text-transform:uppercase;" name="diagnostico" rows="2" cols="150" class="selectCaptura textarea"></textarea>
+                        <textarea type="text" style="text-transform:uppercase;" name="diagnostico" rows="2" cols="150" class="selectCaptura textarea" ><%= patient.diagnostico %></textarea>
                     </div>
                     <div class="divDatosCapturaPad">
                         <label class="labelFormCaptura">Subjetivo:</label>
-                        <textarea type="text" style="text-transform:uppercase;" name="subjetivo"rows="2" cols="150" class="selectCaptura textarea"> </textarea>
+                        <textarea type="text" style="text-transform:uppercase;" name="subjetivo"rows="2" cols="150" class="selectCaptura textarea" ><%= patient.subjetivo %></textarea>
                     </div>
                     <div class="divDatosCapturaPad">
                         <label class="labelFormCaptura">Objetivo:</label>
-                        <textarea type="text" style="text-transform:uppercase;" name="objetivo" rows="2" cols="150" class="selectCaptura textarea"> </textarea>
+                        <textarea type="text" style="text-transform:uppercase;" name="objetivo" rows="2" cols="150" class="selectCaptura textarea" ><%= patient.objetivo %></textarea>
                     </div>
                     <div class="divDatosCapturaPad">
                         <label class="labelFormCaptura">Análisis:</label>
-                        <textarea type="text" style="text-transform:uppercase;" name="analisis" rows="2" cols="150" class="selectCaptura textarea"> </textarea>
+                        <textarea type="text" style="text-transform:uppercase;" name="analisis" rows="2" cols="150" class="selectCaptura textarea"><%= patient.analisis %></textarea>
                     </div>
                     <div class="divDatosCapturaPad">
                         <label class="labelFormCaptura">Laboratorio:</label>
-                        <textarea type="text" style="text-transform:uppercase;" name="laboratorio" rows="2" cols="150" class="selectCaptura textarea"> </textarea>
+                        <textarea type="text" style="text-transform:uppercase;" name="laboratorio" rows="2" cols="150" class="selectCaptura textarea" ><%= patient.laboratorio %></textarea>
                     </div>
                     <div class="divDatosCapturaPad">
                         <label class="labelFormCaptura">Gabinete:</label>
-                        <textarea type="text" style="text-transform:uppercase;" name="gabinete" rows="2" cols="150" class="selectCaptura textarea"> </textarea>
+                        <textarea type="text" style="text-transform:uppercase;" name="gabinete" rows="2" cols="150" class="selectCaptura textarea" ><%= patient.gabinete %></textarea>
                     </div>
                 </div>
                 <hr color="blue" size=3>
@@ -129,7 +129,7 @@
                 <p class="textModal">No se ha registrado con su cuenta.</p>
             </div>
             <div>
-                <a href="/login/login" class="btncloseModal" rel="noreferrer">
+                <a href="/login" class="btncloseModal" rel="noreferrer">
                     Cerrar
                 </a>
             </div>

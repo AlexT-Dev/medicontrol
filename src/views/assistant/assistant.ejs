@@ -17,7 +17,7 @@
                 <!-- Opciones de encabezados -->
                 
                 <span title="Crear nueva cita.">
-                    <a class="btnNuevo" href="/assistant/createDate">Nueva Cita</a>
+                    <a class="btnNuevo" href="/createDate">Nueva Cita</a>
                 </span>
                 
             </div>
@@ -28,7 +28,7 @@
 
             <img src="../../Espacialidades.png" height="20" width="20">
             <% if (userAccess) { %><p><%= userAccess %></p>
-                <a href="/login/login" class="btncerrar-sesion">Cerrar Sesión</a>
+                <a href="/login" class="btncerrar-sesion">Cerrar Sesión</a>
         </div>
       </div>
     </header>
@@ -70,7 +70,7 @@
                                        <a href="update/<%= data[i].idpadactual %>" class="btnModificar"> Modificar </a>
                                        <a href="delete/<%= data[i].idpadactual %>" class="btnBorrar" onclick="return confirm('¿Desea cancelar la cita?')"> Cancelar </a>
                                     <% } else { if (data[i].status != "CANCELADA") { %>
-                                        <a href="/doctor/ahfapphistory/<%= data[i].idpadactual %>&<%= data[i].status %>" class="btnRevisar"> Atención </a>
+                                        <a href="/ahfapphistory/<%= data[i].idpadactual %>&<%= data[i].status %>" class="btnRevisar"> Atención </a>
                                      <%  } }  %>    
                                 </td>
                             </tr>
@@ -93,7 +93,7 @@
                     <p class="textModal">No se ha registrado con su cuenta.</p>
                 </div>
                 <div>
-                    <a href="/login/login" class="btncloseModal" rel="noreferrer">
+                    <a href="/login" class="btncloseModal" rel="noreferrer">
                         Cerrar
                     </a>
                 </div>

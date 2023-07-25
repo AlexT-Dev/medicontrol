@@ -136,7 +136,7 @@ doctorControl.newHistory = async (req, res) =>{
 
 
   await  req.getConnection((err,conn) =>{  //Obtiene los datos del paciente que será atendido
-    conn.query('select padecimiento.idpadactual, padecimiento.status, pacientes.idpaciente, pacientes.nombrepaciente, pacientes.edad,pacientes.estadocivil, pacientes.escolaridad, pacientes.empleo, '
+    conn.query('select padecimiento.*, pacientes.idpaciente, pacientes.nombrepaciente, pacientes.edad,pacientes.estadocivil, pacientes.escolaridad, pacientes.empleo, '
              + 'pacientes.lugarnacimiento, pacientes.lugarvive, pacientes.alergias from pacientes inner join padecimiento on pacientes.idpaciente = padecimiento.idpaciente '
              + 'where padecimiento.idpadactual = ?', [idpadactual], (err, patientData) =>{
           if (err) { res.json(err) }

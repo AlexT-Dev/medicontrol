@@ -72,11 +72,10 @@ usersControl.save = async (req, res) => {
     const data = req.body;
     data.nombreusuario = data.nombreusuario.toUpperCase();
     data.password = await encriptarPasswords(data.password);
-    console.log(data)
+    
     req.getConnection((err, conn) => {
       conn.query('insert into usuarios set ?', [data], (err, users) => {
-         res.redirect('../users/users');    //redirecciona a la página principal de usuarios ../../users/users poque no sale de views
-         res.status(200).send({ message: "Usuario guardado" }) 
+         res.redirect('../users');    //redirecciona a la página principal de usuarios ../../users/users poque no sale de views
        })
     })
 };
@@ -164,7 +163,7 @@ usersControl.getById = async (req, res)  => {
                      req.session.user = users[0].nombreusuario;
                      req.session.status = users[0].status;
                      req.session.userType = users[0].tipousuario;
-                     res.redirect('/assistant/assistant');    //redirecciona a la página definida para el tipo de usuario
+                     res.redirect('/assistant');    //redirecciona a la página definida para el tipo de usuario
                   }         
                
                } else { //Si el password es incorrecto

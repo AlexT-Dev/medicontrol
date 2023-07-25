@@ -9,8 +9,8 @@
         </div>
         <div class="divHeaderOp">
             <!-- Opciones de encabezados -->
-            <a href="/assistant/assistant" class="btnRegresar">Regresar</a>
-            <a href="/doctor/recordCondition/<%= patient.idpadactual %>" class="btnNuevo">Continuar</a>
+            <a href="/assistant" class="btnRegresar">Regresar</a>
+            <a href="/recordCondition/<%= patient.idpadactual %>" class="btnNuevo">Continuar</a>
         </div>
     </div>
     <div class="divcerrar-sesion">
@@ -22,7 +22,7 @@
             <p>
                 <%= userAccess %>
             </p>
-            <a href="/login/login" class="btncerrar-sesion">Cerrar Sesión</a>
+            <a href="/login" class="btncerrar-sesion">Cerrar Sesión</a>
     </div>
     </div>
     </header>
@@ -82,7 +82,7 @@
         <!-- Sección izquierda para ahf -->
         <div class="izquierda">
             <label class="labelFormCaptura">ANTECEDENTES HEREDO FAMILIARES</label>
-            <form action="/doctor/addAHF/<%= patient.idpadactual %>&<%= patient.status %>" method="POST">
+            <form action="/addAHF/<%= patient.idpadactual %>&<%= patient.status %>" method="POST">
                 <div class="divDatosCaptura">
                     <input value="<%= patient.idpaciente %>" type="hidden" name="idpaciente" required>
                     <label class="labelFormCaptura">Antecedente:</label>
@@ -143,7 +143,7 @@
                                         <%= ahfpatients[i].nombreparentesco %>
                                     </td>
                                     <td style="width:94px; font-size:80%;">
-                                        <a href="/doctor/deleteAHF/<%= ahfpatients[i].idpacienteahf %>&<%= patient.idpadactual %>&<%= patient.status %>"
+                                        <a href="/deleteAHF/<%= ahfpatients[i].idpacienteahf %>&<%= patient.idpadactual %>&<%= patient.status %>"
                                             class="btnModificar"> Quitar </a>
                                     </td>
                                 </tr>
@@ -157,7 +157,7 @@
         <!-- Sección derecha para APP  -->
         <div class="izquierda">
             <label class="labelFormCaptura">ANTECEDENTES PATOLÓGICOS PERSONALES</label>
-            <form action="/doctor/addAPP/<%= patient.idpadactual %>&<%= patient.status %>" method="POST">
+            <form action="/addAPP/<%= patient.idpadactual %>&<%= patient.status %>" method="POST">
                 <input type="hidden" name="idpaciente" value="<%= patient.idpaciente %>" required>
                 <div class="divDatosCaptura">
                     <label class="labelFormCaptura">Antecedente:</label>
@@ -206,7 +206,7 @@
                                         <%= appatients[i].tiempo %>
                                     </td>
                                     <td style="width:94px; font-size:80%;">
-                                        <a href="/doctor/deleteAPP/<%= appatients[i].idpacienteapp %>&<%= patient.idpadactual %>&<%= patient.status %>"
+                                        <a href="/deleteAPP/<%= appatients[i].idpacienteapp %>&<%= patient.idpadactual %>&<%= patient.status %>"
                                             class="btnModificar"> Quitar </a>
                                     </td>
                                 </tr>
@@ -231,7 +231,7 @@
                     <p class="textModal">No se ha registrado con su cuenta.</p>
                 </div>
                 <div>
-                    <a href="/login/login" class="btncloseModal" rel="noreferrer">
+                    <a href="/login" class="btncloseModal" rel="noreferrer">
                         Cerrar
                     </a>
                 </div>

@@ -5,7 +5,7 @@ const loginController = require('../controllers/loginController.js');
 //Se definen las rutas 
 
 //Para login
-routerLogin.get('/login/login', loginController.login)               //Pantalla principal de login
+routerLogin.get('/login', loginController.login)               //Pantalla principal de login
 
 
 
