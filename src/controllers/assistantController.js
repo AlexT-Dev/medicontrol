@@ -7,7 +7,7 @@ const session = require('express-session');
  userAccess = req.session.user        Nombre del usuario
 userAccount = req.session.cuenta      Cuenta del Usuario
  userStatus = req.session.status      "ACTIVO, "INACTIVO"
-   userType = req.session.userType    "AUXILIAR", "DOACTOR", "ADMINISTRADOR" 
+   userType = req.session.userType    "AUXILIAR", "DOCTOR", "ADMINISTRADOR" 
 */
 
 /***** API ******/

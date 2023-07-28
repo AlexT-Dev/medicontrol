@@ -692,6 +692,7 @@
      font-weight: bold;
      text-align: right;
      font-size: 18px;
+     margin-left: 5px;
      
   }
  
@@ -714,6 +715,7 @@
 	border: 1px solid #ddd;
 	background: #f1f1f1;
 	overflow-y: scroll;
+    
 }
 
  .divOpciones {

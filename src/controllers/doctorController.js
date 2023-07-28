@@ -214,7 +214,7 @@ doctorControl.saveAHF = async (req, res) => {
     await req.getConnection((err, conn) => {
       conn.query('delete from pacienteahf where idpacienteahf = ?', [idpacienteahf], (err, dates) => {
         if (err) { res.json(err) }
-        res.redirect('../ahfappHistory/'+idpadactual+"&"+status);    //redirecciona a la página principal de usuarios, sólo es ../users por se hace en la misma página
+        res.redirect('../ahfappHistory/'+idpadactual+"&"+status);    
         })
     })
   };
@@ -262,5 +262,34 @@ doctorControl.saveAPP = async (req, res) => {
     })
 
   }
+
+  //Para guardar el Medicamento de la receta
+ 
+doctorControl.saveMedicine = async (req, res) => {
+  const data = req.body;
+  const idpadactual  = req.params.idpadactual;
+  const status = req.params.status;
+  await req.getConnection((err, conn) => {
+    conn.query('insert into pacienteapp set ?', [data], (err, pacientesapp) => {
+      if (err) { res.json(err) }
+      
+      res.redirect('../ahfappHistory/'+idpadactual+"&"+status);    
+     })
+     
+  })
+  };
+
+  //Para borrar el Medicamento de la receta
+  doctorControl.deleteMedicine = async (req, res) => {
+    const idpadactual  = req.params.idpadactual;
+    const status = req.params.status;
+    const idpacienteapp = req.params.idpacienteapp;
+    await req.getConnection((err, conn) => {
+      conn.query('delete from pacienteapp where idpacienteapp = ?', [idpacienteapp], (err, pacientesapp) => {
+        if (err) { res.json(err) }
+        res.redirect('../ahfappHistory/'+idpadactual+"&"+status);    //redirecciona a la página principal de usuarios, sólo es ../users por se hace en la misma página
+        })
+    })
+  };
 
  module.exports = doctorControl
