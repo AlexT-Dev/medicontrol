@@ -33,6 +33,7 @@ doctorControl.newHistory = async (req, res) =>{
     var app = null;                      // Obtiene los app del catálogo
     var parentesco = null;               // Obtiene los parentescos del catálogo
     var dataPatient = null;              // Obtiene los datos del paciente
+    
    
     //Para datos de la sesión
     const userAccess = req.session.user; 
@@ -154,9 +155,13 @@ doctorControl.newHistory = async (req, res) =>{
   });
 };
 
+
+
 //Para captura de la receta médica (Prescripción)
 
 doctorControl.newPrescription = async (req,res) => {
+  var medicine = null;                 // Obtiene los medicamentos de la receta
+
   const  idpadactual  = req.params.idpadactual;
 
   //Para datos de la sesión
@@ -165,23 +170,33 @@ doctorControl.newPrescription = async (req,res) => {
   const userStatus = req.session.status;
   const userType = req.session.userType;
 
-
-  await  req.getConnection((err,conn) =>{  //Obtiene los datos del paciente que será atendido
+    await req.getConnection((err,conn) =>{  //Obtiene los datos del paciente que será atendido
     conn.query('select padecimiento.idpadactual, padecimiento.status, pacientes.idpaciente, pacientes.nombrepaciente, pacientes.edad,pacientes.estadocivil, pacientes.escolaridad, pacientes.empleo, '
              + 'pacientes.lugarnacimiento, pacientes.lugarvive, pacientes.alergias from pacientes inner join padecimiento on pacientes.idpaciente = padecimiento.idpaciente '
              + 'where padecimiento.idpadactual = ?', [idpadactual], (err, patientData) =>{
           if (err) { res.json(err) }
           idpaciente = patientData[0].idpaciente;
-          dataPatient = patientData
+          dataPatient = patientData;
+
+
+          req.getConnection((err,connmed) =>{ //Busca los medicamentos de la receta
+            connmed.query("select * from detallereceta where idpadactual = ?", [idpadactual], (err, prescription) =>{
+              if (err) { res.json(err) }
+                medicine = prescription;
+    
           //Toma la vista de views
           res.render('../views/doctors/prescription', {   //usa la vista para crear la historia clínica del paciente
             userAccess,
             userType,
             patient: dataPatient[0],
+            medicines : medicine,
             title : "Prescripción"
           
         })   
-      }); 
+
+       })   
+     }); 
+    }); 
   });
 };
 
@@ -196,14 +211,16 @@ doctorControl.saveAHF = async (req, res) => {
   const data = req.body;
   const  idpadactual  = req.params.idpadactual;
   const  status = req.params.status;
-  await req.getConnection((err, conn) => {
-    conn.query('insert into pacienteahf set ?', [data], (err, pacientesahf) => {
-      if (err) { res.json(err) }
-      
-      res.redirect('../ahfappHistory/'+idpadactual+"&"+status);    
-     })
-     
-  })
+  if (data.idahf > 0 && data.idparentesco > 0) {
+        await req.getConnection((err, conn) => {
+          conn.query('insert into pacienteahf set ?', [data], (err, pacientesahf) => {
+            if (err) { res.json(err) }
+            
+            res.redirect('../ahfappHistory/'+idpadactual+"&"+status);    
+          })
+          
+        })
+    }
   };
 
   //Para borrar el AHF
@@ -226,15 +243,16 @@ doctorControl.saveAPP = async (req, res) => {
   const data = req.body;
   const idpadactual  = req.params.idpadactual;
   const status = req.params.status;
-  await req.getConnection((err, conn) => {
-    conn.query('insert into pacienteapp set ?', [data], (err, pacientesapp) => {
-      if (err) { res.json(err) }
-      
-      res.redirect('../ahfappHistory/'+idpadactual+"&"+status);    
-     })
-     
-  })
-  };
+  if (data.idtipoapp > 0 && data.tiempo.length > 0) {
+      await req.getConnection((err, conn) => {
+        conn.query('insert into pacienteapp set ?', [data], (err, pacientesapp) => {
+          if (err) { res.json(err) }
+          res.redirect('../ahfappHistory/'+idpadactual+"&"+status);    
+        })
+        
+      })
+    }
+};
 
   //Para borrar el APP
   doctorControl.deleteAPP = async (req, res) => {
@@ -274,26 +292,37 @@ doctorControl.saveAPP = async (req, res) => {
 doctorControl.saveMedicine = async (req, res) => {
   const data = req.body;
   const idpadactual  = req.params.idpadactual;
-  const status = req.params.status;
-  await req.getConnection((err, conn) => {
-    conn.query('insert into pacienteapp set ?', [data], (err, pacientesapp) => {
-      if (err) { res.json(err) }
-      
-      res.redirect('../ahfappHistory/'+idpadactual+"&"+status);    
-     })
-     
-  })
+
+  // Agrega varlores al objeto
+  data.fecha = hoy;
+  data.idpadactual = idpadactual;
+
+  //Cambia a mayúsculas todas las propiedades capturadas
+  for(prop in data) {
+    data[prop] = data[prop].toUpperCase();  
+  }
+  
+   if (data.medicamento.length > 0 && data.dosis.length > 0) {
+      await req.getConnection((err, conn) => {
+        conn.query('insert into detallereceta set ?', [data], (err, recetaPatient) => {
+          if (err) { res.json(err) }
+          
+          res.redirect('../prescription/'+idpadactual);    
+        })
+        
+      })
+   }
   };
 
   //Para borrar el Medicamento de la receta
   doctorControl.deleteMedicine = async (req, res) => {
-    const idpadactual  = req.params.idpadactual;
-    const status = req.params.status;
-    const idpacienteapp = req.params.idpacienteapp;
+    const iddetallereceta = req.params.iddetallereceta;
+    const idpadactual = req.params.idpadactual;
+    console.log(iddetallereceta);
     await req.getConnection((err, conn) => {
-      conn.query('delete from pacienteapp where idpacienteapp = ?', [idpacienteapp], (err, pacientesapp) => {
+      conn.query('delete from detallereceta where iddetallereceta = ?', [iddetallereceta], (err, prescription) => {
         if (err) { res.json(err) }
-        res.redirect('../ahfappHistory/'+idpadactual+"&"+status);    //redirecciona a la página principal de usuarios, sólo es ../users por se hace en la misma página
+        res.redirect('../prescription/'+idpadactual);    //redirecciona a la página principal de usuarios, sólo es ../users por se hace en la misma página
         })
     })
   };

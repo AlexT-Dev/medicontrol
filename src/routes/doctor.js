@@ -20,7 +20,7 @@ router.post('/addCondition/:idpadactual', doctorController.saveCondition)       
 router.get('/deleteAHF/:idpacienteahf&:idpadactual&:status', doctorController.deleteAHF)    //Para borrar AHF del paciente
 router.get('/deleteAPP/:idpacienteapp&:idpadactual&:status', doctorController.deleteAPP)    //Para borrar APP del paciente
 router.post('/addMedicine/:idpadactual', doctorController.saveMedicine)                     //Para guardar medicina del paciente
-router.post('/deleteMedicine/:idpadactual', doctorController.deleteMedicine)                //Para borrar medicina del paciente
+router.get('/eraseMedicine/:iddetallereceta&:idpadactual', doctorController.deleteMedicine)                //Para borrar medicina del paciente
 
 
 module.exports = router;
