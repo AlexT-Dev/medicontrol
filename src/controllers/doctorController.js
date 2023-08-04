@@ -255,6 +255,12 @@ doctorControl.saveAPP = async (req, res) => {
   doctorControl.saveCondition = async (req, res) => {
     const idpadactual  = req.params.idpadactual;
     const data = req.body;
+
+    //Cambia a mayúsculas todas las propiedades capturadas
+    for(prop in data) {
+       data[prop] = data[prop].toUpperCase();  
+    }
+    
     req.getConnection((err, connpad) => {
       connpad.query('update padecimiento set ? where idpadactual = ?', [data, idpadactual], (err, conditionPatient) => {
          res.redirect('../prescription/'+idpadactual);    //redirecciona a la página de recetas
