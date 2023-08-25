@@ -48,9 +48,11 @@ assistantControl.list = (req, res) =>{
 
 assistantControl.saveDate = async (req, res) => {
    const data = req.body;
+   data.status = 'SUBSECUENTE';
+   
    req.getConnection((err, conn) => {
      conn.query('insert into padecimiento set ?', [data], (err, pacientes) => {
-        res.redirect('../assistant');    //redirecciona a la página principal de citas ../../asssistant/asssistant poque no sale de views
+        res.redirect('../assistant');    //redirecciona a la página principal de citas 
       })
    })
    
@@ -68,7 +70,7 @@ assistantControl.delete = async (req, res) => {
 
 //Para guardar los datos capturados de la cita  (Modificaciones)
 
-assistantControl.update = async (req, res) => { 
+assistantControl.updateDate = async (req, res) => { 
    const { idpadactual } = req.params;
    const dateModify = req.body;
    req.getConnection((err, conn) => {
@@ -188,7 +190,8 @@ assistantControl.edit = (req, res) =>{
              // Convierte el valor de la fecha en texto
              dateEdit[0].fechacita = format(dateEdit[0].fechacita,'yyyy-MM-dd');
              res.render('../views/assistant/updateDate', {   //usa ../views/users/users porque es primera vez que entra a vistas
-              userAccess,
+             userAccess,
+             userAccount,
              data: dateEdit[0],
              title: "Modificar Cita"
             }) 

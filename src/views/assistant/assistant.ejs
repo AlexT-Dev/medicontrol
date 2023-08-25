@@ -67,7 +67,7 @@
                                 </td>
                                 <td style="width:160px; font-size:80%;">
                                     <% if (userType === "AUXILIAR") { %>
-                                       <a href="update/<%= data[i].idpadactual %>" class="btnModificar"> Modificar </a>
+                                       <a href="updateDate/<%= data[i].idpadactual %>" class="btnModificar"> Modificar </a>
                                        <a href="delete/<%= data[i].idpadactual %>" class="btnBorrar" onclick="return confirm('¿Desea cancelar la cita?')"> Cancelar </a>
                                     <% } else { if (data[i].status != "CANCELADA") { %>
                                         <a href="/ahfapphistory/<%= data[i].idpadactual %>&<%= data[i].status %>" class="btnRevisar"> Atención </a>

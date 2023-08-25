@@ -9,7 +9,10 @@ function messageAlert(textMessage) {
             return 'No tiene cuenta o contraseña, intente de nuevo.'
        
         case "incorrectPassword":
-            return 'Contraseña inválida.'     
+            return 'Contraseña inválida.' 
+        
+        case "dateFound":
+            return 'Ya existe cita en hora y fecha elegida.'     
             
     }
 

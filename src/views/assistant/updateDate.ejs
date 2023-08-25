@@ -9,7 +9,7 @@
         </div>
         <div class="divHeaderOp">
             <!-- Opciones de encabezados -->
-            <a href="/assistant/assistant" class="btnRegresar">Regresar</a>
+            <a href="/assistant" class="btnRegresar">Regresar</a>
         </div>
     </div>
     <div class="divcerrar-sesion">
@@ -21,13 +21,13 @@
             <p>
                 <%= userAccess %>
             </p>
-            <a href="/login/login" class="btncerrar-sesion">Cerrar Sesión</a>
+            <a href="/login" class="btncerrar-sesion">Cerrar Sesión</a>
     </div>
     </div>
     </header>
     <div class="divFormContainer">
-        <div class="divFormCaptura" style="height: 205px; width: 400px;">
-            <form action="/assistant/update/<%= data.idpadactual %>" method="POST">
+        <div class="divFormCaptura" style="height: 230px; width: 400px;">
+            <form action="/updateDate/<%= data.idpadactual %>" method="POST">
                 
                     <div class="divDatosCaptura">
                         <label class="labelFormCaptura">Doctor:</label>
