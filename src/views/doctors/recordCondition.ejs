@@ -9,8 +9,11 @@
     </div>
     <div class="divHeaderOp">
         <!-- Opciones de encabezados -->
-        <a href="/ahfapphistory/<%= patient.idpadactual %>&<%= patient.status %>" class="btnRegresar">Regresar</a>
-        
+        <% if (patient.status === "PRIMERA VEZ") { %>
+            <a href="/ahfapphistory/<%= patient.idpadactual %>&<%= patient.status %>" class="btnRegresar">Regresar</a>
+        <% } else { %>
+            <a href="/assistant" class="btnRegresar">Regresar</a>  
+        <% } %>    
     </div>
 </div>
 <div class="divcerrar-sesion">
@@ -72,10 +75,10 @@
     <!-- Para captura de Padecimiento -->
    
       <div class="divFormContainer">
-        <div class="divFormCaptura" style="height: 350px; width: 1450px;">
+        <div class="divFormCaptura" style="height: 430px; width: 1450px;">
         
             <form action="/addCondition/<%= patient.idpadactual %>" method="POST">
-                <div class="scrollPad" style="height: 280px;">
+                <div class="scrollPad" style="height: 350px;">
                     <div class="divDatosCapturaPad">
                         <label class="labelFormCaptura">Problema:</label>
                         <textarea type="text" style="text-transform:uppercase;" rows="2" cols="150" name="problema" class="selectCaptura textarea"><%= patient.problema %></textarea>

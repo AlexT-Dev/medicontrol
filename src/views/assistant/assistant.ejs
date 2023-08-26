@@ -69,9 +69,12 @@
                                     <% if (userType === "AUXILIAR") { %>
                                        <a href="updateDate/<%= data[i].idpadactual %>" class="btnModificar"> Modificar </a>
                                        <a href="delete/<%= data[i].idpadactual %>" class="btnBorrar" onclick="return confirm('¿Desea cancelar la cita?')"> Cancelar </a>
-                                    <% } else { if (data[i].status != "CANCELADA") { %>
+                                    <% } else { if (data[i].status != "CANCELADA") { 
+                                        if (data[i].status === "PRIMERA VEZ") { %>
                                         <a href="/ahfapphistory/<%= data[i].idpadactual %>&<%= data[i].status %>" class="btnRevisar"> Atención </a>
-                                     <%  } }  %>    
+                                     <% } else { %>
+                                     <a href="/recordCondition/<%= data[i].idpadactual %>" class="btnRevisar"> Atención </a>  
+                                     <% }  } }   %>    
                                 </td>
                             </tr>
                         <% } %>
