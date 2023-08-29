@@ -188,7 +188,7 @@ usersControl.getById = async (req, res)  => {
  
 
 
-//Función paa encriptar el password
+//Función para encriptar el password
 
 function encriptarPasswords(password) { 
    

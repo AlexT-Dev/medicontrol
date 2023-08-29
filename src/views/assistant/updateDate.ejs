@@ -79,6 +79,29 @@
                     <input type="submit" value="Guardar" class="btnGuardar">
 
                 </div>
+                <% if (message) { %>
+                    <div class="containerModal" >
+                      <div class="popup" id="modal">
+                          <div>
+                              <p class="textModal">
+                                  <%= title %>
+                              </p>
+                              <hr class="hrModal">
+                              </hr>
+                          </div>
+                          <div>
+                              <p class="textModal">
+                                  <%= message %>
+                              </p>
+                          </div>
+                          <div>
+                              <a href="<%= data.idpadactual %>" class="btncloseModal" rel="noreferrer">
+                                  Cerrar
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+                <% message = ""} %>
             </form>
 
         </div>
@@ -96,7 +119,7 @@
                     <p class="textModal">No se ha registrado con su cuenta.</p>
                 </div>
                 <div>
-                    <a href="/login/login" class="btncloseModal" rel="noreferrer">
+                    <a href="/login" class="btncloseModal" rel="noreferrer">
                         Cerrar
                     </a>
                 </div>

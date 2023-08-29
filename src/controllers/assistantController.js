@@ -1,6 +1,8 @@
 const fechaAtual = require('moment');
 const { format } = require('date-fns');
 const session = require('express-session');
+const messageAlert = require('../validators/messages')
+
 //Para la funcionalidad del servicio
 
 /*
@@ -73,11 +75,46 @@ assistantControl.delete = async (req, res) => {
 assistantControl.updateDate = async (req, res) => { 
    const { idpadactual } = req.params;
    const dateModify = req.body;
-   req.getConnection((err, conn) => {
-     conn.query('update padecimiento set ? where idpadactual = ?', [dateModify, idpadactual], (err, dateEdit) => {
-      res.redirect('../assistant');
-     });
-   });  
+   // Control de Sesión
+   const userAccess = req.session.user; 
+   const userAccount = req.session.cuenta;
+   const userStatus = req.session.status;
+   const userType = req.session.userType;
+   req.session.message = ""
+   //Busca la cita en la fecha de trabajo
+   await req.getConnection((err, findDate) => {
+      findDate.query('select fechacita, horacita from padecimiento where fechacita = ? and horacita = ?', [dateModify.fechacita, dateModify.horacita], (err, datefound) => {
+         if (datefound.length === 0) {
+            req.getConnection((err, conn) => {
+               conn.query('update padecimiento set ? where idpadactual = ?', [dateModify, idpadactual], (err, dateEdit) => {
+                res.redirect('../assistant');
+               });
+               }); 
+         } else {    
+         
+         req.getConnection((err,conn) =>{
+            conn.query(`select pacientes.nombrepaciente, padecimiento.fechacita, padecimiento.horacita, padecimiento.status, padecimiento.idpadactual, usuarios.nombreusuario, usuarios.cuenta from pacientes inner join padecimiento ` +
+                       `on pacientes.idpaciente = padecimiento.idpaciente inner join usuarios on usuarios.cuenta = padecimiento.cuenta `+
+                       `where padecimiento.idpadactual  = ?`, [idpadactual], (err, dateEdit) =>{
+               if (err) { res.json(err) }
+                   // Convierte el valor de la fecha en texto
+                   dateEdit[0].fechacita = format(dateEdit[0].fechacita,'yyyy-MM-dd');
+                   req.session.message = messageAlert("dateFound");
+                   res.render('../views/assistant/updateDate', {   //usa ../views/users/users porque es primera vez que entra a vistas
+                   userAccess,
+                   userAccount,
+                   data: dateEdit[0],
+                   title: "Modificar Cita",
+                   message: req.session.message
+                  }) 
+               
+            })   
+          }) 
+     };
+    });
+})
+
+    
    
 };
 
@@ -193,7 +230,8 @@ assistantControl.edit = (req, res) =>{
              userAccess,
              userAccount,
              data: dateEdit[0],
-             title: "Modificar Cita"
+             title: "Modificar Cita",
+             message: ""
             }) 
          
       })   
