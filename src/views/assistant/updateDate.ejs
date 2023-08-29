@@ -26,7 +26,7 @@
     </div>
     </header>
     <div class="divFormContainer">
-        <div class="divFormCaptura" style="height: 230px; width: 400px;">
+        <div class="divFormCaptura" style="height: 200px; width: 400px;">
             <form action="/updateDate/<%= data.idpadactual %>" method="POST">
                 
                     <div class="divDatosCaptura">
@@ -63,16 +63,15 @@
                         <option value="08:00">08:00</option>
                     </select>
                 </div>
-                <div class="divDatosCaptura">
+                <!-- <div class="divDatosCaptura">
                     <label class="labelFormCaptura">Visita:</label>
-                    <!-- Solicita la hora-->
                     <select class="selectCaptura" name="status" required>
                         <option value="<%= data.status %>"><%= data.status %></option>
                         <option value="CANCELADA">CANCELADA</option>
                         <option value="PRIMERA VEZ">PRIMERA VEZ</option>
                         <option value="SUBSECUENTE">SUBSECUENTE</option>
                     </select>
-                </div>
+                </div> -->
                 <hr color="blue" size=3>
                 <div class="divFormOp">
 

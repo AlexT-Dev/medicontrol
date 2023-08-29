@@ -31,7 +31,7 @@ assistantControl.list = (req, res) =>{
    
    //Se crea la conexión a la base de datos
    req.getConnection((err,conn) =>{
-     conn.query('select pacientes.nombrepaciente, padecimiento.horacita, padecimiento.status, padecimiento.idpadactual, usuarios.nombreusuario from pacientes inner join padecimiento ' +
+     conn.query('select pacientes.nombrepaciente, padecimiento.horacita, padecimiento.status, padecimiento.idpadactual, padecimiento.idpaciente, usuarios.nombreusuario from pacientes inner join padecimiento ' +
                 'on pacientes.idpaciente = padecimiento.idpaciente inner join usuarios on usuarios.cuenta = padecimiento.cuenta where padecimiento.fechacita = ? '+
                 'order by padecimiento.horacita', [hoy], (err, citas) =>{
         if (err) { res.json(err) }
@@ -61,13 +61,35 @@ assistantControl.saveDate = async (req, res) => {
 };
 
 //Para cancelar la cita
-assistantControl.delete = async (req, res) => {
+assistantControl.deleteDate = async (req, res) => {
    const idPadActual = req.params.idpadactual;
    await req.getConnection((err, conn) => {
       conn.query('update padecimiento set status = ? where  idpadactual = ?', ["CANCELADA", idPadActual], (err, dates) => {
          res.redirect('../assistant');    //redirecciona a la página principal de usuarios, sólo es ../users por se hace en la misma página
        })
     })
+};
+
+//Para restaurar la cita
+assistantControl.restoreDate = async (req, res) => {
+   const idPadActual = req.params.idpadactual;
+   const idPaciente = req.params.idpaciente;
+
+   //Buscar si es paciente de PRIMERA VEZ o SUBSECUENTE
+
+   var restoreDate;
+   await req.getConnection((err, restore) => {
+      restore.query('select idpadactual from padecimiento where  idpaciente = ?', [idPaciente], (err, datesFound) => {
+         restoreDate = datesFound.length === 1  ? "PRIMERA VEZ" : "SUBSECUENTE"
+         req.getConnection((err, conn) => {
+            conn.query('update padecimiento set status = ? where  idpadactual = ?', [restoreDate, idPadActual], (err, dates) => {
+               res.redirect('../assistant');    //redirecciona a la página principal de usuarios, sólo es ../users por se hace en la misma página
+             })
+          })
+      })
+   });   
+   
+    
 };
 
 //Para guardar los datos capturados de la cita  (Modificaciones)

@@ -67,13 +67,18 @@
                                 </td>
                                 <td style="width:160px; font-size:80%;">
                                     <% if (userType === "AUXILIAR") { %>
-                                       <a href="updateDate/<%= data[i].idpadactual %>" class="btnModificar"> Modificar </a>
-                                       <a href="delete/<%= data[i].idpadactual %>" class="btnBorrar" onclick="return confirm('¿Desea cancelar la cita?')"> Cancelar </a>
+                                       
+                                       <% if (data[i].status != "CANCELADA") {%>
+                                          <a href="updateDate/<%= data[i].idpadactual %>" class="btnModificar"> Modificar </a> 
+                                          <a href="deleteDate/<%= data[i].idpadactual %>" class="btnBorrar" onclick="return confirm('¿Desea cancelar la cita?')"> Cancelar </a>
+                                       <% } else { %>
+                                        <a href="restoreDate/<%= data[i].idpadactual %>&<%= data[i].idpaciente %>" class="btnRevisar" onclick="return confirm('¿Desea recuperar la cita?')"> Restaurar </a>
+                                       <% } %> 
                                     <% } else { if (data[i].status != "CANCELADA") { 
                                         if (data[i].status === "PRIMERA VEZ") { %>
                                         <a href="/ahfapphistory/<%= data[i].idpadactual %>&<%= data[i].status %>" class="btnRevisar"> Atención </a>
                                      <% } else { %>
-                                     <a href="/recordCondition/<%= data[i].idpadactual %>" class="btnRevisar"> Atención </a>  
+                                        <a href="/recordCondition/<%= data[i].idpadactual %>" class="btnRevisar"> Atención </a>  
                                      <% }  } }   %>    
                                 </td>
                             </tr>
