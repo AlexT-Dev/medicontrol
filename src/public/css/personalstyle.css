@@ -674,6 +674,22 @@
  
 }
 
+
+.divFormPres {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+ 
+}
+
+.divFormPresPrint {
+    display: flex;
+    flex-wrap: nowrap;
+     justify-content: space-around; 
+     padding: 10px;
+     align-items: flex-end
+}
+
 .divFormCaptura {
      /* display: -moz-grid-line !important; */
      justify-content: left;

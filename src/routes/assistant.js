@@ -8,7 +8,6 @@ const assistantController = require('../controllers/assistantController.js');
 router.get('/assistant', assistantController.list)                 //Pantalla principal de citas
 router.get('/createDate', assistantController.newDate)             //Pantalla para agregar cita
 router.get('/updateDate/:idpadactual', assistantController.edit)       //Pantalla para modificar cita
-//router.get('/erase', assistantController.deleteDate)                   //Pantalla para borrar la cita
 router.get('/createPatient', assistantController.createPatient)    //Pantalla para crear nuevo paciente
 
 

@@ -13,7 +13,7 @@ router.get('/prescription/:idpadactual', doctorController.newPrescription)      
 // router.get('/doctor/createPatient', doctorController.createPatient)    //Pantalla para crear nuevo paciente
 
 
-// //Para API
+//Para API
 router.post('/addAHF/:idpadactual&:status', doctorController.saveAHF)              //Para guardar los AHF del paciente 
 router.post('/addAPP/:idpadactual&:status', doctorController.saveAPP)              //Para guardar los APP del paciente 
 router.post('/addCondition/:idpadactual', doctorController.saveCondition)          //Para guardar el padecimiento actual 

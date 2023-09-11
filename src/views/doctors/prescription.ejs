@@ -71,8 +71,8 @@
     
 </div>
 
-<div class="divFormContainer">
-    <div class="divFormCaptura" style="height: 560px; width: 1450px;">
+<div class="divFormPres">
+    <div class="divFormCaptura" style="height: 180px; width: 1450px;">
         <form action="/addMedicine/<%= patient.idpadactual %>" method="POST">
             <div class="scrollPad" style="height: 110px;">
                 <div class="divDatosCapturaPad">
@@ -91,40 +91,45 @@
 
             </div>
         </form>
+    </div>
         <!-- Despliega los medicamentos de la receta -->
-        <div class="fijar-tabla" style="width: 1000px;">
+  <% if (medicines.length > 0) { %>
+    <div class="divFormCaptura" style="height: 200px; width: 1450px;">
+       <div class="divFormPresPrint">    
+        
+        <div class="fijar-tabla" style="width: 1300px;">
             <table class="tabla">
                 <thead class="tHead">
-                    <tr class="trFija">
-                        <th style="width:500px; text-align: center">MEDICAMENTO</th>
-                        <th style="width:400px; text-align: left">DOSIS</th>
-                        <th style="width:100px; text-align: center">OPCIONES</th>
-
-                    </tr>
+                  <tr class="trFija">
+                      <th style="width:800px; text-align: center">MEDICAMENTO</th>
+                      <th style="width:400px; text-align: left">DOSIS</th>
+                      <th style="width:100px; text-align: center">OPCIONES</th>
+                 </tr>
                 </thead>
-                <tbody class="tbodyDatos" style="height: 145px;">
+              <tbody class="tbodyDatos" style="height: 145px;">
                     <!-- Inicia el listado de los registros -->
-                    <% if (medicines) { %>
                         <% for (var i=0; i < medicines.length; i++) {%>
                             <tr class="trDatos">
-                                <td style="width:500px; font-size:90%; text-align: justify;">
-                                    <%= medicines[i].medicamento %>
-                                </td>
-                                <td style="width:400px; font-size:90%; text-align: left;">
-                                    <%= medicines[i].dosis %>
-                                </td>
-                                <td style="width:94px; font-size:80%;">
-                                    <a href="/eraseMedicine/<%= medicines[i].iddetallereceta %>&<%= medicines[i].idpadactual %>"
-                                        class="btnModificar"> Quitar </a>
+                                <td style="width:800px; font-size:90%; text-align: justify;"><%= medicines[i].medicamento %></td>
+                                <td style="width:400px; font-size:90%; text-align: left;"><%= medicines[i].dosis %></td>
+                                <td style="width:88px; font-size:80%;">
+                                    <a href="/eraseMedicine/<%= medicines[i].iddetallereceta %>&<%= medicines[i].idpadactual %>" class="btnModificar"> Quitar </a>
                                 </td>
                             </tr>
-                            <% } %>
-                                <% } %>
-
+                        <% } %>
+                   
                 </tbody>
+                
             </table>
-        </div>
-    </div>
+         </div>
+         <a href="" class="btnRegresar"> Imprimir </a> 
+       </div>
+       
+     </div>   
+     
+   <% } %>      
+    <!-- </div> del form captura -->
+     
  </div>
 
 <% } else { %>
