@@ -1,4 +1,5 @@
 <%- include ('../partials/_header') %>
+
 <p class="headerPCat">
     <%= title %>
 </p>
@@ -26,11 +27,12 @@
 </div>
 </div>
 </header>
+
   <div class="divDisplayPatient">
     <div>     
         <div class="divDatosCaptura">
             <label class="labelFormCaptura">Nombre:</label>
-            <input value="<%= patient.nombrepaciente %>" type="text" name="nombrepaciente" size="30" class="selectCaptura" disabled>
+            <input value="<%= patient.nombrepaciente %>" type="text" name="nombrepaciente" size="30" class="selectCaptura" id="namePatient" disabled>
         </div>
         
         <div class="divDatosCaptura">
@@ -98,7 +100,7 @@
        <div class="divFormPresPrint">    
         
         <div class="fijar-tabla" style="width: 1300px;">
-            <table class="tabla">
+            <table class="tabla" id="medicine">
                 <thead class="tHead">
                   <tr class="trFija">
                       <th style="width:800px; text-align: center">MEDICAMENTO</th>
@@ -122,7 +124,12 @@
                 
             </table>
          </div>
-         <a href="" class="btnRegresar"> Imprimir </a> 
+         <input 
+            class = "btnRegresar" 
+            value = "Imprimir"
+               id = "print-Prescription"
+             type = "submit"
+             onclick = "printPrescription(event)">  
        </div>
        
      </div>   
@@ -131,6 +138,8 @@
     <!-- </div> del form captura -->
      
  </div>
+ 
+
 
 <% } else { %>
     <div class="containerModal">
@@ -151,4 +160,8 @@
         </div>
     </div>
     <% } %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
+    <script src="../../pdfGenerate.js"></script>
+   
 <%- include ('../partials/_footer') %>
+
